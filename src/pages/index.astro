@@ -1,17 +1,1914 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- Hero Section with Mesh Gradient -->
+  <section class="relative overflow-hidden bg-canvas py-16 md:py-24 border-b border-hairline" id="hero">
+    <!-- Mesh Gradient Backdrop -->
+    <div class="absolute inset-0 pointer-events-none opacity-40 select-none overflow-hidden" aria-hidden="true">
+      <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] rounded-full bg-gradient-to-br from-gradient-develop-start to-gradient-develop-end blur-[120px] transform-gpu"></div>
+      <div class="absolute top-[-30%] right-[-10%] w-[50%] h-[80%] rounded-full bg-gradient-to-bl from-gradient-preview-start to-gradient-preview-end blur-[140px] transform-gpu"></div>
+      <div class="absolute bottom-[-10%] left-[20%] w-[45%] h-[60%] rounded-full bg-gradient-to-tr from-gradient-ship-start to-gradient-ship-end blur-[120px] transform-gpu"></div>
+      <div class="absolute top-[20%] left-[40%] w-[35%] h-[50%] rounded-full bg-cyan-soft/30 blur-[100px] transform-gpu"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10 text-center flex flex-col items-center">
+      <!-- Section Eyebrow -->
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-canvas-soft border border-hairline text-xs font-mono text-body mb-6 shadow-vercel-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-link animate-pulse"></span>
+        CLINICAL-GRADE&nbsp;BAC&nbsp;CALCULATOR
+      </span>
+      
+      <!-- Headline -->
+      <h1 class="font-sans text-4xl md:text-5xl font-semibold tracking-[-2.4px] leading-[1.05] text-primary max-w-3xl mb-6 text-balance">
+        Know your limit. Drive safe.
+      </h1>
+      
+      <!-- Description -->
+      <p class="font-sans text-base text-body max-w-2xl mb-8 leading-relaxed text-pretty">
+        An advanced Blood Alcohol Concentration (BAC) estimator utilizing Watson’s Total Body Water equations. Select your country’s legal limit, build your drink timeline, and visualize your sobriety countdown.
+      </p>
+      
+      <!-- CTA Button Row -->
+      <div class="flex flex-col sm:flex-row gap-4 items-center">
+        <a href="#calculator" class="inline-flex items-center justify-center bg-primary hover:bg-primary/95 text-canvas-soft text-sm font-semibold tracking-wide h-11 px-8 rounded-pill transition-vercel shadow-vercel-3 focus:ring-2 focus:ring-link focus:outline-none" id="hero-primary-cta">
+          Start Calculating
+        </a>
+        <a href="#science" class="inline-flex items-center justify-center bg-canvas hover:bg-canvas-soft border border-hairline text-ink text-sm font-semibold tracking-wide h-11 px-8 rounded-pill transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="hero-secondary-cta">
+          Explore the Science
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator & Dashboard Section -->
+  <section class="py-12 md:py-20 bg-canvas-soft scroll-mt-20" id="calculator">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-8 text-center md:text-left flex flex-col sm:flex-row items-center sm:items-end justify-between gap-4 border-b border-hairline pb-6">
+        <div>
+          <h2 class="font-sans text-2xl md:text-3xl font-semibold tracking-[-1.28px] text-primary text-pretty">
+            BAC Estimator Dashboard.
+          </h2>
+          <p class="text-body text-xs md:text-sm mt-1">
+            Configure your biology, log your drink consumption timeline, and get real-time safety analytics.
+          </p>
+        </div>
+        <button class="text-xs font-mono font-medium border border-error hover:bg-error-soft text-error hover:text-error-deep px-4 py-2 rounded-sm bg-canvas transition-vercel focus:ring-2 focus:ring-error focus:outline-none" id="btn-clear-timeline" aria-label="Clear Timeline">
+          Clear Drink Log
+        </button>
+      </div>
+
+      <!-- Step-by-Step Stepper & Mobile Tab Selector -->
+      <div class="max-w-xl mx-auto mb-10">
+        <!-- Visual Stepper Indicator -->
+        <div class="flex items-center justify-between px-4" role="tablist" aria-label="Calculator Progress Stepper">
+          <!-- Step 1 Tab -->
+          <button type="button" class="flex flex-col items-center gap-2 group focus:outline-none" id="tab-profile" role="tab" aria-selected="true" aria-controls="col-profile">
+            <span class="w-7 h-7 rounded-full bg-primary text-canvas-soft text-xs font-semibold flex items-center justify-center transition-vercel group-focus-visible:ring-2 group-focus-visible:ring-link" id="step-num-1">1</span>
+            <span class="text-xs font-semibold text-primary" id="step-txt-1">Profile</span>
+          </button>
+          
+          <!-- Line 1-2 -->
+          <div class="flex-grow h-px bg-hairline-strong mx-2" id="step-line-1"></div>
+          
+          <!-- Step 2 Tab -->
+          <button type="button" class="flex flex-col items-center gap-2 group focus:outline-none" id="tab-log" role="tab" aria-selected="false" aria-controls="col-log">
+            <span class="w-7 h-7 rounded-full bg-canvas border border-hairline text-body text-xs font-semibold flex items-center justify-center transition-vercel group-focus-visible:ring-2 group-focus-visible:ring-link" id="step-num-2">2</span>
+            <span class="text-xs font-medium text-body" id="step-txt-2">Log Drinks</span>
+          </button>
+          
+          <!-- Line 2-3 -->
+          <div class="flex-grow h-px bg-hairline mx-2" id="step-line-2"></div>
+          
+          <!-- Step 3 Tab -->
+          <button type="button" class="flex flex-col items-center gap-2 group focus:outline-none" id="tab-results" role="tab" aria-selected="false" aria-controls="col-results">
+            <span class="w-7 h-7 rounded-full bg-canvas border border-hairline text-body text-xs font-semibold flex items-center justify-center transition-vercel group-focus-visible:ring-2 group-focus-visible:ring-link" id="step-num-3">3</span>
+            <span class="text-xs font-medium text-body" id="step-txt-3">Analytics</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Calculator Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Lane 1: Biological Profile (Width: 4/12) - Active by default -->
+        <div id="col-profile" class="col-span-1 lg:col-span-4 block space-y-6">
+          <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col justify-between min-h-[480px]">
+            <div>
+              <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary mb-6 flex items-center gap-2">
+                <svg class="h-5 w-5 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Step 1: Biological Profile
+              </h3>
+              
+              <div class="space-y-5">
+                <!-- Gender Toggle -->
+                <div>
+                  <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Biological Gender</label>
+                  <div class="grid grid-cols-3 gap-2 bg-canvas-soft-2 p-1 rounded-sm border border-hairline" role="group" aria-label="Gender Select">
+                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none" id="btn-gender-male" data-gender="male">Male</button>
+                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none" id="btn-gender-female" data-gender="female">Female</button>
+                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none" id="btn-gender-other" data-gender="other" title="Uses average biological metrics for inclusive calculation.">Average</button>
+                  </div>
+                </div>
+
+                <!-- Age Input -->
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <label for="profile-age" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Age</label>
+                    <span class="text-xs font-mono font-medium text-primary"><span id="lbl-age-val">30</span> yrs</span>
+                  </div>
+                  <div class="flex gap-4 items-center">
+                    <input type="range" id="profile-age-slider" min="16" max="90" value="30" class="w-full accent-primary h-1 bg-canvas-soft-2 rounded-lg cursor-pointer" aria-label="Age slider" />
+                    <input type="number" id="profile-age" min="16" max="90" value="30" class="w-16 h-8 text-center text-sm border border-hairline rounded-sm bg-canvas font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="Age value in years" />
+                  </div>
+                </div>
+
+                <!-- Weight Input -->
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <label for="profile-weight" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Body Weight</label>
+                    <div class="flex rounded-sm bg-canvas-soft-2 p-0.5 border border-hairline" role="group" aria-label="Weight Unit Switch">
+                      <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none" id="btn-weight-kg" data-unit="kg">KG</button>
+                      <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none" id="btn-weight-lbs" data-unit="lbs">LBS</button>
+                    </div>
+                  </div>
+                  <div class="relative">
+                    <input type="number" id="profile-weight" min="30" max="250" value="75" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="Body weight value" />
+                    <span class="absolute right-3 top-2.5 text-xs text-mute font-mono" id="profile-weight-unit">kg</span>
+                  </div>
+                </div>
+
+                <!-- Height Input -->
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <label for="profile-height" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Height</label>
+                    <div class="flex rounded-sm bg-canvas-soft-2 p-0.5 border border-hairline" role="group" aria-label="Height Unit Switch">
+                      <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none" id="btn-height-cm" data-unit="cm">CM</button>
+                      <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none" id="btn-height-in" data-unit="in">IN</button>
+                    </div>
+                  </div>
+                  <div class="relative">
+                    <input type="number" id="profile-height" min="100" max="250" value="175" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="Body height value" />
+                    <span class="absolute right-3 top-2.5 text-xs text-mute font-mono" id="profile-height-unit">cm</span>
+                  </div>
+                </div>
+
+                <!-- Country Select / Driving Limit -->
+                <div>
+                  <label for="profile-country" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Country Driving Limit</label>
+                  <select id="profile-country" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none appearance-none" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22none%22%3E%3Cpath d=%22M7 9l3 3 3-3%22 stroke=%22%23666%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E'); background-position: right 8px center; background-repeat: no-repeat; background-size: 20px;" aria-label="Select Country for Driving Limit">
+                    <!-- JS to populate -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile next CTA button -->
+            <button type="button" class="w-full h-10 mt-6 bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-to-step-2">
+              Next: Log Drinks
+            </button>
+          </div>
+        </div>
+
+        <!-- Lane 2: Logging & Timeline (Width: 4/12) -->
+        <div id="col-log" class="col-span-1 lg:col-span-4 hidden lg:block space-y-6">
+          <!-- Logger Card -->
+          <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col h-auto">
+            <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary mb-6 flex items-center gap-2">
+              <svg class="h-5 w-5 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Step 2: Add Drinks
+            </h3>
+
+            <!-- Quick Add Presets -->
+            <div class="mb-6">
+              <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Quick Presets</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-beer" title="Beer: 355 ml at 5.0% ABV">
+                  🍺 Regular Beer
+                </button>
+                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-craft-beer" title="Craft Beer: 355 ml at 7.0% ABV">
+                  🍻 Craft IPA
+                </button>
+                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-wine" title="Wine: 148 ml at 12.0% ABV">
+                  🍷 Glass of Wine
+                </button>
+                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-shot" title="Spirit Shot: 44 ml at 40.0% ABV">
+                  🥃 Spirit Shot
+                </button>
+              </div>
+            </div>
+
+            <!-- Custom Form Inputs -->
+            <div class="space-y-4 border-t border-hairline pt-5">
+              <!-- Name -->
+              <div>
+                <label for="drink-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Drink Label</label>
+                <input type="text" id="drink-name" value="Beer" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="Enter drink name…" autocomplete="off" />
+              </div>
+
+              <!-- Volume -->
+              <div>
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="drink-volume" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Volume</label>
+                  <div class="flex rounded-sm bg-canvas-soft-2 p-0.5 border border-hairline" role="group" aria-label="Volume Unit Switch">
+                    <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none" id="btn-volume-ml" data-unit="ml">ML</button>
+                    <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none" id="btn-volume-oz" data-unit="oz">OZ</button>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="number" id="drink-volume" min="5" max="3000" value="355" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="Drink volume" />
+                  <span class="absolute right-3 top-2.5 text-xs text-mute font-mono" id="drink-volume-unit">ml</span>
+                </div>
+              </div>
+
+              <!-- ABV -->
+              <div>
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="drink-abv" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">ABV (%)</label>
+                  <span class="text-xs font-mono font-medium text-primary"><span id="lbl-abv-val">5.0</span>%</span>
+                </div>
+                <div class="flex gap-4 items-center">
+                  <input type="range" id="drink-abv-slider" min="0.5" max="75.0" step="0.5" value="5.0" class="w-full accent-primary h-1 bg-canvas-soft-2 rounded-lg cursor-pointer" aria-label="ABV slider" />
+                  <input type="number" id="drink-abv" min="0.5" max="75.0" step="0.1" value="5.0" class="w-16 h-8 text-center text-sm border border-hairline rounded-sm bg-canvas font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="ABV value in percent" />
+                </div>
+              </div>
+
+              <!-- Time Ago -->
+              <div>
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="drink-time-ago" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Time Consumed</label>
+                  <span class="text-xs font-mono font-medium text-primary" id="drink-time-ago-label">Just now</span>
+                </div>
+                <input type="range" id="drink-time-ago" min="0" max="480" step="5" value="0" class="w-full accent-primary h-1 bg-canvas-soft-2 rounded-lg cursor-pointer" aria-label="Time consumed slider" />
+                <div class="flex justify-between text-[10px] font-mono text-mute mt-1 px-1">
+                  <span>Just now</span>
+                  <span>2h ago</span>
+                  <span>4h ago</span>
+                  <span>6h ago</span>
+                  <span>8h ago</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Button -->
+            <button type="button" class="w-full h-10 mt-6 bg-canvas hover:bg-canvas-soft border border-hairline text-ink font-semibold text-sm rounded-sm transition-vercel focus:ring-2 focus:ring-link focus:outline-none" id="btn-add-drink">
+              Add to Log
+            </button>
+          </div>
+
+          <!-- Timeline list card -->
+          <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col h-[350px]">
+            <h3 class="font-sans text-base font-semibold tracking-[-0.6px] text-primary mb-4 flex items-center justify-between">
+              <span>Drink Timeline Log</span>
+              <span class="text-xs font-mono font-normal text-mute" id="timeline-count">0 drinks logged</span>
+            </h3>
+            
+            <div class="flex-grow overflow-y-auto pr-2" id="timeline-empty-state">
+              <div class="h-full flex flex-col items-center justify-center text-center p-6 bg-canvas-soft-2 rounded-md border border-dashed border-hairline">
+                <svg class="h-8 w-8 text-mute mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <p class="text-sm font-medium text-primary">No drinks logged</p>
+                <p class="text-xs text-mute mt-1 max-w-[200px]">Add drinks above to start building your log.</p>
+              </div>
+            </div>
+
+            <div class="flex-grow overflow-y-auto pr-2 hidden" id="timeline-content">
+              <ul class="divide-y divide-hairline mb-4" id="timeline-list">
+                <!-- JS will inject items -->
+              </ul>
+            </div>
+            
+            <!-- Global "Show BAC Result" button below timeline -->
+            <button type="button" class="w-full h-10 mt-auto bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-to-step-3">
+              Show BAC Results
+            </button>
+          </div>
+        </div>
+
+        <!-- Lane 3: Results Dashboard (Width: 4/12) - Locked by default -->
+        <div id="col-results" class="col-span-1 lg:col-span-4 hidden lg:block space-y-6 relative min-h-[500px]">
+          
+          <!-- Step 3 Lock Overlay (Visible until first modal closure) -->
+          <div id="results-lock-overlay" class="absolute inset-0 z-20 bg-canvas/90 backdrop-blur-md border border-hairline rounded-lg p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-vercel-3 transition-vercel">
+            <svg class="h-10 w-10 text-mute mb-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary">Step 3: Analytics Locked</h3>
+            <p class="text-xs text-body mt-2 max-w-[240px] leading-relaxed">
+              Configure your profile and add drinks in Step 1 & 2. Then, click the <span class="font-semibold text-primary">"Show BAC Results"</span> button to calculate and unlock this dashboard.
+            </p>
+          </div>
+
+          <!-- Main Dashboard Content (blurred/pointer-events-none until unlocked) -->
+          <div id="results-dashboard-content" class="space-y-6 opacity-30 pointer-events-none transition-vercel select-none">
+            <!-- Metrics Card -->
+            <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-4 flex flex-col h-auto relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-link/5 blur-2xl pointer-events-none select-none" aria-hidden="true"></div>
+              
+              <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary mb-6 flex items-center gap-2">
+                <svg class="h-5 w-5 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                BAC Live Metrics
+              </h3>
+
+              <!-- BAC display -->
+              <div class="text-center py-6 border-b border-hairline">
+                <span class="block font-mono text-[10px] font-semibold text-mute uppercase tracking-widest mb-1.5">Current Blood Alcohol</span>
+                <div class="text-5xl font-mono font-semibold tracking-tighter text-primary tabular-nums select-all cursor-help" id="out-bac-current" title="BAC in grams of alcohol per 100 ml of blood.">
+                  0.000%
+                </div>
+                
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide transition-vercel" id="out-safety-badge">
+                  <span class="w-1.5 h-1.5 rounded-full" id="out-safety-badge-dot"></span>
+                  <span id="out-safety-badge-text">Sober</span>
+                </span>
+              </div>
+
+              <!-- Sobriety predictions -->
+              <div class="space-y-4 py-5 border-b border-hairline flex-grow">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-body font-medium flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-success" aria-hidden="true"></span>
+                    Time to Sobriety (0.00%):
+                  </span>
+                  <span class="text-sm font-mono font-semibold text-primary tabular-nums" id="out-time-sober">Sober</span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-body font-medium flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-link" aria-hidden="true"></span>
+                    Time to Drive Safely:
+                  </span>
+                  <span class="text-sm font-mono font-semibold text-primary tabular-nums" id="out-time-safe">Safe Now</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-body font-medium flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-violet" aria-hidden="true"></span>
+                    Peak BAC Projected:
+                  </span>
+                  <span class="text-sm font-mono font-semibold text-primary tabular-nums" id="out-bac-peak">0.000%</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-body font-medium flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-warning" aria-hidden="true"></span>
+                    Peak Time Reached:
+                  </span>
+                  <span class="text-sm font-mono font-semibold text-primary tabular-nums" id="out-bac-peak-time">N/A</span>
+                </div>
+              </div>
+
+              <!-- Advice Box -->
+              <div class="mt-6 p-4 rounded-sm transition-vercel shadow-vercel-1" id="out-safety-alert">
+                <h4 class="font-sans text-xs font-semibold uppercase tracking-wider mb-1" id="out-safety-alert-title">Sober</h4>
+                <p class="text-xs text-body leading-relaxed" id="out-safety-alert-desc">
+                  No alcohol detected in blood. It is legally safe to operate a vehicle, provided you feel fit, alert, and rested.
+                </p>
+              </div>
+            </div>
+
+            <!-- Chart Card -->
+            <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col h-[380px]">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-sans text-base font-semibold tracking-[-0.6px] text-primary">
+                  BAC Concentration Curve
+                </h3>
+                <span class="text-[9px] font-mono bg-canvas-soft border border-hairline text-body px-2 py-0.5 rounded-sm">
+                  12H PROJECTION
+                </span>
+              </div>
+
+              <div class="flex-grow relative" id="chart-container">
+                <svg class="w-full h-full min-w-0" viewBox="0 0 800 260" preserveAspectRatio="none" id="chart-svg" aria-label="BAC Concentration Curve Chart">
+                  <defs>
+                    <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#0070f3" stop-opacity="0.25"/>
+                      <stop offset="100%" stop-color="#0070f3" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  
+                  <!-- Grid Lines -->
+                  <g stroke="#ebebeb" stroke-width="1" id="chart-grid">
+                    <line x1="50" y1="220" x2="750" y2="220" />
+                    <line x1="50" y1="170" x2="750" y2="170" />
+                    <line x1="50" y1="120" x2="750" y2="120" />
+                    <line x1="50" y1="70" x2="750" y2="70" />
+                    <line x1="50" y1="20" x2="750" y2="20" />
+                  </g>
+
+                  <!-- Y Labels -->
+                  <g font-size="9" font-family="monospace" fill="#888" text-anchor="end" id="chart-y-axis">
+                    <text x="40" y="223">0.00%</text>
+                    <text x="40" y="173" id="chart-y-label-1">0.02%</text>
+                    <text x="40" y="123" id="chart-y-label-2">0.04%</text>
+                    <text x="40" y="73" id="chart-y-label-3">0.06%</text>
+                    <text x="40" y="23" id="chart-y-label-4">0.08%</text>
+                  </g>
+
+                  <!-- X Labels -->
+                  <g font-size="9" font-family="monospace" fill="#888" text-anchor="middle" id="chart-x-axis">
+                    <!-- Injected dynamically -->
+                  </g>
+
+                  <!-- Limit Line -->
+                  <line x1="50" y1="220" x2="750" y2="220" stroke="#ee0000" stroke-width="1.5" stroke-dasharray="4,4" id="chart-limit-line" />
+                  <text x="745" y="215" font-size="9" font-family="monospace" fill="#ee0000" text-anchor="end" id="chart-limit-label">LIMIT</text>
+
+                  <!-- Now Line -->
+                  <line x1="50" y1="20" x2="50" y2="220" stroke="#888888" stroke-width="1.2" stroke-dasharray="2,2" id="chart-now-line" />
+                  <text x="55" y="30" font-size="9" font-family="monospace" fill="#888888" id="chart-now-label">NOW</text>
+
+                  <!-- Area & Line Path -->
+                  <path d="M 50 220 L 750 220 Z" fill="url(#chart-area-grad)" id="chart-area-path" />
+                  <path d="M 50 220 L 750 220" fill="none" stroke="#0070f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="chart-line-path" />
+
+                  <!-- Pulse Markers -->
+                  <circle cx="-100" cy="-100" r="8" fill="#0070f3" fill-opacity="0.15" class="animate-pulse" id="chart-pulse-ring" />
+                  <circle cx="-100" cy="-100" r="4.5" fill="#0070f3" stroke="#fff" stroke-width="1.5" id="chart-pulse-dot" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Visual Results Dialog Modal (Triggered by step-3 button) -->
+  <div id="results-modal" class="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm w-full h-full hidden items-center justify-center m-0 border-none outline-none overflow-y-auto p-4" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 max-w-2xl w-full mx-4 shadow-vercel-5 relative transform scale-95 opacity-0 transition-all duration-300 ease-out flex flex-col gap-6" id="modal-card">
+      
+      <!-- Close Button (Top Right) -->
+      <button type="button" class="absolute top-4 right-4 text-mute hover:text-ink focus:outline-none p-1.5 rounded-sm transition-vercel focus-visible:ring-2 focus-visible:ring-link" id="btn-close-modal" aria-label="Close Results Dialog">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="text-center sm:text-left border-b border-hairline pb-4">
+        <h3 class="font-sans text-xl font-semibold tracking-[-0.96px] text-primary" id="modal-title">
+          Blood Alcohol Concentration Report
+        </h3>
+        <p class="text-xs text-body mt-1">Calculated results using Watson's TBW equations.</p>
+      </div>
+
+      <!-- Scrollable Modal Body -->
+      <div class="space-y-6 overflow-y-auto max-h-[60vh] pr-2 scrollbar-thin scrollbar-thumb-hairline-strong">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+          <!-- BAC digital readout -->
+          <div class="text-center py-6 bg-canvas-soft border border-hairline rounded-md">
+            <span class="block font-mono text-[9px] font-semibold text-mute uppercase tracking-widest mb-1">Current Blood Alcohol</span>
+            <div class="text-5xl font-mono font-semibold tracking-tighter text-primary tabular-nums select-all" id="modal-bac-current">
+              0.000%
+            </div>
+            
+            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 mt-3 text-xs font-mono font-semibold rounded-pill tracking-wide" id="modal-safety-badge">
+              <span class="w-1.5 h-1.5 rounded-full" id="modal-safety-badge-dot"></span>
+              <span id="modal-safety-badge-text">Sober</span>
+            </span>
+          </div>
+
+          <!-- Predictions list -->
+          <div class="space-y-3 font-sans text-xs">
+            <div class="flex justify-between items-center py-1.5 border-b border-hairline">
+              <span class="text-body font-medium flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-success"></span> Sobriety Clock:
+              </span>
+              <span class="font-mono font-semibold text-primary tabular-nums" id="modal-time-sober">Sober</span>
+            </div>
+            <div class="flex justify-between items-center py-1.5 border-b border-hairline">
+              <span class="text-body font-medium flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-link"></span> Safe to Drive:
+              </span>
+              <span class="font-mono font-semibold text-primary tabular-nums" id="modal-time-safe">Safe Now</span>
+            </div>
+            <div class="flex justify-between items-center py-1.5 border-b border-hairline">
+              <span class="text-body font-medium flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-violet"></span> Peak BAC Projected:
+              </span>
+              <span class="font-mono font-semibold text-primary tabular-nums" id="modal-bac-peak">0.000%</span>
+            </div>
+            <div class="flex justify-between items-center py-1.5">
+              <span class="text-body font-medium flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-warning"></span> Peak Time Reached:
+              </span>
+              <span class="font-mono font-semibold text-primary tabular-nums" id="modal-bac-peak-time">N/A</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Safety alert box -->
+        <div class="p-4 rounded-sm shadow-vercel-1" id="modal-safety-alert">
+          <h4 class="font-sans text-xs font-semibold uppercase tracking-wider mb-1" id="modal-safety-alert-title">Sober</h4>
+          <p class="text-xs leading-relaxed" id="modal-safety-alert-desc">
+            No alcohol detected in blood.
+          </p>
+        </div>
+
+        <!-- SVG Curve Chart duplication inside modal -->
+        <div class="bg-canvas border border-hairline rounded-lg p-4 flex flex-col h-[280px]">
+          <span class="font-mono text-[9px] font-semibold text-mute uppercase tracking-widest mb-2 block">BAC Projections Graph</span>
+          <div class="flex-grow relative">
+            <svg class="w-full h-full min-w-0" viewBox="0 0 800 220" preserveAspectRatio="none" id="modal-chart-svg" aria-label="BAC Concentration Curve Chart in Dialog">
+              <defs>
+                <linearGradient id="modal-chart-area-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0070f3" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#0070f3" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              
+              <!-- Grid Lines -->
+              <g stroke="#ebebeb" stroke-width="1" id="modal-chart-grid">
+                <line x1="50" y1="180" x2="750" y2="180" />
+                <line x1="50" y1="140" x2="750" y2="140" />
+                <line x1="50" y1="100" x2="750" y2="100" />
+                <line x1="50" y1="60" x2="750" y2="60" />
+                <line x1="50" y1="20" x2="750" y2="20" />
+              </g>
+
+              <!-- Y Labels -->
+              <g font-size="9" font-family="monospace" fill="#888" text-anchor="end" id="modal-chart-y-axis">
+                <text x="40" y="183">0.00%</text>
+                <text x="40" y="143" id="modal-chart-y-label-1">0.02%</text>
+                <text x="40" y="103" id="modal-chart-y-label-2">0.04%</text>
+                <text x="40" y="63" id="modal-chart-y-label-3">0.06%</text>
+                <text x="40" y="23" id="modal-chart-y-label-4">0.08%</text>
+              </g>
+
+              <!-- X Labels -->
+              <g font-size="9" font-family="monospace" fill="#888" text-anchor="middle" id="modal-chart-x-axis">
+                <!-- Injected dynamically -->
+              </g>
+
+              <!-- Limit Line -->
+              <line x1="50" y1="180" x2="750" y2="180" stroke="#ee0000" stroke-width="1.5" stroke-dasharray="4,4" id="modal-chart-limit-line" />
+              <text x="745" y="175" font-size="9" font-family="monospace" fill="#ee0000" text-anchor="end" id="modal-chart-limit-label">LIMIT</text>
+
+              <!-- Now Line -->
+              <line x1="50" y1="20" x2="50" y2="180" stroke="#888888" stroke-width="1.2" stroke-dasharray="2,2" id="modal-chart-now-line" />
+              <text x="55" y="30" font-size="9" font-family="monospace" fill="#888888" id="modal-chart-now-label">NOW</text>
+
+              <!-- Area & Line Path -->
+              <path d="M 50 180 L 750 180 Z" fill="url(#modal-chart-area-grad)" id="modal-chart-area-path" />
+              <path d="M 50 180 L 750 180" fill="none" stroke="#0070f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="modal-chart-line-path" />
+
+              <!-- Pulse Markers -->
+              <circle cx="-100" cy="-100" r="8" fill="#0070f3" fill-opacity="0.15" class="animate-pulse" id="modal-chart-pulse-ring" />
+              <circle cx="-100" cy="-100" r="4.5" fill="#0070f3" stroke="#fff" stroke-width="1.5" id="modal-chart-pulse-dot" />
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Close CTA at bottom -->
+      <button type="button" class="w-full h-10 bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-close-modal-bottom">
+        Close Report
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Driving Limits by Country Reference Table Section -->
+  <section class="py-16 md:py-24 bg-canvas border-t border-b border-hairline scroll-mt-20" id="country-limits">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-sans text-3xl font-semibold tracking-[-1.28px] text-primary text-balance mb-4">
+          Driving Limits Around the Globe.
+        </h2>
+        <p class="text-body text-base leading-relaxed text-pretty">
+          Legal blood alcohol concentration (BAC) thresholds vary widely between countries. Some nations enforce administrative warnings starting at 0.02%, while others implement absolute zero-tolerance laws.
+        </p>
+      </div>
+
+      <div class="bg-canvas border border-hairline rounded-lg overflow-hidden shadow-vercel-3 max-w-4xl mx-auto">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-canvas-soft-2 border-b border-hairline">
+                <th class="px-6 py-4 font-mono text-[10px] font-semibold text-mute uppercase tracking-widest">Country / Territory</th>
+                <th class="px-6 py-4 font-mono text-[10px] font-semibold text-mute uppercase tracking-widest text-center">Legal Limit (BAC %)</th>
+                <th class="px-6 py-4 font-mono text-[10px] font-semibold text-mute uppercase tracking-widest">Enforcement Severity & Guidelines</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline">
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇺🇸 United States</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.08%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Federal baseline for DUI. Administrative actions and warnings begin lower in many states (e.g. Utah baseline is 0.05%). Strict zero tolerance applies to minors under 21.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇬🇧 United Kingdom (England / Wales)</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.08%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Enforces a baseline of 0.08%. Heavy criminal penalties including immediate license suspensions and potential imprisonment.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇪🇺 European Baseline (France, Germany, Spain)</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.05%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Standard limit for personal vehicles. Novice drivers (first 2-3 years) and commercial drivers face stricter rules, often dropping to 0.00% or 0.02%.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇮🇳 India</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.03%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Equivalent to 30 mg of alcohol per 100 ml of blood. Police forces use roadside breathalyzers with heavy fines, vehicle impounding, and jail time for violations.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇯🇵 Japan</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.03%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Highly rigid penalties. Side-passengers and drink-providers also face legal charges if they knowingly let an impaired driver operate a vehicle.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇸🇪 Sweden / 🇳🇴 Norway</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.02%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Strict near-zero baseline. Exceeding 0.02% leads to massive income-based fines and license suspension. Sweden has a secondary criminal limit at 0.10%.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇧🇷 Brazil / 🇨🇴 Colombia</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.00%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Strict Zero Tolerance. Brazil's “Lei Seca” (Dry Law) penalizes any measurable BAC with heavy fines, license suspension, and potential imprisonment.</td>
+              </tr>
+              <tr class="hover:bg-canvas-soft transition-vercel">
+                <td class="px-6 py-4 text-sm font-semibold text-primary">🇦🇪 United Arab Emirates / 🇸🇦 Saudi Arabia</td>
+                <td class="px-6 py-4 text-sm font-mono text-center font-semibold text-primary tabular-nums">0.00%</td>
+                <td class="px-6 py-4 text-xs text-body leading-normal">Strict Zero Tolerance. Consuming alcohol or driving under the influence is met with severe legal charges, heavy fines, and immediate detention.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <p class="text-xs text-mute text-center mt-6 max-w-lg mx-auto font-sans leading-normal">
+        Note: Legal provisions change periodically. Local authorities may enforce lower thresholds for professional drivers, commercial vehicle operators, and novice or underage drivers.
+      </p>
+    </div>
+  </section>
+
+  <!-- The Science of BAC: Polarity-flipped Dark Band Section -->
+  <section class="py-20 md:py-28 bg-primary text-canvas-soft scroll-mt-20" id="science">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Explanatory Column (Width: 5/12) -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="inline-block font-mono text-xs uppercase tracking-widest text-cyan-soft font-semibold">
+            UNDER THE HOOD
+          </span>
+          <h2 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.28px] text-canvas leading-tight text-balance">
+            The Mathematics of Alcohol Metabolism.
+          </h2>
+          <p class="text-mute text-sm md:text-base leading-relaxed text-pretty">
+            Rather than relying on generic population averages, this calculator estimates **Total Body Water (TBW)** using biological regression equations. Body composition determines how alcohol is distributed across body tissues, which directly impacts blood concentration.
+          </p>
+          
+          <div class="space-y-4 pt-4">
+            <div class="flex gap-4">
+              <div class="w-8 h-8 rounded-full bg-canvas/10 text-canvas font-mono text-xs font-semibold flex items-center justify-center shrink-0">1</div>
+              <div>
+                <h4 class="text-sm font-semibold text-canvas">Watson Equation</h4>
+                <p class="text-xs text-mute leading-relaxed mt-1">Calculates Total Body Water in liters using your weight, height, age, and sex. This acts as the distribution volume coefficient, replacing the crude Widmark average (r).</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-8 h-8 rounded-full bg-canvas/10 text-canvas font-mono text-xs font-semibold flex items-center justify-center shrink-0">2</div>
+              <div>
+                <h4 class="text-sm font-semibold text-canvas">Pure Alcohol Mass (g)</h4>
+                <p class="text-xs text-mute leading-relaxed mt-1">Converts volume and strength into pure ethanol mass in grams: Volume (ml) × (ABV / 100) × 0.789 (where 0.789 g/ml is the density of ethanol).</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-8 h-8 rounded-full bg-canvas/10 text-canvas font-mono text-xs font-semibold flex items-center justify-center shrink-0">3</div>
+              <div>
+                <h4 class="text-sm font-semibold text-canvas">Linear Elimination</h4>
+                <p class="text-xs text-mute leading-relaxed mt-1">Calculates the elimination curve assuming a zero-order metabolism rate (β = 0.015% BAC clearance per hour) starting from the moment of consumption.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Code Editor Mockup Column (Width: 7/12) -->
+        <div class="lg:col-span-7">
+          <!-- Vercel Code Editor Mockup style -->
+          <div class="bg-[#0c0c0c] border border-[#222] rounded-md p-6 md:p-8 font-mono text-[11px] md:text-xs text-mute leading-normal shadow-vercel-5 relative">
+            <!-- Window Buttons -->
+            <div class="flex gap-1.5 mb-5 select-none" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+              <span class="ml-4 text-[10px] text-mute font-mono">watson-widmark-model.js</span>
+            </div>
+
+            <!-- Preformatted Code Block -->
+            <pre class="overflow-x-auto text-[#e1e1e1] pr-2"><code class="block font-mono">
+<span class="text-mute">// 1. Calculate Total Body Water (TBW) in Liters (Watson Regression)</span>
+<span class="text-link">function</span> <span class="text-cyan">calculateTBW</span>(gender, weightKg, heightCm, ageYears) {"{"}
+  <span class="text-link">if</span> (gender === <span class="text-warning">"male"</span>) {"{"}
+    <span class="text-link">return</span> <span class="text-violet">2.447</span> - (<span class="text-violet">0.09516</span> * ageYears) + (<span class="text-violet">0.1074</span> * heightCm) + (<span class="text-violet">0.3362</span> * weightKg);
+  {"}"} <span class="text-link">else if</span> (gender === <span class="text-warning">"female"</span>) {"{"}
+    <span class="text-link">return</span> -<span class="text-violet">2.097</span> + (<span class="text-violet">0.1069</span> * heightCm) + (<span class="text-violet">0.2466</span> * weightKg);
+  {"}"}
+  <span class="text-mute">// Average/Other blends both models for inclusive calculation</span>
+  <span class="text-link">const</span> male = <span class="text-cyan">calculateTBW</span>(<span class="text-warning">"male"</span>, weightKg, heightCm, ageYears);
+  <span class="text-link">const</span> female = <span class="text-cyan">calculateTBW</span>(<span class="text-warning">"female"</span>, weightKg, heightCm, ageYears);
+  <span class="text-link">return</span> (male + female) / <span class="text-violet">2</span>;
+{"}"}
+
+<span class="text-mute">// 2. Calculate pure alcohol weight from volume & strength</span>
+<span class="text-link">const</span> alcoholGrams = volumeMl * (abvPercent / <span class="text-violet">100</span>) * <span class="text-violet">0.789</span>;
+
+<span class="text-mute">// 3. Peak Blood Alcohol Concentration (BAC)</span>
+<span class="text-mute">// Blood is ~80% water. Factor = 0.8. Converts g/L to g/100ml (%)</span>
+<span class="text-link">const</span> peakBAC = (alcoholGrams * <span class="text-violet">0.8</span>) / (tbwLiters * <span class="text-violet">10</span>);
+
+<span class="text-mute">// 4. Hourly Metabolism Clearance (Elimination)</span>
+<span class="text-mute">// Beta = 0.015% per hour. Absorption ramp modeled over 45 minutes</span>
+<span class="text-link">const</span> absorptionFraction = Math.<span class="text-cyan">min</span>(<span class="text-violet">1</span>, elapsedHours / <span class="text-violet">0.75</span>);
+<span class="text-link">const</span> currentBAC = Math.<span class="text-cyan">max</span>(<span class="text-violet">0</span>, (absorptionFraction * peakBAC) - (<span class="text-violet">0.015</span> * elapsedHours));
+            </code></pre>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Medical Disclaimer & Emergency Alternative Section -->
+  <section class="py-16 md:py-24 bg-canvas-soft border-b border-hairline scroll-mt-20" id="disclaimer">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left: Legal Medical Disclaimer (Width: 6/12) -->
+        <div class="md:col-span-6 bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col justify-between">
+          <div>
+            <h3 class="font-sans text-xl font-semibold tracking-[-0.96px] text-primary mb-4 flex items-center gap-2">
+              <svg class="h-5 w-5 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Medical & Legal Disclaimer
+            </h3>
+            <p class="text-xs text-body leading-relaxed mb-4">
+              The calculations, counts, and estimations provided by this online tool are simulations. They are based entirely on statistical population averages and biological formulas that cannot account for individual circumstances such as:
+            </p>
+            <ul class="text-xs text-body list-disc pl-5 space-y-2 mb-6 leading-relaxed">
+              <li>Individual metabolic rate and differences in liver enzyme function.</li>
+              <li>Type, quantity, and timing of food consumed before or during drinking.</li>
+              <li>Hydration levels, physical fatigue, stress, and general sleep health.</li>
+              <li>Concurrent use of medications, prescription drugs, or health supplements.</li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-sm bg-error-soft text-error-deep border border-error/10 text-xs font-semibold leading-relaxed">
+            ⚠️ NEVER DRINK AND DRIVE. Any blood alcohol concentration above 0.00% impairs reflexes, judgment, and vision. If you have consumed alcohol, always arrange for a designated driver, call a taxi, or use a ride-share service.
+          </div>
+        </div>
+
+        <!-- Right: Emergency Helplines & Rides (Width: 6/12) -->
+        <div class="md:col-span-6 bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col justify-between" id="emergency">
+          <div>
+            <h3 class="font-sans text-xl font-semibold tracking-[-0.96px] text-primary mb-4 flex items-center gap-2">
+              <svg class="h-5 w-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Safety Alternatives & Helplines
+            </h3>
+            <p class="text-xs text-body leading-relaxed mb-6">
+              If you or a friend have had too much to drink and need to get home safely, do not take the risk. Please explore one of the following safe alternatives:
+            </p>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-2 gap-3">
+                <a href="https://www.uber.com" target="_blank" rel="noopener noreferrer" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" aria-label="Book an Uber (opens in new window)">
+                  🚗 Uber Rides ↗
+                </a>
+                <a href="https://www.lyft.com" target="_blank" rel="noopener noreferrer" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" aria-label="Book a Lyft (opens in new window)">
+                  🚕 Lyft Rides ↗
+                </a>
+              </div>
+
+              <div class="p-4 rounded-sm bg-canvas-soft border border-hairline">
+                <h4 class="font-sans text-xs font-semibold text-primary mb-1">National Substance Support Help</h4>
+                <p class="text-xs text-body leading-relaxed mb-2">
+                  If you or a loved one are struggling with alcohol use, contact national helpline support services for free, confidential guidance:
+                </p>
+                <div class="flex flex-col gap-1.5 font-mono text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-mute">US (SAMHSA Helpline):</span>
+                    <a href="tel:18006624357" class="text-link font-semibold hover:underline">1-800-662-4357</a>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-mute">UK (National Drinkline):</span>
+                    <a href="tel:03001231110" class="text-link font-semibold hover:underline">0300 123 1110</a>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-mute">Australia (ADF Info):</span>
+                    <a href="tel:1300858584" class="text-link font-semibold hover:underline">1300 85 85 84</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-[10px] text-mute text-center mt-6">
+            Make the smart choice. Your safety, and the safety of everyone sharing the road, is worth the call.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Fixed Toast Container for Notifications -->
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 w-full max-w-sm px-4 select-none pointer-events-none" aria-live="polite" role="status">
+    <!-- Toast notifications injected dynamically here -->
+  </div>
+
+  <!-- Main Calculator Client Side Javascript -->
+  <script>
+    // ─── Constants & Configurations ───
+    const COUNTRIES = [
+      { code: 'US', name: 'United States', limit: 0.08, note: 'Strict limits for commercial drivers (0.04%) and zero-tolerance under 21.' },
+      { code: 'GB', name: 'United Kingdom', limit: 0.08, note: 'Scotland has a lower limit of 0.05%.' },
+      { code: 'SC', name: 'Scotland', limit: 0.05, note: 'Lower limit than England/Wales/N. Ireland.' },
+      { code: 'CA', name: 'Canada', limit: 0.08, note: 'Warnings and administrative suspensions start at 0.05% in most provinces.' },
+      { code: 'AU', name: 'Australia', limit: 0.05, note: '0.00% for learner and provisional drivers.' },
+      { code: 'DE', name: 'Germany', limit: 0.05, note: '0.00% for drivers under 21 or in their first two licensing years.' },
+      { code: 'FR', name: 'France', limit: 0.05, note: 'Stricter limit of 0.02% applies to novice drivers and bus operators.' },
+      { code: 'IN', name: 'India', limit: 0.03, note: 'Equivalent to 30 mg alcohol per 100 ml blood. Zero tolerance in several states.' },
+      { code: 'JP', name: 'Japan', limit: 0.03, note: 'Extremely strict penalties. Virtually zero tolerance in practical enforcement.' },
+      { code: 'SE', name: 'Sweden', limit: 0.02, note: 'Zero-tolerance baseline.' },
+      { code: 'NO', name: 'Norway', limit: 0.02, note: 'Strict limits. Income-based fines for violations.' },
+      { code: 'ES', name: 'Spain', limit: 0.05, note: 'Stricter limit of 0.03% applies to novice and professional drivers.' },
+      { code: 'BR', name: 'Brazil', limit: 0.00, note: 'Lei Seca (Dry Law) enforces absolute zero-tolerance.' },
+      { code: 'CN', name: 'China', limit: 0.02, note: 'DUI baseline is 0.02%. Criminal DWI starts at 0.08%.' },
+      { code: 'RU', name: 'Russia', limit: 0.03, note: 'Enforces a strict baseline corresponding to 0.16 mg/L breath concentration.' },
+      { code: 'ZA', name: 'South Africa', limit: 0.05, note: '0.02% limit for professional vehicle drivers.' },
+      { code: 'IT', name: 'Italy', limit: 0.05, note: 'Stricter limit of 0.00% for novice drivers under 21.' },
+      { code: 'IE', name: 'Ireland', limit: 0.05, note: 'Lower limit of 0.02% for learner, novice, and professional drivers.' },
+      { code: 'CH', name: 'Switzerland', limit: 0.05, note: '0.01% limit for novice and professional drivers.' },
+      { code: 'NZ', name: 'New Zealand', limit: 0.05, note: 'Stricter 0.00% limit for drivers under 20.' },
+      { code: 'AE', name: 'United Arab Emirates', limit: 0.00, note: 'Strict zero tolerance across the entire federation.' },
+      { code: 'SA', name: 'Saudi Arabia', limit: 0.00, note: 'Strict zero tolerance (alcohol is entirely illegal).' },
+      { code: 'PK', name: 'Pakistan', limit: 0.00, note: 'Strict zero tolerance (alcohol is entirely illegal).' }
+    ];
+
+    const DRINK_PRESETS = {
+      beer: { name: 'Regular Beer', abv: 5.0, vol: 355, unit: 'ml' },
+      craft: { name: 'Craft IPA', abv: 7.0, vol: 355, unit: 'ml' },
+      wine: { name: 'Glass of Wine', abv: 12.0, vol: 148, unit: 'ml' },
+      shot: { name: 'Spirit Shot', abv: 40.0, vol: 44, unit: 'ml' }
+    };
+
+    // ─── State Management ───
+    let userState = {
+      gender: 'male',
+      age: 30,
+      weight: 75,
+      weightUnit: 'kg',
+      height: 175,
+      heightUnit: 'cm',
+      countryCode: 'US'
+    };
+
+    let loggedDrinks = [];
+    let drinkCount = 1;
+    let resultsUnlocked = false; // step 3 lock state
+
+    // Load defaults if timeline empty to showcase interface
+    function addDefaultDrinks() {
+      loggedDrinks = [
+        {
+          id: 'def-1',
+          name: 'Regular Beer',
+          vol: 355,
+          abv: 5.0,
+          timeAgo: 120, // 2 hours ago
+          addedAt: Date.now() - (120 * 60 * 1000)
+        },
+        {
+          id: 'def-2',
+          name: 'Glass of Wine',
+          vol: 148,
+          abv: 12.0,
+          timeAgo: 60, // 1 hour ago
+          addedAt: Date.now() - (60 * 60 * 1000)
+        }
+      ];
+      drinkCount = 3;
+    }
+
+    // ─── Cache DOM References ───
+    const elements = {
+      // Lanes
+      colProfile: document.getElementById('col-profile'),
+      colLog: document.getElementById('col-log'),
+      colResults: document.getElementById('col-results'),
+
+      // Tab Buttons (Progress tabs)
+      tabResults: document.getElementById('tab-results'),
+      tabLog: document.getElementById('tab-log'),
+      tabProfile: document.getElementById('tab-profile'),
+      
+      // Step numbers/visual indicators
+      stepNum1: document.getElementById('step-num-1'),
+      stepTxt1: document.getElementById('step-txt-1'),
+      stepLine1: document.getElementById('step-line-1'),
+      stepNum2: document.getElementById('step-num-2'),
+      stepTxt2: document.getElementById('step-txt-2'),
+      stepLine2: document.getElementById('step-line-2'),
+      stepNum3: document.getElementById('step-num-3'),
+      stepTxt3: document.getElementById('step-txt-3'),
+
+      // Onboarding transition buttons
+      btnToStep2: document.getElementById('btn-to-step-2'),
+      btnToStep3: document.getElementById('btn-to-step-3'),
+
+      // Results Lock Overlay
+      resultsLockOverlay: document.getElementById('results-lock-overlay'),
+      resultsDashboardContent: document.getElementById('results-dashboard-content'),
+
+      // Modal Elements
+      resultsModal: document.getElementById('results-modal'),
+      modalCard: document.getElementById('modal-card'),
+      btnCloseModal: document.getElementById('btn-close-modal'),
+      btnCloseModalBottom: document.getElementById('btn-close-modal-bottom'),
+
+      // Profile inputs
+      btnMale: document.getElementById('btn-gender-male'),
+      btnFemale: document.getElementById('btn-gender-female'),
+      btnOther: document.getElementById('btn-gender-other'),
+      ageSlider: document.getElementById('profile-age-slider'),
+      ageInput: document.getElementById('profile-age'),
+      ageLbl: document.getElementById('lbl-age-val'),
+      weightInput: document.getElementById('profile-weight'),
+      weightUnitLbl: document.getElementById('profile-weight-unit'),
+      btnKg: document.getElementById('btn-weight-kg'),
+      btnLbs: document.getElementById('btn-weight-lbs'),
+      heightInput: document.getElementById('profile-height'),
+      heightUnitLbl: document.getElementById('profile-height-unit'),
+      btnCm: document.getElementById('btn-height-cm'),
+      btnIn: document.getElementById('btn-height-in'),
+      countrySelect: document.getElementById('profile-country'),
+      countryWarningBox: document.getElementById('out-country-warning-box'),
+      countryWarningText: document.getElementById('out-country-warning-text'),
+      
+      // Drink Adder Form
+      presetBeer: document.getElementById('btn-preset-beer'),
+      presetCraft: document.getElementById('btn-preset-craft-beer'),
+      presetWine: document.getElementById('btn-preset-wine'),
+      presetShot: document.getElementById('btn-preset-shot'),
+      drinkName: document.getElementById('drink-name'),
+      drinkVolume: document.getElementById('drink-volume'),
+      drinkVolumeUnit: document.getElementById('drink-volume-unit'),
+      btnVolMl: document.getElementById('btn-volume-ml'),
+      btnVolOz: document.getElementById('btn-volume-oz'),
+      abvSlider: document.getElementById('drink-abv-slider'),
+      abvInput: document.getElementById('drink-abv'),
+      abvLbl: document.getElementById('lbl-abv-val'),
+      timeAgoSlider: document.getElementById('drink-time-ago'),
+      timeAgoLbl: document.getElementById('drink-time-ago-label'),
+      btnAdd: document.getElementById('btn-add-drink'),
+      btnClear: document.getElementById('btn-clear-timeline'),
+      
+      // Lists & Containers
+      timelineList: document.getElementById('timeline-list'),
+      timelineEmpty: document.getElementById('timeline-empty-state'),
+      timelineContent: document.getElementById('timeline-content'),
+      timelineCount: document.getElementById('timeline-count'),
+      toastContainer: document.getElementById('toast-container')
+    };
+
+    // ─── Initialization ───
+    function init() {
+      // Populate Country dropdown
+      COUNTRIES.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.code;
+        opt.textContent = `${c.name} (${c.limit.toFixed(2)}%)`;
+        elements.countrySelect.appendChild(opt);
+      });
+      elements.countrySelect.value = userState.countryCode;
+
+      // Select volume unit ML, weight unit KG, height unit CM as initial styling
+      setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
+      setActiveUnitButton(elements.btnKg, elements.btnLbs);
+      setActiveUnitButton(elements.btnCm, elements.btnIn);
+
+      // Add default drinks to showcase timeline and chart
+      addDefaultDrinks();
+
+      // Attach event listeners
+      setupListeners();
+
+      // Initial view layout (Profile tab active first on mobile, results locked)
+      setStepSelection(1);
+      updateAll();
+    }
+
+    // Helper: Manage button toggle styling in Vercel design
+    function setActiveGenderButton(activeBtn) {
+      [elements.btnMale, elements.btnFemale, elements.btnOther].forEach(btn => {
+        btn.className = "py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none";
+      });
+      activeBtn.className = "py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none";
+    }
+
+    function setActiveUnitButton(activeBtn, inactiveBtn) {
+      activeBtn.className = "px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none";
+      inactiveBtn.className = "px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none";
+    }
+
+    // Set wizard active step indices and mobile lane tab toggles
+    function setStepSelection(stepNum) {
+      // 1. Manage mobile tab display lanes
+      if (stepNum === 1) {
+        elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 block";
+        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
+        elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
+      } else if (stepNum === 2) {
+        elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
+        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 block";
+        elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
+      } else if (stepNum === 3) {
+        // Only allow switching to step 3 on mobile if results are unlocked
+        if (!resultsUnlocked) {
+          showToast('Please click "Show BAC Results" in Step 2 to view analytics.');
+          return;
+        }
+        elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
+        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
+        elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] block";
+      }
+
+      // 2. Stepper Visual styling
+      // Reset all
+      [elements.stepNum1, elements.stepNum2, elements.stepNum3].forEach(n => {
+        n.className = "w-7 h-7 rounded-full bg-canvas border border-hairline text-body text-xs font-semibold flex items-center justify-center transition-vercel";
+      });
+      [elements.stepTxt1, elements.stepTxt2, elements.stepTxt3].forEach(t => {
+        t.className = "text-xs font-medium text-body";
+      });
+      elements.stepLine1.className = "flex-grow h-px bg-hairline mx-2";
+      elements.stepLine2.className = "flex-grow h-px bg-hairline mx-2";
+
+      elements.tabProfile.setAttribute('aria-selected', stepNum === 1 ? 'true' : 'false');
+      elements.tabLog.setAttribute('aria-selected', stepNum === 2 ? 'true' : 'false');
+      elements.tabResults.setAttribute('aria-selected', stepNum === 3 ? 'true' : 'false');
+
+      // Highlight active step state
+      if (stepNum === 1) {
+        elements.stepNum1.className = "w-7 h-7 rounded-full bg-primary text-canvas-soft text-xs font-semibold flex items-center justify-center transition-vercel";
+        elements.stepTxt1.className = "text-xs font-semibold text-primary";
+      } else if (stepNum === 2) {
+        elements.stepNum1.className = "w-7 h-7 rounded-full bg-primary/20 text-primary text-xs font-semibold flex items-center justify-center transition-vercel";
+        elements.stepNum2.className = "w-7 h-7 rounded-full bg-primary text-canvas-soft text-xs font-semibold flex items-center justify-center transition-vercel";
+        elements.stepTxt2.className = "text-xs font-semibold text-primary";
+        elements.stepLine1.className = "flex-grow h-px bg-hairline-strong mx-2";
+      } else if (stepNum === 3) {
+        elements.stepNum1.className = "w-7 h-7 rounded-full bg-primary/20 text-primary text-xs font-semibold flex items-center justify-center transition-vercel";
+        elements.stepNum2.className = "w-7 h-7 rounded-full bg-primary/20 text-primary text-xs font-semibold flex items-center justify-center transition-vercel";
+        elements.stepNum3.className = "w-7 h-7 rounded-full bg-primary text-canvas-soft text-xs font-semibold flex items-center justify-center transition-vercel";
+        elements.stepTxt3.className = "text-xs font-semibold text-primary";
+        elements.stepLine1.className = "flex-grow h-px bg-hairline-strong mx-2";
+        elements.stepLine2.className = "flex-grow h-px bg-hairline-strong mx-2";
+      }
+    }
+
+    // ─── Event Listeners ───
+    function setupListeners() {
+      // Stepper Tab Button Clicks
+      elements.tabProfile.addEventListener('click', () => setStepSelection(1));
+      elements.tabLog.addEventListener('click', () => setStepSelection(2));
+      elements.tabResults.addEventListener('click', () => setStepSelection(3));
+
+      // Onboarding step progression CTAs
+      elements.btnToStep2.addEventListener('click', () => setStepSelection(2));
+      
+      // Dialog modal toggling (Show Results button)
+      elements.btnToStep3.addEventListener('click', () => {
+        if (loggedDrinks.length === 0) {
+          showToast('Please add at least one drink to calculate BAC.');
+          return;
+        }
+        calculateAndOpenModal();
+      });
+
+      // Modal close click handlers
+      elements.btnCloseModal.addEventListener('click', closeModal);
+      elements.btnCloseModalBottom.addEventListener('click', closeModal);
+      
+      // Close modal on outside click (Vercel UX design alignment)
+      elements.resultsModal.addEventListener('click', (e) => {
+        if (e.target === elements.resultsModal) {
+          closeModal();
+        }
+      });
+
+      // Keyboard Esc key close configuration
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !elements.resultsModal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+
+      // Gender Toggles
+      elements.btnMale.addEventListener('click', () => { userState.gender = 'male'; setActiveGenderButton(elements.btnMale); updateAll(); });
+      elements.btnFemale.addEventListener('click', () => { userState.gender = 'female'; setActiveGenderButton(elements.btnFemale); updateAll(); });
+      elements.btnOther.addEventListener('click', () => { userState.gender = 'other'; setActiveGenderButton(elements.btnOther); updateAll(); });
+
+      // Age Inputs (sync range slider & numerical input)
+      elements.ageSlider.addEventListener('input', (e) => {
+        elements.ageInput.value = e.target.value;
+        elements.ageLbl.textContent = e.target.value;
+        userState.age = parseInt(e.target.value, 10);
+        updateAll();
+      });
+      elements.ageInput.addEventListener('input', (e) => {
+        let val = parseInt(e.target.value, 10);
+        if (isNaN(val)) val = 16;
+        if (val < 16) val = 16;
+        if (val > 90) val = 90;
+        elements.ageSlider.value = val;
+        elements.ageLbl.textContent = val;
+        userState.age = val;
+        updateAll();
+      });
+
+      // Weight Units Toggle
+      elements.btnKg.addEventListener('click', () => {
+        if (userState.weightUnit === 'lbs') {
+          userState.weightUnit = 'kg';
+          setActiveUnitButton(elements.btnKg, elements.btnLbs);
+          elements.weightUnitLbl.textContent = 'kg';
+          let currentVal = parseFloat(elements.weightInput.value);
+          elements.weightInput.value = Math.round(currentVal * 0.453592);
+          userState.weight = parseInt(elements.weightInput.value, 10);
+          updateAll();
+        }
+      });
+      elements.btnLbs.addEventListener('click', () => {
+        if (userState.weightUnit === 'kg') {
+          userState.weightUnit = 'lbs';
+          setActiveUnitButton(elements.btnLbs, elements.btnKg);
+          elements.weightUnitLbl.textContent = 'lbs';
+          let currentVal = parseFloat(elements.weightInput.value);
+          elements.weightInput.value = Math.round(currentVal / 0.453592);
+          userState.weight = parseInt(elements.weightInput.value, 10);
+          updateAll();
+        }
+      });
+      elements.weightInput.addEventListener('input', (e) => {
+        let val = parseFloat(e.target.value);
+        if (isNaN(val)) val = 70;
+        userState.weight = val;
+        updateAll();
+      });
+
+      // Height Units Toggle
+      elements.btnCm.addEventListener('click', () => {
+        if (userState.heightUnit === 'in') {
+          userState.heightUnit = 'cm';
+          setActiveUnitButton(elements.btnCm, elements.btnIn);
+          elements.heightUnitLbl.textContent = 'cm';
+          let currentVal = parseFloat(elements.heightInput.value);
+          elements.heightInput.value = Math.round(currentVal * 2.54);
+          userState.height = parseInt(elements.heightInput.value, 10);
+          updateAll();
+        }
+      });
+      elements.btnIn.addEventListener('click', () => {
+        if (userState.heightUnit === 'cm') {
+          userState.heightUnit = 'in';
+          setActiveUnitButton(elements.btnIn, elements.btnCm);
+          elements.heightUnitLbl.textContent = 'in';
+          let currentVal = parseFloat(elements.heightInput.value);
+          elements.heightInput.value = Math.round(currentVal / 2.54);
+          userState.height = parseInt(elements.heightInput.value, 10);
+          updateAll();
+        }
+      });
+      elements.heightInput.addEventListener('input', (e) => {
+        let val = parseFloat(e.target.value);
+        if (isNaN(val)) val = 170;
+        userState.height = val;
+        updateAll();
+      });
+
+      // Country Select
+      elements.countrySelect.addEventListener('change', (e) => {
+        userState.countryCode = e.target.value;
+        const country = COUNTRIES.find(c => c.code === userState.countryCode);
+        elements.countryWarningText.innerHTML = `${country.name} legal limit is <span class="font-mono font-semibold">${country.limit.toFixed(2)}%</span> BAC. ${country.note}`;
+        updateAll();
+      });
+
+      // Preset drink click handlers
+      elements.presetBeer.addEventListener('click', () => populateDrinkAdder('beer'));
+      elements.presetCraft.addEventListener('click', () => populateDrinkAdder('craft'));
+      elements.presetWine.addEventListener('click', () => populateDrinkAdder('wine'));
+      elements.presetShot.addEventListener('click', () => populateDrinkAdder('shot'));
+
+      // Drink volume units toggle
+      elements.btnVolMl.addEventListener('click', () => {
+        if (elements.drinkVolumeUnit.textContent === 'oz') {
+          setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
+          elements.drinkVolumeUnit.textContent = 'ml';
+          let currentVal = parseFloat(elements.drinkVolume.value);
+          elements.drinkVolume.value = Math.round(currentVal * 29.5735);
+        }
+      });
+      elements.btnVolOz.addEventListener('click', () => {
+        if (elements.drinkVolumeUnit.textContent === 'ml') {
+          setActiveUnitButton(elements.btnVolOz, elements.btnVolMl);
+          elements.drinkVolumeUnit.textContent = 'oz';
+          let currentVal = parseFloat(elements.drinkVolume.value);
+          elements.drinkVolume.value = (currentVal / 29.5735).toFixed(1);
+        }
+      });
+
+      // Drink ABV slider sync
+      elements.abvSlider.addEventListener('input', (e) => {
+        elements.abvInput.value = e.target.value;
+        elements.abvLbl.textContent = parseFloat(e.target.value).toFixed(1);
+      });
+      elements.abvInput.addEventListener('input', (e) => {
+        let val = parseFloat(e.target.value);
+        if (isNaN(val)) val = 5.0;
+        if (val < 0.1) val = 0.1;
+        if (val > 100.0) val = 100.0;
+        elements.abvSlider.value = val;
+        elements.abvLbl.textContent = val.toFixed(1);
+      });
+
+      // Drink time ago slider label updating
+      elements.timeAgoSlider.addEventListener('input', (e) => {
+        let mins = parseInt(e.target.value, 10);
+        if (mins === 0) {
+          elements.timeAgoLbl.textContent = 'Just now';
+        } else if (mins < 60) {
+          elements.timeAgoLbl.textContent = `${mins} mins ago`;
+        } else {
+          let hrs = Math.floor(mins / 60);
+          let remMins = mins % 60;
+          elements.timeAgoLbl.textContent = remMins === 0 ? `${hrs}h ago` : `${hrs}h ${remMins}m ago`;
+        }
+      });
+
+      // Add Drink Event
+      elements.btnAdd.addEventListener('click', addDrinkFromForm);
+
+      // Clear Timeline Event
+      elements.btnClear.addEventListener('click', () => {
+        loggedDrinks = [];
+        drinkCount = 1;
+        
+        // Relock step 3 on clear
+        resultsUnlocked = false;
+        elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        elements.resultsDashboardContent.className = "space-y-6 opacity-30 pointer-events-none transition-vercel select-none";
+        
+        updateAll();
+        showToast('Timeline cleared successfully.');
+      });
+    }
+
+    // Populate the drink input form fields on preset click
+    function populateDrinkAdder(type) {
+      const preset = DRINK_PRESETS[type];
+      elements.drinkName.value = preset.name;
+      elements.drinkVolumeUnit.textContent = 'ml';
+      setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
+      elements.drinkVolume.value = preset.vol;
+      elements.abvInput.value = preset.abv;
+      elements.abvSlider.value = preset.abv;
+      elements.abvLbl.textContent = preset.abv.toFixed(1);
+      
+      // Highlight form
+      const container = elements.drinkName.parentElement.parentElement;
+      container.classList.add('ring-2', 'ring-link/30');
+      setTimeout(() => container.classList.remove('ring-2', 'ring-link/30'), 500);
+      
+      // Auto toggle to form if user is on mobile so they don't miss it
+      setStepSelection(2);
+    }
+
+    // Get biological values normalized to standard units (kg, cm)
+    function getNormalizedBiology() {
+      let weightKg = userState.weight;
+      if (userState.weightUnit === 'lbs') {
+        weightKg = weightKg * 0.45359237;
+      }
+      let heightCm = userState.height;
+      if (userState.heightUnit === 'in') {
+        heightCm = heightCm * 2.54;
+      }
+      return {
+        gender: userState.gender,
+        age: userState.age,
+        weightKg,
+        heightCm
+      };
+    }
+
+    // ─── Dynamic Toast Notification System ───
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = "bg-canvas text-primary shadow-vercel-4 border border-hairline rounded-md py-3 px-4 flex items-center justify-between gap-3 text-sm font-sans select-none pointer-events-auto opacity-0 translate-y-4";
+      toast.style.transition = "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease-out";
+      
+      toast.innerHTML = `
+        <div class="flex items-center gap-2">
+          <svg class="h-4.5 w-4.5 text-success shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="font-medium truncate max-w-[220px]">${message}</span>
+        </div>
+        <button type="button" class="text-mute hover:text-ink focus:outline-none p-1 rounded-sm" aria-label="Close Notification">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      `;
+
+      const closeBtn = toast.querySelector('button');
+      closeBtn.addEventListener('click', dismiss);
+
+      elements.toastContainer.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('opacity-0', 'translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+      });
+
+      const timeoutId = setTimeout(dismiss, 3000);
+
+      function dismiss() {
+        clearTimeout(timeoutId);
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4');
+        toast.addEventListener('transitionend', () => {
+          toast.remove();
+        });
+      }
+    }
+
+    // ─── Mathematical Estimator Calculations ───
+    
+    function calculateTBW(gender, weightKg, heightCm, ageYears) {
+      if (gender === 'male') {
+        return 2.447 - (0.09516 * ageYears) + (0.1074 * heightCm) + (0.3362 * weightKg);
+      } else if (gender === 'female') {
+        return -2.097 + (0.1069 * heightCm) + (0.2466 * weightKg);
+      } else {
+        const male = 2.447 - (0.09516 * ageYears) + (0.1074 * heightCm) + (0.3362 * weightKg);
+        const female = -2.097 + (0.1069 * heightCm) + (0.2466 * weightKg);
+        return (male + female) / 2;
+      }
+    }
+
+    function formatTimeLabel(relativeHours) {
+      const now = new Date();
+      now.setSeconds(0);
+      now.setMilliseconds(0);
+      
+      const targetTime = new Date(now.getTime() + (relativeHours * 60 * 60 * 1000));
+      let h = targetTime.getHours();
+      let m = targetTime.getMinutes();
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      m = m < 10 ? '0' + m : m;
+      return `${h}:${m} ${ampm}`;
+    }
+
+    function calculateBACAt(H, drinksList, biology, tbwLiters) {
+      if (drinksList.length === 0) return 0;
+      
+      let totalBAC = 0;
+      const beta = 0.015;
+      const absorptionTime = 0.75;
+      
+      drinksList.forEach(drink => {
+        const consumptionHour = - (drink.timeAgo / 60);
+        const elapsedHours = H - consumptionHour;
+        
+        if (elapsedHours < 0) return;
+
+        const pureAlcoholGrams = drink.vol * (drink.abv / 100) * 0.789;
+        const peakBACContribution = (pureAlcoholGrams * 0.8) / (tbwLiters * 10);
+        const absorptionFraction = Math.min(1, elapsedHours / absorptionTime);
+        const contribution = (absorptionFraction * peakBACContribution) - (beta * elapsedHours);
+        
+        if (contribution > 0) {
+          totalBAC += contribution;
+        }
+      });
+      
+      return totalBAC;
+    }
+
+    // ─── Drink Adder Form Action ───
+    function addDrinkFromForm() {
+      const name = elements.drinkName.value.trim() || `Drink #${drinkCount}`;
+      let vol = parseFloat(elements.drinkVolume.value);
+      const abv = parseFloat(elements.abvInput.value);
+      const timeAgo = parseInt(elements.timeAgoSlider.value, 10);
+      
+      if (isNaN(vol) || vol <= 0) return;
+      if (isNaN(abv) || abv <= 0) return;
+      
+      if (elements.drinkVolumeUnit.textContent === 'oz') {
+        vol = vol * 29.5735;
+      }
+      
+      const newDrink = {
+        id: 'drink-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+        name,
+        vol,
+        abv,
+        timeAgo,
+        addedAt: Date.now() - (timeAgo * 60 * 1000)
+      };
+      
+      loggedDrinks.push(newDrink);
+      drinkCount++;
+      
+      // Toast notification trigger (But do NOT update visual result directly on page yet)
+      showToast(`${name} added to timeline.`);
+      
+      // Reset form variables to default
+      elements.drinkName.value = "Beer";
+      elements.drinkVolume.value = "355";
+      elements.drinkVolumeUnit.textContent = "ml";
+      setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
+      elements.abvInput.value = "5.0";
+      elements.abvSlider.value = "5.0";
+      elements.abvLbl.textContent = "5.0";
+      elements.timeAgoSlider.value = "0";
+      elements.timeAgoLbl.textContent = "Just now";
+      
+      // Update logged list display
+      renderTimeline();
+
+      // If results were unlocked previously, re-lock them until user recalculates explicitly
+      if (resultsUnlocked) {
+        resultsUnlocked = false;
+        elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        elements.resultsDashboardContent.className = "space-y-6 opacity-30 pointer-events-none transition-vercel select-none";
+      }
+    }
+
+    function removeDrink(id, name) {
+      loggedDrinks = loggedDrinks.filter(d => d.id !== id);
+      renderTimeline();
+      showToast(`${name} removed from log.`);
+      
+      // Re-lock if timeline changed
+      if (resultsUnlocked) {
+        resultsUnlocked = false;
+        elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        elements.resultsDashboardContent.className = "space-y-6 opacity-30 pointer-events-none transition-vercel select-none";
+      }
+    }
+
+    // ─── Modal & Calculation Progression Toggling ───
+
+    function calculateAndOpenModal() {
+      // 1. Calculate values
+      const bio = getNormalizedBiology();
+      const tbw = calculateTBW(bio.gender, bio.weightKg, bio.heightCm, bio.age);
+      
+      const nowMs = Date.now();
+      loggedDrinks.forEach(drink => {
+        const elapsedMins = Math.round((nowMs - drink.addedAt) / 60000);
+        drink.timeAgo = Math.max(0, elapsedMins);
+      });
+
+      let earliestDrinkAgo = 0;
+      loggedDrinks.forEach(d => {
+        if (d.timeAgo > earliestDrinkAgo) earliestDrinkAgo = d.timeAgo;
+      });
+      const startHour = -(earliestDrinkAgo / 60) - 0.5;
+      
+      let peakBAC = 0;
+      let peakHour = 0;
+      let currentBAC = calculateBACAt(0, loggedDrinks, bio, tbw);
+      let soberHour = null;
+      let safeHour = null;
+      
+      const country = COUNTRIES.find(c => c.code === userState.countryCode);
+      const limit = country.limit;
+
+      const scanPoints = [];
+      const scanStep = 0.05;
+      const endScan = 16.0;
+      
+      for (let h = startHour; h <= endScan; h += scanStep) {
+        const val = calculateBACAt(h, loggedDrinks, bio, tbw);
+        scanPoints.push({ h, val });
+        
+        if (val > peakBAC) {
+          peakBAC = val;
+          peakHour = h;
+        }
+        
+        if (h >= 0) {
+          if (soberHour === null && val <= 0.0001) {
+            soberHour = h;
+          }
+          if (safeHour === null && val < limit) {
+            safeHour = h;
+          }
+        }
+      }
+
+      // 2. Render Results inside the Modal container
+      updateUIContainer('modal-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name);
+
+      // 3. Render Results inside the main Dashboard container (will be unlocked)
+      updateUIContainer('out-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name);
+
+      // 4. Open Modal Dialog
+      elements.resultsModal.classList.remove('hidden');
+      elements.resultsModal.classList.add('flex');
+      document.body.style.overflow = 'hidden'; // Lock scrolling
+      
+      // Trigger modal transitions
+      requestAnimationFrame(() => {
+        elements.modalCard.classList.remove('scale-95', 'opacity-0');
+        elements.modalCard.classList.add('scale-100', 'opacity-100');
+      });
+    }
+
+    function closeModal() {
+      // Scale down modal
+      elements.modalCard.classList.remove('scale-100', 'opacity-100');
+      elements.modalCard.classList.add('scale-95', 'opacity-0');
+      
+      setTimeout(() => {
+        elements.resultsModal.classList.remove('flex');
+        elements.resultsModal.classList.add('hidden');
+        document.body.style.overflow = ''; // Restore scrolling
+
+        // Unlock Step 3 (Results) on the main page
+        resultsUnlocked = true;
+        elements.resultsLockOverlay.classList.add('opacity-0', 'pointer-events-none');
+        elements.resultsDashboardContent.className = "space-y-6 opacity-100 transition-vercel";
+        
+        // Auto navigate to Step 3 tab on mobile viewports
+        setStepSelection(3);
+      }, 200);
+    }
+
+    // ─── Dynamic Layout Rendering Engine ───
+    
+    function updateUIContainer(prefix, currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, countryName) {
+      const isModal = prefix === 'modal-';
+      
+      // Query DOM nodes dynamically
+      const elCurrent = document.getElementById(`${prefix}bac-current`);
+      const elSober = document.getElementById(`${prefix}time-sober`);
+      const elSafe = document.getElementById(`${prefix}time-safe`);
+      const elPeak = document.getElementById(`${prefix}bac-peak`);
+      const elPeakTime = document.getElementById(`${prefix}bac-peak-time`);
+      const elBadge = document.getElementById(`${prefix}safety-badge`);
+      const elBadgeDot = document.getElementById(`${prefix}safety-badge-dot`);
+      const elBadgeText = document.getElementById(`${prefix}safety-badge-text`);
+      const elAlert = document.getElementById(`${prefix}safety-alert`);
+      const elAlertTitle = document.getElementById(`${prefix}safety-alert-title`);
+      const elAlertDesc = document.getElementById(`${prefix}safety-alert-desc`);
+
+      // Set digital values
+      if (elCurrent) elCurrent.textContent = `${currentBAC.toFixed(3)}%`;
+      if (elPeak) elPeak.textContent = `${peakBAC.toFixed(3)}%`;
+
+      // Set peak time label
+      if (elPeakTime) {
+        if (peakHour === 0) {
+          elPeakTime.textContent = "Now";
+        } else if (peakHour < 0) {
+          let mins = Math.round(Math.abs(peakHour) * 60);
+          elPeakTime.textContent = `${mins}m ago`;
+        } else {
+          elPeakTime.textContent = formatTimeLabel(peakHour);
+        }
+      }
+
+      // Set sober countdown
+      if (elSober) {
+        if (currentBAC <= 0.0001) {
+          elSober.textContent = "Sober";
+        } else if (soberHour !== null) {
+          let totalMins = Math.round(soberHour * 60);
+          let hrs = Math.floor(totalMins / 60);
+          let mins = totalMins % 60;
+          elSober.textContent = hrs > 0 ? `${hrs}h ${mins}m (${formatTimeLabel(soberHour)})` : `${mins}m (${formatTimeLabel(soberHour)})`;
+        } else {
+          elSober.textContent = "12h+";
+        }
+      }
+
+      // Set safe countdown
+      if (elSafe) {
+        if (currentBAC < limit) {
+          elSafe.textContent = "Safe Now";
+        } else if (safeHour !== null) {
+          let totalMins = Math.round(safeHour * 60);
+          let hrs = Math.floor(totalMins / 60);
+          let mins = totalMins % 60;
+          elSafe.textContent = hrs > 0 ? `${hrs}h ${mins}m (${formatTimeLabel(safeHour)})` : `${mins}m (${formatTimeLabel(safeHour)})`;
+        } else {
+          elSafe.textContent = "12h+";
+        }
+      }
+
+      // Set Badge & Advisory card states
+      if (currentBAC >= limit) {
+        if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-error/10 text-error border border-error/15";
+        if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-error animate-ping";
+        if (elBadgeText) elBadgeText.textContent = "Over Legal Limit";
+        
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-error-soft text-error-deep border border-error/10";
+        if (elAlertTitle) elAlertTitle.textContent = "DO NOT DRIVE";
+        if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-error-deep";
+        if (elAlertDesc) elAlertDesc.textContent = `Your blood alcohol concentration is above the legal limit of ${limit.toFixed(2)}% in ${countryName}. Driving is strictly illegal, dangerous, and carries severe criminal penalties.`;
+      } else if (currentBAC > 0.0001) {
+        if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-warning/10 text-warning border border-warning/15";
+        if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-warning";
+        if (elBadgeText) elBadgeText.textContent = "Impaired (Below Limit)";
+        
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-warning-soft text-warning-deep border border-warning/10";
+        if (elAlertTitle) elAlertTitle.textContent = "CAUTION ADVISED";
+        if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-warning-deep";
+        if (elAlertDesc) elAlertDesc.textContent = `Your BAC of ${currentBAC.toFixed(3)}% is below the legal limit of ${limit.toFixed(2)}% in ${countryName}. However, cognitive and motor skills remain impaired. We advise waiting until you are completely sober (0.00%).`;
+      } else if (peakBAC > 0.0001) {
+        if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-warning/10 text-warning border border-warning/15";
+        if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-warning animate-pulse";
+        if (elBadgeText) elBadgeText.textContent = "Alcohol Absorbing";
+        
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-warning-soft text-warning-deep border border-warning/10";
+        if (elAlertTitle) elAlertTitle.textContent = "BAC RISING";
+        if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-warning-deep";
+        if (elAlertDesc) elAlertDesc.textContent = `You are currently under the limit, but alcohol is still absorbing. Your BAC is projected to peak at ${peakBAC.toFixed(3)}%. Do not operate a vehicle.`;
+      } else {
+        if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-success/10 text-success border border-success/15";
+        if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-success";
+        if (elBadgeText) elBadgeText.textContent = "Sober";
+        
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-canvas-soft border border-hairline";
+        if (elAlertTitle) elAlertTitle.textContent = "Sober";
+        if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-primary";
+        if (elAlertDesc) elAlertDesc.textContent = "No alcohol detected in blood. It is legally safe to operate a vehicle, provided you feel fit, alert, and rested.";
+      }
+
+      // Draw SVG Line Chart for this container context
+      drawChartForContainer(prefix, scanPoints, startHour, limit, currentBAC, yMaxVal(scanPoints, limit));
+    }
+
+    // Get maximum Y value head room
+    function yMaxVal(points, limit) {
+      let maxVal = Math.max(...points.map(p => p.val));
+      if (maxVal < limit) maxVal = limit;
+      if (maxVal < 0.04) maxVal = 0.04;
+      return maxVal * 1.25;
+    }
+
+    // Dynamic drawing function for horizontal and vertical axis plots
+    function drawChartForContainer(prefix, points, startHour, limit, currentBAC, yMax) {
+      const isModal = prefix === 'modal-';
+      const baselineY = isModal ? 180 : 220; // different container height variables
+      const scaleHeight = isModal ? 160 : 200;
+
+      const tMin = startHour;
+      let tMax = 8.0;
+      const maxPoint = points.find(p => p.h >= 0 && p.val <= 0.0001);
+      if (maxPoint && maxPoint.h > tMax) {
+        tMax = Math.ceil(maxPoint.h) + 1.0;
+      }
+      
+      const displayPoints = points.filter(p => p.h >= tMin && p.h <= tMax);
+
+      function getX(h) {
+        return 50 + ((h - tMin) / (tMax - tMin)) * 700;
+      }
+      
+      function getY(val) {
+        return baselineY - (val / yMax) * scaleHeight;
+      }
+
+      // Select targets
+      const pathLine = document.getElementById(`${prefix}chart-line-path`);
+      const pathArea = document.getElementById(`${prefix}chart-area-path`);
+      const lineLimit = document.getElementById(`${prefix}chart-limit-line`);
+      const lblLimit = document.getElementById(`${prefix}chart-limit-label`);
+      const lineNow = document.getElementById(`${prefix}chart-now-line`);
+      const lblNow = document.getElementById(`${prefix}chart-now-label`);
+      const dotPulse = document.getElementById(`${prefix}chart-pulse-dot`);
+      const ringPulse = document.getElementById(`${prefix}chart-pulse-ring`);
+      const xAxis = document.getElementById(`${prefix}chart-x-axis`);
+
+      // Update Y Labels
+      const lblY1 = document.getElementById(`${prefix}chart-y-label-1`);
+      const lblY2 = document.getElementById(`${prefix}chart-y-label-2`);
+      const lblY3 = document.getElementById(`${prefix}chart-y-label-3`);
+      const lblY4 = document.getElementById(`${prefix}chart-y-label-4`);
+
+      if (lblY1) lblY1.textContent = `${(yMax * 0.25).toFixed(3)}%`;
+      if (lblY2) lblY2.textContent = `${(yMax * 0.50).toFixed(3)}%`;
+      if (lblY3) lblY3.textContent = `${(yMax * 0.75).toFixed(3)}%`;
+      if (lblY4) lblY4.textContent = `${(yMax).toFixed(3)}%`;
+
+      if (displayPoints.length === 0) return;
+
+      // Draw path
+      let lineD = "";
+      let areaD = "";
+      displayPoints.forEach((p, idx) => {
+        const x = getX(p.h);
+        const y = getY(p.val);
+        if (idx === 0) {
+          lineD = `M ${x} ${y}`;
+          areaD = `M ${x} ${baselineY} L ${x} ${y}`;
+        } else {
+          lineD += ` L ${x} ${y}`;
+          areaD += ` L ${x} ${y}`;
+        }
+      });
+      const endX = getX(displayPoints[displayPoints.length - 1].h);
+      areaD += ` L ${endX} ${baselineY} Z`;
+
+      if (pathLine) pathLine.setAttribute('d', lineD);
+      if (pathArea) pathArea.setAttribute('d', areaD);
+
+      // Position Limit Line
+      const yLimit = getY(limit);
+      if (lineLimit) {
+        lineLimit.setAttribute('y1', yLimit.toString());
+        lineLimit.setAttribute('y2', yLimit.toString());
+      }
+      if (lblLimit) {
+        lblLimit.setAttribute('y', (yLimit - 5).toString());
+        lblLimit.textContent = `LIMIT (${limit.toFixed(2)}%)`;
+        if (limit === 0) lblLimit.setAttribute('y', (baselineY - 10).toString());
+      }
+
+      // Position "Now" Line
+      const xNow = getX(0);
+      if (lineNow) {
+        lineNow.setAttribute('x1', xNow.toString());
+        lineNow.setAttribute('x2', xNow.toString());
+      }
+      if (lblNow) lblNow.setAttribute('x', (xNow + 5).toString());
+
+      // Pulse Indicator Dot
+      const yNow = getY(currentBAC);
+      if (dotPulse) {
+        dotPulse.setAttribute('cx', xNow.toString());
+        dotPulse.setAttribute('cy', yNow.toString());
+      }
+      if (ringPulse) {
+        ringPulse.setAttribute('cx', xNow.toString());
+        ringPulse.setAttribute('cy', yNow.toString());
+      }
+
+      // Render X labels
+      if (xAxis) {
+        xAxis.innerHTML = "";
+        const intervals = [tMin, 0, tMax * 0.25, tMax * 0.50, tMax * 0.75, tMax];
+        intervals.forEach(h => {
+          const x = getX(h);
+          const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          txt.setAttribute('x', x.toString());
+          txt.setAttribute('y', (baselineY + 20).toString());
+          
+          if (Math.abs(h) < 0.01) {
+            txt.setAttribute('fill', '#171717');
+            txt.setAttribute('font-weight', 'bold');
+            txt.textContent = "Now";
+          } else if (h < 0) {
+            let mins = Math.round(Math.abs(h) * 60);
+            txt.textContent = mins < 60 ? `-${mins}m` : `-${Math.round(Math.abs(h))}h`;
+          } else {
+            txt.textContent = `+${Math.round(h)}h`;
+          }
+          xAxis.appendChild(txt);
+        });
+      }
+    }
+
+    function renderChartEmpty() {
+      // Resets main page curve lines
+      elements.chartLinePath.setAttribute('d', "M 50 220 L 750 220");
+      elements.chartAreaPath.setAttribute('d', "M 50 220 L 750 220 Z");
+      elements.chartPulseDot.setAttribute('cx', "-100");
+      elements.chartPulseDot.setAttribute('cy', "-100");
+      elements.chartPulseRing.setAttribute('cx', "-100");
+      elements.chartPulseRing.setAttribute('cy', "-100");
+      elements.chartLimitLine.setAttribute('y1', "220");
+      elements.chartLimitLine.setAttribute('y2', "220");
+      elements.chartLimitLabel.setAttribute('y', "215");
+      elements.chartLimitLabel.textContent = "LIMIT";
+      elements.chartNowLine.setAttribute('x1', "50");
+      elements.chartNowLine.setAttribute('x2', "50");
+      elements.chartNowLabel.setAttribute('x', "55");
+      elements.chartXAxis.innerHTML = "";
+    }
+
+    // Render logged drinks list
+    function renderTimeline() {
+      elements.timelineList.innerHTML = "";
+      
+      if (loggedDrinks.length === 0) {
+        elements.timelineEmpty.classList.remove('hidden');
+        elements.timelineContent.classList.add('hidden');
+        elements.timelineCount.textContent = "0 drinks logged";
+        return;
+      }
+      
+      elements.timelineEmpty.classList.add('hidden');
+      elements.timelineContent.classList.remove('hidden');
+      elements.timelineCount.textContent = `${loggedDrinks.length} drink${loggedDrinks.length > 1 ? 's' : ''} logged`;
+
+      const sortedDrinks = [...loggedDrinks].sort((a, b) => a.timeAgo - b.timeAgo);
+
+      sortedDrinks.forEach(drink => {
+        const li = document.createElement('li');
+        li.className = "py-3 flex items-center justify-between group transition-vercel";
+        
+        const grams = (drink.vol * (drink.abv / 100) * 0.789).toFixed(1);
+        
+        let timeLabel = "Just now";
+        if (drink.timeAgo > 0) {
+          if (drink.timeAgo < 60) {
+            timeLabel = `${drink.timeAgo}m ago`;
+          } else {
+            const hrs = Math.floor(drink.timeAgo / 60);
+            const mins = drink.timeAgo % 60;
+            timeLabel = mins === 0 ? `${hrs}h ago` : `${hrs}h ${mins}m ago`;
+          }
+        }
+
+        let icon = "🍹";
+        const nameLower = drink.name.toLowerCase();
+        if (nameLower.includes('beer')) icon = "🍺";
+        else if (nameLower.includes('wine')) icon = "🍷";
+        else if (nameLower.includes('spirit') || nameLower.includes('shot') || nameLower.includes('whiskey') || nameLower.includes('vodka')) icon = "🥃";
+        else if (nameLower.includes('cocktail') || nameLower.includes('margarita')) icon = "🍸";
+
+        li.innerHTML = `
+          <div class="flex items-center gap-3 min-w-0 flex-grow">
+            <span class="text-xl select-none" aria-hidden="true">${icon}</span>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-primary truncate leading-tight">${drink.name}</p>
+              <p class="text-xs text-mute mt-0.5 truncate font-sans">
+                ${drink.vol.toFixed(0)} ml · ${drink.abv.toFixed(1)}% ABV · <span class="font-mono">${grams}g alc</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 shrink-0 ml-3">
+            <span class="text-xs font-mono text-body font-medium whitespace-nowrap tabular-nums">${timeLabel}</span>
+            <button type="button" class="text-mute hover:text-error p-1 focus:outline-none focus:ring-1 focus:ring-error rounded-sm transition-vercel" data-id="${drink.id}" data-name="${drink.name}" aria-label="Remove ${drink.name} from log">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </div>
+        `;
+        
+        li.querySelector('button').addEventListener('click', (e) => {
+          const btn = e.currentTarget;
+          const id = btn.getAttribute('data-id');
+          const name = btn.getAttribute('data-name');
+          removeDrink(id, name);
+        });
+
+        elements.timelineList.appendChild(li);
+      });
+    }
+
+    function updateAll() {
+      // Re-normalizes time offsets relative to elapsed page session duration
+      const nowMs = Date.now();
+      loggedDrinks.forEach(drink => {
+        const elapsedMins = Math.round((nowMs - drink.addedAt) / 60000);
+        drink.timeAgo = Math.max(0, elapsedMins);
+      });
+      renderTimeline();
+    }
+
+    init();
+  </script>
+</Layout>

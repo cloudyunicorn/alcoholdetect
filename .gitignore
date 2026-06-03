@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Agentic/AI assistant files and directories
+.agents/
+.antigravity/
+.claude/
+DESIGN.md
+skills-lock.json

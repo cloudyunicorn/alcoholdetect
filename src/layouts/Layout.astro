@@ -1,0 +1,229 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Online Alcohol Detect | Advanced BAC Calculator & Safety Guide",
+  description = "Estimate your Blood Alcohol Concentration (BAC) using the scientifically refined Watson formula. Track drinks over time, check driving limits by country, and view real-time countdowns to sobriety."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-canvas-soft text-ink min-h-screen flex flex-col antialiased selection:bg-primary selection:text-canvas-soft">
+    
+    <!-- Announcement Banner -->
+    <div class="bg-primary text-canvas-soft text-center py-2 px-4 text-xs font-mono tracking-wide">
+      ⚠️ SAFETY NOTE: Calculator estimates only. Never drink and drive.
+    </div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-canvas/80 backdrop-blur-md border-b border-hairline h-16 flex items-center transition-vercel">
+      <div class="max-w-7xl w-full mx-auto px-4 md:px-6 flex items-center justify-between relative">
+        
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5 focus-visible:outline-none" id="nav-logo-link">
+          <svg class="h-6 w-6 text-primary" viewBox="0 0 100 100" fill="currentColor">
+            <!-- Sleek minimalist triangle-shield representation of safety/shield/Vercel -->
+            <polygon points="50,15 90,85 10,85" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+            <circle cx="50" cy="55" r="12" />
+          </svg>
+          <span class="font-sans font-semibold tracking-[-0.6px] text-lg text-primary flex items-center gap-1.5">
+            alcoholdetect<span class="text-xs font-mono font-normal bg-canvas-soft px-1.5 py-0.5 rounded-sm border border-hairline text-body">v1.0</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1.5">
+          <a href="#calculator" class="text-body hover:text-ink text-sm font-medium px-3 py-1.5 rounded-pill hover:bg-canvas-soft transition-vercel" id="nav-calc">Calculator</a>
+          <a href="#country-limits" class="text-body hover:text-ink text-sm font-medium px-3 py-1.5 rounded-pill hover:bg-canvas-soft transition-vercel" id="nav-limits">Driving Limits</a>
+          <a href="#science" class="text-body hover:text-ink text-sm font-medium px-3 py-1.5 rounded-pill hover:bg-canvas-soft transition-vercel" id="nav-science">The Science</a>
+          <a href="#disclaimer" class="text-body hover:text-ink text-sm font-medium px-3 py-1.5 rounded-pill hover:bg-canvas-soft transition-vercel" id="nav-disclaimer">Disclaimer</a>
+        </nav>
+
+        <!-- Right Action Cluster -->
+        <div class="flex items-center gap-3">
+          <a href="#emergency" class="hidden sm:inline-flex items-center justify-center text-xs font-mono font-medium border border-hairline bg-canvas hover:bg-canvas-soft text-primary px-3 h-8 rounded-sm transition-vercel focus-visible:outline-none" id="nav-emergency-btn">
+            Emergency Contacts
+          </a>
+          <a href="#calculator" class="inline-flex items-center justify-center text-xs font-semibold bg-primary hover:bg-primary/90 text-canvas-soft px-3.5 h-8 rounded-pill transition-vercel focus-visible:outline-none" id="nav-start-btn">
+            Calculate Now
+          </a>
+          
+          <!-- Mobile Menu Toggle -->
+          <button class="md:hidden p-1.5 text-body hover:text-ink focus-visible:outline-none" id="mobile-menu-toggle" aria-label="Toggle Menu">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Dropdown Bubble Menu (hidden/positioned absolutely under the header) -->
+        <div id="mobile-nav-menu" class="absolute top-14 right-4 z-40 w-56 bg-canvas border border-hairline rounded-lg p-4 flex flex-col gap-2.5 shadow-vercel-4 md:hidden transition-vercel transform opacity-0 pointer-events-none origin-top-right scale-95">
+          <a href="#calculator" class="text-primary hover:text-link text-sm font-medium py-1.5 transition-vercel focus-visible:outline-none" id="mobile-nav-calc">Calculator</a>
+          <a href="#country-limits" class="text-primary hover:text-link text-sm font-medium py-1.5 transition-vercel focus-visible:outline-none" id="mobile-nav-limits">Driving Limits</a>
+          <a href="#science" class="text-primary hover:text-link text-sm font-medium py-1.5 transition-vercel focus-visible:outline-none" id="mobile-nav-science">The Science</a>
+          <a href="#disclaimer" class="text-primary hover:text-link text-sm font-medium py-1.5 transition-vercel focus-visible:outline-none" id="mobile-nav-disclaimer">Disclaimer</a>
+          <div class="border-t border-hairline my-1"></div>
+          <a href="#emergency" class="text-xs font-mono font-medium border border-hairline bg-canvas-soft hover:bg-canvas text-primary px-3 py-2 rounded-sm text-center transition-vercel focus-visible:outline-none" id="mobile-nav-emergency">Emergency Contacts</a>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Vercel-style 4-column Footer -->
+    <footer class="bg-canvas border-t border-hairline pt-16 pb-12 transition-vercel">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          
+          <!-- Column 1 -->
+          <div>
+            <h3 class="font-mono text-[11px] font-semibold text-mute uppercase tracking-widest mb-4">Calculator</h3>
+            <ul class="space-y-3">
+              <li><a href="#calculator" class="text-body hover:text-ink text-sm transition-vercel">BAC Calculator</a></li>
+              <li><a href="#calculator" class="text-body hover:text-ink text-sm transition-vercel">Drink Timeline</a></li>
+              <li><a href="#country-limits" class="text-body hover:text-ink text-sm transition-vercel">Driving Limits</a></li>
+              <li><a href="#science" class="text-body hover:text-ink text-sm transition-vercel">Watson Formula</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2 -->
+          <div>
+            <h3 class="font-mono text-[11px] font-semibold text-mute uppercase tracking-widest mb-4">Resources</h3>
+            <ul class="space-y-3">
+              <li><a href="#science" class="text-body hover:text-ink text-sm transition-vercel">Metabolism Rates</a></li>
+              <li><a href="#emergency" class="text-body hover:text-ink text-sm transition-vercel">Emergency Support</a></li>
+              <li><a href="https://www.who.int" target="_blank" rel="noopener noreferrer" class="text-body hover:text-ink text-sm transition-vercel">WHO Guidelines ↗</a></li>
+              <li><a href="https://www.nhtsa.gov" target="_blank" rel="noopener noreferrer" class="text-body hover:text-ink text-sm transition-vercel">NHTSA Regulations ↗</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3 -->
+          <div>
+            <h3 class="font-mono text-[11px] font-semibold text-mute uppercase tracking-widest mb-4">Legal</h3>
+            <ul class="space-y-3">
+              <li><a href="#disclaimer" class="text-body hover:text-ink text-sm transition-vercel">Medical Disclaimer</a></li>
+              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Terms of Service</a></li>
+              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Privacy Policy</a></li>
+              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Cookie Settings</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4 -->
+          <div>
+            <h3 class="font-mono text-[11px] font-semibold text-mute uppercase tracking-widest mb-4">About</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">alcoholdetect.com</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-body hover:text-ink text-sm transition-vercel">Open Source ↗</a></li>
+              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Developer Portal</a></li>
+              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Contact Support</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-hairline pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-3">
+            <svg class="h-5 w-5 text-mute" viewBox="0 0 100 100" fill="currentColor">
+              <polygon points="50,15 90,85 10,85" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+              <circle cx="50" cy="55" r="12" />
+            </svg>
+            <p class="text-mute text-xs font-mono">
+              © {new Date().getFullYear()} online alcohol detect. All rights reserved.
+            </p>
+          </div>
+          <p class="text-mute text-xs max-w-md text-center md:text-right font-sans">
+            Disclaimer: The results provided by this calculator are estimates for informational purposes only. Do not rely on them to decide if you are fit to drive.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Interactive navigation scripting -->
+    <script>
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const menu = document.getElementById('mobile-nav-menu');
+      
+      const menuLinks = [
+        document.getElementById('mobile-nav-calc'),
+        document.getElementById('mobile-nav-limits'),
+        document.getElementById('mobile-nav-science'),
+        document.getElementById('mobile-nav-disclaimer'),
+        document.getElementById('mobile-nav-emergency')
+      ];
+
+      let isOpen = false;
+
+      function openMenu() {
+        isOpen = true;
+        menu?.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+        menu?.classList.add('opacity-100', 'scale-100');
+      }
+
+      function closeMenu() {
+        isOpen = false;
+        menu?.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+        menu?.classList.remove('opacity-100', 'scale-100');
+      }
+
+      function toggleMenu(e) {
+        e.stopPropagation();
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      }
+
+      menuToggle?.addEventListener('click', toggleMenu);
+
+      menuLinks.forEach(link => {
+        link?.addEventListener('click', closeMenu);
+      });
+
+      // Close menu if user clicks anywhere outside of the menu
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (isOpen && menu && !menu.contains(target) && target !== menuToggle && !menuToggle?.contains(target)) {
+          closeMenu();
+        }
+      });
+    </script>
+  </body>
+</html>
