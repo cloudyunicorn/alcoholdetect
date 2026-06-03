@@ -176,9 +176,23 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Lane 2: Logging & Timeline (Width: 4/12) -->
-        <div id="col-log" class="col-span-1 lg:col-span-4 hidden lg:block space-y-6">
-          <!-- Logger Card -->
-          <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col h-auto">
+        <div id="col-log" class="col-span-1 lg:col-span-4 hidden lg:block space-y-6 relative min-h-[500px]">
+          
+          <!-- Step 2 Lock Overlay (Visible until Step 1 is finished) -->
+          <div id="log-lock-overlay" class="absolute inset-0 z-20 bg-canvas/90 backdrop-blur-md border border-hairline rounded-lg p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-vercel-3 transition-vercel">
+            <svg class="h-10 w-10 text-mute mb-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary">Step 2: Log Drinks Locked</h3>
+            <p class="text-xs text-body mt-2 max-w-[240px] leading-relaxed">
+              Complete your biological profile in Step 1 first. Then click <span class="font-semibold text-primary">"Next: Log Drinks"</span> to unlock this section.
+            </p>
+          </div>
+
+          <!-- Main Log Content -->
+          <div id="log-dashboard-content" class="space-y-6 opacity-30 pointer-events-none transition-vercel select-none">
+            <!-- Logger Card -->
+            <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3 flex flex-col h-auto">
             <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary mb-6 flex items-center gap-2">
               <svg class="h-5 w-5 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -186,31 +200,34 @@ import Layout from '../layouts/Layout.astro';
               Step 2: Add Drinks
             </h3>
 
-            <!-- Quick Add Presets -->
-            <div class="mb-6">
-              <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Quick Presets</label>
-              <div class="grid grid-cols-2 gap-2">
-                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-beer" title="Beer: 355 ml at 5.0% ABV">
-                  🍺 Regular Beer
-                </button>
-                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-craft-beer" title="Craft Beer: 355 ml at 7.0% ABV">
-                  🍻 Craft IPA
-                </button>
-                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-wine" title="Wine: 148 ml at 12.0% ABV">
-                  🍷 Glass of Wine
-                </button>
-                <button type="button" class="h-10 text-xs font-semibold border border-hairline rounded-sm bg-canvas hover:bg-canvas-soft text-primary flex items-center justify-center gap-2 transition-vercel focus:outline-none" id="btn-preset-shot" title="Spirit Shot: 44 ml at 40.0% ABV">
-                  🥃 Spirit Shot
-                </button>
-              </div>
-            </div>
-
             <!-- Custom Form Inputs -->
             <div class="space-y-4 border-t border-hairline pt-5">
-              <!-- Name -->
+              <!-- Drink Select Dropdown -->
               <div>
-                <label for="drink-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Drink Label</label>
-                <input type="text" id="drink-name" value="Beer" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="Enter drink name…" autocomplete="off" />
+                <label for="drink-select" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Select Drink</label>
+                <select id="drink-select" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none appearance-none" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22none%22%3E%3Cpath d=%22M7 9l3 3 3-3%22 stroke=%22%23666%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E'); background-position: right 8px center; background-repeat: no-repeat; background-size: 20px;" aria-label="Select drink type">
+                  <option value="beer-reg" data-name="Regular Beer" data-vol="355" data-abv="5.0">🍺 Regular Beer (355ml, 5%)</option>
+                  <option value="beer-light" data-name="Light Beer" data-vol="355" data-abv="4.2">🍺 Light Beer (355ml, 4.2%)</option>
+                  <option value="beer-craft" data-name="Craft IPA" data-vol="355" data-abv="7.0">🍻 Craft IPA (355ml, 7%)</option>
+                  <option value="wine-red" data-name="Red Wine" data-vol="148" data-abv="13.5">🍷 Red Wine (148ml, 13.5%)</option>
+                  <option value="wine-white" data-name="White Wine" data-vol="148" data-abv="12.0">🥂 White Wine (148ml, 12%)</option>
+                  <option value="champagne" data-name="Champagne" data-vol="120" data-abv="12.0">🍾 Champagne (120ml, 12%)</option>
+                  <option value="shot-whiskey" data-name="Whiskey Shot" data-vol="44" data-abv="40.0">🥃 Whiskey Shot (44ml, 40%)</option>
+                  <option value="shot-vodka" data-name="Vodka Shot" data-vol="44" data-abv="40.0">🥃 Vodka Shot (44ml, 40%)</option>
+                  <option value="shot-tequila" data-name="Tequila Shot" data-vol="44" data-abv="40.0">🥃 Tequila Shot (44ml, 40%)</option>
+                  <option value="cider" data-name="Apple Cider" data-vol="473" data-abv="5.0">🍏 Cider (473ml, 5%)</option>
+                  <option value="cocktail-gt" data-name="Gin & Tonic" data-vol="200" data-abv="6.0">🍸 Gin & Tonic (200ml, 6%)</option>
+                  <option value="cocktail-margarita" data-name="Margarita" data-vol="120" data-abv="15.0">🍹 Margarita (120ml, 15%)</option>
+                  <option value="cocktail-martini" data-name="Martini" data-vol="90" data-abv="30.0">🍸 Martini (90ml, 30%)</option>
+                  <option value="cocktail-rumcoke" data-name="Rum & Coke" data-vol="200" data-abv="8.0">🥃 Rum & Coke (200ml, 8%)</option>
+                  <option value="custom" data-name="Custom Drink" data-vol="355" data-abv="5.0">⚙️ Custom Drink...</option>
+                </select>
+              </div>
+
+              <!-- Custom Label input (hidden by default) -->
+              <div id="custom-drink-label-container" class="hidden">
+                <label for="drink-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Custom Drink Name</label>
+                <input type="text" id="drink-name" value="Regular Beer" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="Enter custom name…" autocomplete="off" />
               </div>
 
               <!-- Volume -->
@@ -290,6 +307,7 @@ import Layout from '../layouts/Layout.astro';
             <button type="button" class="w-full h-10 mt-auto bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-to-step-3">
               Show BAC Results
             </button>
+          </div>
           </div>
         </div>
 
@@ -407,34 +425,34 @@ import Layout from '../layouts/Layout.astro';
                   </g>
 
                   <!-- Y Labels -->
-                  <g font-size="9" font-family="monospace" fill="#888" text-anchor="end" id="chart-y-axis">
+                  <g font-size="11" font-family="monospace" fill="#525252" text-anchor="end" id="out-chart-y-axis">
                     <text x="40" y="223">0.00%</text>
-                    <text x="40" y="173" id="chart-y-label-1">0.02%</text>
-                    <text x="40" y="123" id="chart-y-label-2">0.04%</text>
-                    <text x="40" y="73" id="chart-y-label-3">0.06%</text>
-                    <text x="40" y="23" id="chart-y-label-4">0.08%</text>
+                    <text x="40" y="173" id="out-chart-y-label-1">0.02%</text>
+                    <text x="40" y="123" id="out-chart-y-label-2">0.04%</text>
+                    <text x="40" y="73" id="out-chart-y-label-3">0.06%</text>
+                    <text x="40" y="23" id="out-chart-y-label-4">0.08%</text>
                   </g>
 
                   <!-- X Labels -->
-                  <g font-size="9" font-family="monospace" fill="#888" text-anchor="middle" id="chart-x-axis">
+                  <g font-size="11" font-family="monospace" fill="#525252" text-anchor="middle" id="out-chart-x-axis">
                     <!-- Injected dynamically -->
                   </g>
 
                   <!-- Limit Line -->
-                  <line x1="50" y1="220" x2="750" y2="220" stroke="#ee0000" stroke-width="1.5" stroke-dasharray="4,4" id="chart-limit-line" />
-                  <text x="745" y="215" font-size="9" font-family="monospace" fill="#ee0000" text-anchor="end" id="chart-limit-label">LIMIT</text>
+                  <line x1="50" y1="220" x2="750" y2="220" stroke="#ee0000" stroke-width="1.5" stroke-dasharray="4,4" id="out-chart-limit-line" />
+                  <text x="745" y="215" font-size="11" font-family="monospace" fill="#ee0000" font-weight="bold" text-anchor="end" id="out-chart-limit-label">LIMIT</text>
 
                   <!-- Now Line -->
-                  <line x1="50" y1="20" x2="50" y2="220" stroke="#888888" stroke-width="1.2" stroke-dasharray="2,2" id="chart-now-line" />
-                  <text x="55" y="30" font-size="9" font-family="monospace" fill="#888888" id="chart-now-label">NOW</text>
+                  <line x1="50" y1="20" x2="50" y2="220" stroke="#525252" stroke-width="1.2" stroke-dasharray="2,2" id="out-chart-now-line" />
+                  <text x="55" y="30" font-size="11" font-family="monospace" fill="#525252" font-weight="bold" id="out-chart-now-label">NOW</text>
 
                   <!-- Area & Line Path -->
-                  <path d="M 50 220 L 750 220 Z" fill="url(#chart-area-grad)" id="chart-area-path" />
-                  <path d="M 50 220 L 750 220" fill="none" stroke="#0070f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="chart-line-path" />
+                  <path d="M 50 220 L 750 220 Z" fill="url(#chart-area-grad)" id="out-chart-area-path" />
+                  <path d="M 50 220 L 750 220" fill="none" stroke="#0070f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="out-chart-line-path" />
 
                   <!-- Pulse Markers -->
-                  <circle cx="-100" cy="-100" r="8" fill="#0070f3" fill-opacity="0.15" class="animate-pulse" id="chart-pulse-ring" />
-                  <circle cx="-100" cy="-100" r="4.5" fill="#0070f3" stroke="#fff" stroke-width="1.5" id="chart-pulse-dot" />
+                  <circle cx="-100" cy="-100" r="8" fill="#0070f3" fill-opacity="0.15" class="animate-pulse" id="out-chart-pulse-ring" />
+                  <circle cx="-100" cy="-100" r="4.5" fill="#0070f3" stroke="#fff" stroke-width="1.5" id="out-chart-pulse-dot" />
                 </svg>
               </div>
             </div>
@@ -540,7 +558,7 @@ import Layout from '../layouts/Layout.astro';
               </g>
 
               <!-- Y Labels -->
-              <g font-size="9" font-family="monospace" fill="#888" text-anchor="end" id="modal-chart-y-axis">
+              <g font-size="11" font-family="monospace" fill="#525252" text-anchor="end" id="modal-chart-y-axis">
                 <text x="40" y="183">0.00%</text>
                 <text x="40" y="143" id="modal-chart-y-label-1">0.02%</text>
                 <text x="40" y="103" id="modal-chart-y-label-2">0.04%</text>
@@ -549,17 +567,17 @@ import Layout from '../layouts/Layout.astro';
               </g>
 
               <!-- X Labels -->
-              <g font-size="9" font-family="monospace" fill="#888" text-anchor="middle" id="modal-chart-x-axis">
+              <g font-size="11" font-family="monospace" fill="#525252" text-anchor="middle" id="modal-chart-x-axis">
                 <!-- Injected dynamically -->
               </g>
 
               <!-- Limit Line -->
               <line x1="50" y1="180" x2="750" y2="180" stroke="#ee0000" stroke-width="1.5" stroke-dasharray="4,4" id="modal-chart-limit-line" />
-              <text x="745" y="175" font-size="9" font-family="monospace" fill="#ee0000" text-anchor="end" id="modal-chart-limit-label">LIMIT</text>
+              <text x="745" y="175" font-size="11" font-family="monospace" fill="#ee0000" font-weight="bold" text-anchor="end" id="modal-chart-limit-label">LIMIT</text>
 
               <!-- Now Line -->
-              <line x1="50" y1="20" x2="50" y2="180" stroke="#888888" stroke-width="1.2" stroke-dasharray="2,2" id="modal-chart-now-line" />
-              <text x="55" y="30" font-size="9" font-family="monospace" fill="#888888" id="modal-chart-now-label">NOW</text>
+              <line x1="50" y1="20" x2="50" y2="180" stroke="#525252" stroke-width="1.2" stroke-dasharray="2,2" id="modal-chart-now-line" />
+              <text x="55" y="30" font-size="11" font-family="monospace" fill="#525252" font-weight="bold" id="modal-chart-now-label">NOW</text>
 
               <!-- Area & Line Path -->
               <path d="M 50 180 L 750 180 Z" fill="url(#modal-chart-area-grad)" id="modal-chart-area-path" />
@@ -659,91 +677,42 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- The Science of BAC: Polarity-flipped Dark Band Section -->
   <section class="py-20 md:py-28 bg-primary text-canvas-soft scroll-mt-20" id="science">
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Left: Explanatory Column (Width: 5/12) -->
-        <div class="lg:col-span-5 space-y-6">
-          <span class="inline-block font-mono text-xs uppercase tracking-widest text-cyan-soft font-semibold">
-            UNDER THE HOOD
-          </span>
-          <h2 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.28px] text-canvas leading-tight text-balance">
-            The Mathematics of Alcohol Metabolism.
-          </h2>
-          <p class="text-mute text-sm md:text-base leading-relaxed text-pretty">
-            Rather than relying on generic population averages, this calculator estimates **Total Body Water (TBW)** using biological regression equations. Body composition determines how alcohol is distributed across body tissues, which directly impacts blood concentration.
-          </p>
-          
-          <div class="space-y-4 pt-4">
-            <div class="flex gap-4">
-              <div class="w-8 h-8 rounded-full bg-canvas/10 text-canvas font-mono text-xs font-semibold flex items-center justify-center shrink-0">1</div>
-              <div>
-                <h4 class="text-sm font-semibold text-canvas">Watson Equation</h4>
-                <p class="text-xs text-mute leading-relaxed mt-1">Calculates Total Body Water in liters using your weight, height, age, and sex. This acts as the distribution volume coefficient, replacing the crude Widmark average (r).</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-8 h-8 rounded-full bg-canvas/10 text-canvas font-mono text-xs font-semibold flex items-center justify-center shrink-0">2</div>
-              <div>
-                <h4 class="text-sm font-semibold text-canvas">Pure Alcohol Mass (g)</h4>
-                <p class="text-xs text-mute leading-relaxed mt-1">Converts volume and strength into pure ethanol mass in grams: Volume (ml) × (ABV / 100) × 0.789 (where 0.789 g/ml is the density of ethanol).</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-8 h-8 rounded-full bg-canvas/10 text-canvas font-mono text-xs font-semibold flex items-center justify-center shrink-0">3</div>
-              <div>
-                <h4 class="text-sm font-semibold text-canvas">Linear Elimination</h4>
-                <p class="text-xs text-mute leading-relaxed mt-1">Calculates the elimination curve assuming a zero-order metabolism rate (β = 0.015% BAC clearance per hour) starting from the moment of consumption.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Code Editor Mockup Column (Width: 7/12) -->
-        <div class="lg:col-span-7">
-          <!-- Vercel Code Editor Mockup style -->
-          <div class="bg-[#0c0c0c] border border-[#222] rounded-md p-6 md:p-8 font-mono text-[11px] md:text-xs text-mute leading-normal shadow-vercel-5 relative">
-            <!-- Window Buttons -->
-            <div class="flex gap-1.5 mb-5 select-none" aria-hidden="true">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
-              <span class="ml-4 text-[10px] text-mute font-mono">watson-widmark-model.js</span>
-            </div>
-
-            <!-- Preformatted Code Block -->
-            <pre class="overflow-x-auto text-[#e1e1e1] pr-2"><code class="block font-mono">
-<span class="text-mute">// 1. Calculate Total Body Water (TBW) in Liters (Watson Regression)</span>
-<span class="text-link">function</span> <span class="text-cyan">calculateTBW</span>(gender, weightKg, heightCm, ageYears) {"{"}
-  <span class="text-link">if</span> (gender === <span class="text-warning">"male"</span>) {"{"}
-    <span class="text-link">return</span> <span class="text-violet">2.447</span> - (<span class="text-violet">0.09516</span> * ageYears) + (<span class="text-violet">0.1074</span> * heightCm) + (<span class="text-violet">0.3362</span> * weightKg);
-  {"}"} <span class="text-link">else if</span> (gender === <span class="text-warning">"female"</span>) {"{"}
-    <span class="text-link">return</span> -<span class="text-violet">2.097</span> + (<span class="text-violet">0.1069</span> * heightCm) + (<span class="text-violet">0.2466</span> * weightKg);
-  {"}"}
-  <span class="text-mute">// Average/Other blends both models for inclusive calculation</span>
-  <span class="text-link">const</span> male = <span class="text-cyan">calculateTBW</span>(<span class="text-warning">"male"</span>, weightKg, heightCm, ageYears);
-  <span class="text-link">const</span> female = <span class="text-cyan">calculateTBW</span>(<span class="text-warning">"female"</span>, weightKg, heightCm, ageYears);
-  <span class="text-link">return</span> (male + female) / <span class="text-violet">2</span>;
-{"}"}
-
-<span class="text-mute">// 2. Calculate pure alcohol weight from volume & strength</span>
-<span class="text-link">const</span> alcoholGrams = volumeMl * (abvPercent / <span class="text-violet">100</span>) * <span class="text-violet">0.789</span>;
-
-<span class="text-mute">// 3. Peak Blood Alcohol Concentration (BAC)</span>
-<span class="text-mute">// Blood is ~80% water. Factor = 0.8. Converts g/L to g/100ml (%)</span>
-<span class="text-link">const</span> peakBAC = (alcoholGrams * <span class="text-violet">0.8</span>) / (tbwLiters * <span class="text-violet">10</span>);
-
-<span class="text-mute">// 4. Hourly Metabolism Clearance (Elimination)</span>
-<span class="text-mute">// Beta = 0.015% per hour. Absorption ramp modeled over 45 minutes</span>
-<span class="text-link">const</span> absorptionFraction = Math.<span class="text-cyan">min</span>(<span class="text-violet">1</span>, elapsedHours / <span class="text-violet">0.75</span>);
-<span class="text-link">const</span> currentBAC = Math.<span class="text-cyan">max</span>(<span class="text-violet">0</span>, (absorptionFraction * peakBAC) - (<span class="text-violet">0.015</span> * elapsedHours));
-            </code></pre>
-          </div>
-        </div>
-
+    <div class="max-w-3xl mx-auto px-4 md:px-6 space-y-12">
+      <div class="space-y-4 text-center">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-cyan-soft font-semibold">
+          UNDER THE HOOD
+        </span>
+        <h2 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.28px] text-canvas leading-tight text-balance">
+          The Mathematics of Alcohol Metabolism.
+        </h2>
+        <p class="text-mute text-sm md:text-base leading-relaxed max-w-2xl mx-auto text-center text-pretty">
+          Rather than relying on generic population averages, this calculator estimates **Total Body Water (TBW)** using biological regression equations. Body composition determines how alcohol is distributed across body tissues, which directly impacts blood concentration.
+        </p>
       </div>
-
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+        <div class="flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-canvas/10 text-canvas font-mono text-sm font-semibold flex items-center justify-center shrink-0">1</div>
+          <div>
+            <h4 class="text-sm font-semibold text-canvas">Watson Equation</h4>
+            <p class="text-xs text-mute leading-relaxed mt-1.5">Calculates Total Body Water in liters using your weight, height, age, and sex. This acts as the distribution volume coefficient, replacing the crude Widmark average (r).</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-canvas/10 text-canvas font-mono text-sm font-semibold flex items-center justify-center shrink-0">2</div>
+          <div>
+            <h4 class="text-sm font-semibold text-canvas">Pure Alcohol Mass (g)</h4>
+            <p class="text-xs text-mute leading-relaxed mt-1.5">Converts volume and strength into pure ethanol mass in grams: Volume (ml) × (ABV / 100) × 0.789 (where 0.789 g/ml is the density of ethanol).</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-canvas/10 text-canvas font-mono text-sm font-semibold flex items-center justify-center shrink-0">3</div>
+          <div>
+            <h4 class="text-sm font-semibold text-canvas">Linear Elimination</h4>
+            <p class="text-xs text-mute leading-relaxed mt-1.5">Calculates the elimination curve assuming a zero-order metabolism rate (β = 0.015% BAC clearance per hour) starting from the moment of consumption.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -838,6 +807,8 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- Main Calculator Client Side Javascript -->
   <script>
+    import { animate } from 'motion';
+
     // ─── Constants & Configurations ───
     const COUNTRIES = [
       { code: 'US', name: 'United States', limit: 0.08, note: 'Strict limits for commercial drivers (0.04%) and zero-tolerance under 21.' },
@@ -865,13 +836,6 @@ import Layout from '../layouts/Layout.astro';
       { code: 'PK', name: 'Pakistan', limit: 0.00, note: 'Strict zero tolerance (alcohol is entirely illegal).' }
     ];
 
-    const DRINK_PRESETS = {
-      beer: { name: 'Regular Beer', abv: 5.0, vol: 355, unit: 'ml' },
-      craft: { name: 'Craft IPA', abv: 7.0, vol: 355, unit: 'ml' },
-      wine: { name: 'Glass of Wine', abv: 12.0, vol: 148, unit: 'ml' },
-      shot: { name: 'Spirit Shot', abv: 40.0, vol: 44, unit: 'ml' }
-    };
-
     // ─── State Management ───
     let userState = {
       gender: 'male',
@@ -885,30 +849,11 @@ import Layout from '../layouts/Layout.astro';
 
     let loggedDrinks = [];
     let drinkCount = 1;
+    let logUnlocked = false; // step 2 lock state
     let resultsUnlocked = false; // step 3 lock state
+    let lastAddedDrinkId = null;
 
-    // Load defaults if timeline empty to showcase interface
-    function addDefaultDrinks() {
-      loggedDrinks = [
-        {
-          id: 'def-1',
-          name: 'Regular Beer',
-          vol: 355,
-          abv: 5.0,
-          timeAgo: 120, // 2 hours ago
-          addedAt: Date.now() - (120 * 60 * 1000)
-        },
-        {
-          id: 'def-2',
-          name: 'Glass of Wine',
-          vol: 148,
-          abv: 12.0,
-          timeAgo: 60, // 1 hour ago
-          addedAt: Date.now() - (60 * 60 * 1000)
-        }
-      ];
-      drinkCount = 3;
-    }
+
 
     // ─── Cache DOM References ───
     const elements = {
@@ -940,6 +885,10 @@ import Layout from '../layouts/Layout.astro';
       resultsLockOverlay: document.getElementById('results-lock-overlay'),
       resultsDashboardContent: document.getElementById('results-dashboard-content'),
 
+      // Log Lock Overlay
+      logLockOverlay: document.getElementById('log-lock-overlay'),
+      logDashboardContent: document.getElementById('log-dashboard-content'),
+
       // Modal Elements
       resultsModal: document.getElementById('results-modal'),
       modalCard: document.getElementById('modal-card'),
@@ -966,10 +915,8 @@ import Layout from '../layouts/Layout.astro';
       countryWarningText: document.getElementById('out-country-warning-text'),
       
       // Drink Adder Form
-      presetBeer: document.getElementById('btn-preset-beer'),
-      presetCraft: document.getElementById('btn-preset-craft-beer'),
-      presetWine: document.getElementById('btn-preset-wine'),
-      presetShot: document.getElementById('btn-preset-shot'),
+      drinkSelect: document.getElementById('drink-select'),
+      customLabelContainer: document.getElementById('custom-drink-label-container'),
       drinkName: document.getElementById('drink-name'),
       drinkVolume: document.getElementById('drink-volume'),
       drinkVolumeUnit: document.getElementById('drink-volume-unit'),
@@ -1007,15 +954,19 @@ import Layout from '../layouts/Layout.astro';
       setActiveUnitButton(elements.btnKg, elements.btnLbs);
       setActiveUnitButton(elements.btnCm, elements.btnIn);
 
-      // Add default drinks to showcase timeline and chart
-      addDefaultDrinks();
-
       // Attach event listeners
       setupListeners();
 
       // Initial view layout (Profile tab active first on mobile, results locked)
       setStepSelection(1);
       updateAll();
+
+      // Staggered entrance for columns on desktop
+      if (window.innerWidth >= 1024) {
+        animate(elements.colProfile, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, easing: [0.16, 1, 0.3, 1] });
+        animate(elements.colLog, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.1, easing: [0.16, 1, 0.3, 1] });
+        animate(elements.colResults, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.2, easing: [0.16, 1, 0.3, 1] });
+      }
     }
 
     // Helper: Manage button toggle styling in Vercel design
@@ -1033,15 +984,30 @@ import Layout from '../layouts/Layout.astro';
 
     // Set wizard active step indices and mobile lane tab toggles
     function setStepSelection(stepNum) {
+      const isMobile = window.innerWidth < 1024;
+
       // 1. Manage mobile tab display lanes
       if (stepNum === 1) {
         elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 block";
         elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
         elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
+
+        if (isMobile) {
+          animate(elements.colProfile, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+        }
       } else if (stepNum === 2) {
+        // Only allow switching to step 2 if log is unlocked
+        if (!logUnlocked) {
+          showToast('Please click "Next: Log Drinks" in Step 1 to unlock drink logging.');
+          return;
+        }
         elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
         elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 block";
         elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
+
+        if (isMobile) {
+          animate(elements.colLog, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+        }
       } else if (stepNum === 3) {
         // Only allow switching to step 3 on mobile if results are unlocked
         if (!resultsUnlocked) {
@@ -1051,6 +1017,10 @@ import Layout from '../layouts/Layout.astro';
         elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
         elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
         elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] block";
+
+        if (isMobile) {
+          animate(elements.colResults, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+        }
       }
 
       // 2. Stepper Visual styling
@@ -1095,7 +1065,10 @@ import Layout from '../layouts/Layout.astro';
       elements.tabResults.addEventListener('click', () => setStepSelection(3));
 
       // Onboarding step progression CTAs
-      elements.btnToStep2.addEventListener('click', () => setStepSelection(2));
+      elements.btnToStep2.addEventListener('click', () => {
+        unlockStep2();
+        setStepSelection(2);
+      });
       
       // Dialog modal toggling (Show Results button)
       elements.btnToStep3.addEventListener('click', () => {
@@ -1215,11 +1188,8 @@ import Layout from '../layouts/Layout.astro';
         updateAll();
       });
 
-      // Preset drink click handlers
-      elements.presetBeer.addEventListener('click', () => populateDrinkAdder('beer'));
-      elements.presetCraft.addEventListener('click', () => populateDrinkAdder('craft'));
-      elements.presetWine.addEventListener('click', () => populateDrinkAdder('wine'));
-      elements.presetShot.addEventListener('click', () => populateDrinkAdder('shot'));
+      // Drink select dropdown change handler
+      elements.drinkSelect.addEventListener('change', populateFormFromSelection);
 
       // Drink volume units toggle
       elements.btnVolMl.addEventListener('click', () => {
@@ -1285,24 +1255,45 @@ import Layout from '../layouts/Layout.astro';
       });
     }
 
-    // Populate the drink input form fields on preset click
-    function populateDrinkAdder(type) {
-      const preset = DRINK_PRESETS[type];
-      elements.drinkName.value = preset.name;
-      elements.drinkVolumeUnit.textContent = 'ml';
-      setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
-      elements.drinkVolume.value = preset.vol;
-      elements.abvInput.value = preset.abv;
-      elements.abvSlider.value = preset.abv;
-      elements.abvLbl.textContent = preset.abv.toFixed(1);
+    // Populate the drink input form fields on dropdown select change
+    function populateFormFromSelection() {
+      const selectedOpt = elements.drinkSelect.options[elements.drinkSelect.selectedIndex];
+      if (!selectedOpt) return;
       
-      // Highlight form
-      const container = elements.drinkName.parentElement.parentElement;
-      container.classList.add('ring-2', 'ring-link/30');
-      setTimeout(() => container.classList.remove('ring-2', 'ring-link/30'), 500);
+      const valType = selectedOpt.value;
+      const name = selectedOpt.getAttribute('data-name');
+      const volMl = parseFloat(selectedOpt.getAttribute('data-vol'));
+      const abv = parseFloat(selectedOpt.getAttribute('data-abv'));
       
-      // Auto toggle to form if user is on mobile so they don't miss it
-      setStepSelection(2);
+      // Update Name & toggle custom container visibility
+      if (valType === 'custom') {
+        elements.customLabelContainer.classList.remove('hidden');
+        elements.drinkName.value = "Custom Drink";
+        elements.drinkName.focus();
+      } else {
+        elements.customLabelContainer.classList.add('hidden');
+        elements.drinkName.value = name;
+      }
+      
+      // Update Volume (convert to OZ if currently selected unit is oz)
+      const isOz = elements.drinkVolumeUnit.textContent === 'oz';
+      if (isOz) {
+        elements.drinkVolume.value = (volMl / 29.5735).toFixed(1);
+      } else {
+        elements.drinkVolume.value = volMl.toString();
+      }
+      
+      // Update ABV
+      elements.abvInput.value = abv.toString();
+      elements.abvSlider.value = abv.toString();
+      elements.abvLbl.textContent = abv.toFixed(1);
+      
+      // Highlight form elements container
+      const container = elements.drinkVolume.parentElement.parentElement.parentElement;
+      if (container) {
+        container.classList.add('ring-2', 'ring-link/30');
+        setTimeout(() => container.classList.remove('ring-2', 'ring-link/30'), 500);
+      }
     }
 
     // Get biological values normalized to standard units (kg, cm)
@@ -1443,6 +1434,7 @@ import Layout from '../layouts/Layout.astro';
         addedAt: Date.now() - (timeAgo * 60 * 1000)
       };
       
+      lastAddedDrinkId = newDrink.id;
       loggedDrinks.push(newDrink);
       drinkCount++;
       
@@ -1450,7 +1442,9 @@ import Layout from '../layouts/Layout.astro';
       showToast(`${name} added to timeline.`);
       
       // Reset form variables to default
-      elements.drinkName.value = "Beer";
+      elements.drinkSelect.value = "beer-reg";
+      elements.customLabelContainer.classList.add('hidden');
+      elements.drinkName.value = "Regular Beer";
       elements.drinkVolume.value = "355";
       elements.drinkVolumeUnit.textContent = "ml";
       setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
@@ -1546,31 +1540,56 @@ import Layout from '../layouts/Layout.astro';
       elements.resultsModal.classList.add('flex');
       document.body.style.overflow = 'hidden'; // Lock scrolling
       
-      // Trigger modal transitions
-      requestAnimationFrame(() => {
-        elements.modalCard.classList.remove('scale-95', 'opacity-0');
-        elements.modalCard.classList.add('scale-100', 'opacity-100');
+      elements.modalCard.classList.remove('scale-95', 'opacity-0');
+      
+      // Smooth animated entry for modal overlay and card
+      animate(elements.resultsModal, { opacity: [0, 1] }, { duration: 0.25 });
+      animate(elements.modalCard, { scale: [0.95, 1], y: [15, 0], opacity: [0, 1] }, { 
+        duration: 0.45, 
+        easing: [0.16, 1, 0.3, 1]
       });
     }
 
     function closeModal() {
-      // Scale down modal
-      elements.modalCard.classList.remove('scale-100', 'opacity-100');
-      elements.modalCard.classList.add('scale-95', 'opacity-0');
-      
-      setTimeout(() => {
+      // Smooth animated exit for modal overlay and card
+      Promise.all([
+        animate(elements.resultsModal, { opacity: 0 }, { duration: 0.2 }),
+        animate(elements.modalCard, { scale: 0.95, y: 15, opacity: 0 }, { duration: 0.2 })
+      ]).then(() => {
         elements.resultsModal.classList.remove('flex');
         elements.resultsModal.classList.add('hidden');
         document.body.style.overflow = ''; // Restore scrolling
-
+        
+        elements.modalCard.classList.add('scale-95', 'opacity-0');
+ 
         // Unlock Step 3 (Results) on the main page
         resultsUnlocked = true;
-        elements.resultsLockOverlay.classList.add('opacity-0', 'pointer-events-none');
-        elements.resultsDashboardContent.className = "space-y-6 opacity-100 transition-vercel";
+        
+        // Fade out overlay and fade in dashboard content
+        animate(elements.resultsLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
+          elements.resultsLockOverlay.classList.add('pointer-events-none');
+        });
+        
+        elements.resultsDashboardContent.classList.remove('pointer-events-none', 'select-none');
+        animate(elements.resultsDashboardContent, { opacity: [0.3, 1] }, { duration: 0.5, easing: "ease-out" });
         
         // Auto navigate to Step 3 tab on mobile viewports
         setStepSelection(3);
-      }, 200);
+      });
+    }
+
+    function unlockStep2() {
+      if (logUnlocked) return;
+      logUnlocked = true;
+
+      // Animate unlock overlay fading out
+      animate(elements.logLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
+        elements.logLockOverlay.classList.add('pointer-events-none');
+      });
+
+      // Animate content fading in
+      elements.logDashboardContent.classList.remove('pointer-events-none', 'select-none');
+      animate(elements.logDashboardContent, { opacity: [0.3, 1] }, { duration: 0.5, easing: "ease-out" });
     }
 
     // ─── Dynamic Layout Rendering Engine ───
@@ -1591,9 +1610,25 @@ import Layout from '../layouts/Layout.astro';
       const elAlertTitle = document.getElementById(`${prefix}safety-alert-title`);
       const elAlertDesc = document.getElementById(`${prefix}safety-alert-desc`);
 
-      // Set digital values
-      if (elCurrent) elCurrent.textContent = `${currentBAC.toFixed(3)}%`;
-      if (elPeak) elPeak.textContent = `${peakBAC.toFixed(3)}%`;
+      // Set digital values (animated count-up)
+      if (elCurrent) {
+        animate(0, currentBAC, {
+          duration: 0.8,
+          easing: [0.16, 1, 0.3, 1],
+          onUpdate: (latest) => {
+            elCurrent.textContent = `${latest.toFixed(3)}%`;
+          }
+        });
+      }
+      if (elPeak) {
+        animate(0, peakBAC, {
+          duration: 0.8,
+          easing: [0.16, 1, 0.3, 1],
+          onUpdate: (latest) => {
+            elPeak.textContent = `${latest.toFixed(3)}%`;
+          }
+        });
+      }
 
       // Set peak time label
       if (elPeakTime) {
@@ -1750,8 +1785,20 @@ import Layout from '../layouts/Layout.astro';
       const endX = getX(displayPoints[displayPoints.length - 1].h);
       areaD += ` L ${endX} ${baselineY} Z`;
 
-      if (pathLine) pathLine.setAttribute('d', lineD);
-      if (pathArea) pathArea.setAttribute('d', areaD);
+      if (pathLine) {
+        pathLine.setAttribute('d', lineD);
+        try {
+          const pathLength = pathLine.getTotalLength();
+          pathLine.style.strokeDasharray = pathLength.toString();
+          animate(pathLine, { strokeDashoffset: [pathLength, 0] }, { duration: 0.8, easing: "ease-out" });
+        } catch (e) {
+          // Fallback if SVG isn't fully rendered in some environments
+        }
+      }
+      if (pathArea) {
+        pathArea.setAttribute('d', areaD);
+        animate(pathArea, { opacity: [0, 1] }, { duration: 0.8, easing: "ease-out" });
+      }
 
       // Position Limit Line
       const yLimit = getY(limit);
@@ -1809,23 +1856,7 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    function renderChartEmpty() {
-      // Resets main page curve lines
-      elements.chartLinePath.setAttribute('d', "M 50 220 L 750 220");
-      elements.chartAreaPath.setAttribute('d', "M 50 220 L 750 220 Z");
-      elements.chartPulseDot.setAttribute('cx', "-100");
-      elements.chartPulseDot.setAttribute('cy', "-100");
-      elements.chartPulseRing.setAttribute('cx', "-100");
-      elements.chartPulseRing.setAttribute('cy', "-100");
-      elements.chartLimitLine.setAttribute('y1', "220");
-      elements.chartLimitLine.setAttribute('y2', "220");
-      elements.chartLimitLabel.setAttribute('y', "215");
-      elements.chartLimitLabel.textContent = "LIMIT";
-      elements.chartNowLine.setAttribute('x1', "50");
-      elements.chartNowLine.setAttribute('x2', "50");
-      elements.chartNowLabel.setAttribute('x', "55");
-      elements.chartXAxis.innerHTML = "";
-    }
+
 
     // Render logged drinks list
     function renderTimeline() {
@@ -1896,7 +1927,15 @@ import Layout from '../layouts/Layout.astro';
         });
 
         elements.timelineList.appendChild(li);
+        
+        // If this drink was just added, animate its entry
+        if (drink.id === lastAddedDrinkId) {
+          animate(li, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+        }
       });
+      
+      // Reset the tracking variable after rendering
+      lastAddedDrinkId = null;
     }
 
     function updateAll() {
