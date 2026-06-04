@@ -418,49 +418,49 @@ import Layout from '../layouts/Layout.astro';
                 <svg class="w-full h-full min-w-0" viewBox="0 0 800 260" preserveAspectRatio="none" id="chart-svg" aria-label="BAC Concentration Curve Chart">
                   <defs>
                     <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#0070f3" stop-opacity="0.25"/>
-                      <stop offset="100%" stop-color="#0070f3" stop-opacity="0.0"/>
+                      <stop offset="0%" stop-color="var(--color-link)" stop-opacity="0.25"/>
+                      <stop offset="100%" stop-color="var(--color-link)" stop-opacity="0.0"/>
                     </linearGradient>
                   </defs>
                   
                   <!-- Grid Lines -->
-                  <g stroke="#ebebeb" stroke-width="1" id="chart-grid">
+                  <g stroke="var(--color-hairline)" stroke-width="1" id="chart-grid">
                     <line x1="50" y1="220" x2="750" y2="220" />
                     <line x1="50" y1="170" x2="750" y2="170" />
                     <line x1="50" y1="120" x2="750" y2="120" />
                     <line x1="50" y1="70" x2="750" y2="70" />
                     <line x1="50" y1="20" x2="750" y2="20" />
                   </g>
-
+ 
                   <!-- Y Labels -->
-                  <g font-size="11" font-family="monospace" fill="#525252" text-anchor="end" id="out-chart-y-axis">
+                  <g font-size="11" font-family="monospace" fill="var(--color-mute)" text-anchor="end" id="out-chart-y-axis">
                     <text x="40" y="223">0.00%</text>
                     <text x="40" y="173" id="out-chart-y-label-1">0.02%</text>
                     <text x="40" y="123" id="out-chart-y-label-2">0.04%</text>
                     <text x="40" y="73" id="out-chart-y-label-3">0.06%</text>
                     <text x="40" y="23" id="out-chart-y-label-4">0.08%</text>
                   </g>
-
+ 
                   <!-- X Labels -->
-                  <g font-size="11" font-family="monospace" fill="#525252" text-anchor="middle" id="out-chart-x-axis">
+                  <g font-size="11" font-family="monospace" fill="var(--color-mute)" text-anchor="middle" id="out-chart-x-axis">
                     <!-- Injected dynamically -->
                   </g>
-
+ 
                   <!-- Limit Line -->
                   <line x1="50" y1="220" x2="750" y2="220" stroke="#ee0000" stroke-width="1.5" stroke-dasharray="4,4" id="out-chart-limit-line" />
                   <text x="745" y="215" font-size="11" font-family="monospace" fill="#ee0000" font-weight="bold" text-anchor="end" id="out-chart-limit-label">LIMIT</text>
-
+ 
                   <!-- Now Line -->
-                  <line x1="50" y1="20" x2="50" y2="220" stroke="#525252" stroke-width="1.2" stroke-dasharray="2,2" id="out-chart-now-line" />
-                  <text x="55" y="30" font-size="11" font-family="monospace" fill="#525252" font-weight="bold" id="out-chart-now-label">NOW</text>
-
+                  <line x1="50" y1="20" x2="50" y2="220" stroke="var(--color-hairline-strong)" stroke-width="1.2" stroke-dasharray="2,2" id="out-chart-now-line" />
+                  <text x="55" y="30" font-size="11" font-family="monospace" fill="var(--color-mute)" font-weight="bold" id="out-chart-now-label">NOW</text>
+ 
                   <!-- Area & Line Path -->
                   <path d="M 50 220 L 750 220 Z" fill="url(#chart-area-grad)" id="out-chart-area-path" />
-                  <path d="M 50 220 L 750 220" fill="none" stroke="#0070f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="out-chart-line-path" />
-
+                  <path d="M 50 220 L 750 220" fill="none" stroke="var(--color-link)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="out-chart-line-path" />
+ 
                   <!-- Pulse Markers -->
-                  <circle cx="-100" cy="-100" r="8" fill="#0070f3" fill-opacity="0.15" class="animate-pulse" id="out-chart-pulse-ring" />
-                  <circle cx="-100" cy="-100" r="4.5" fill="#0070f3" stroke="#fff" stroke-width="1.5" id="out-chart-pulse-dot" />
+                  <circle cx="-100" cy="-100" r="8" fill="var(--color-link)" fill-opacity="0.15" class="animate-pulse" id="out-chart-pulse-ring" />
+                  <circle cx="-100" cy="-100" r="4.5" fill="var(--color-link)" stroke="var(--color-canvas)" stroke-width="1.5" id="out-chart-pulse-dot" />
                 </svg>
               </div>
             </div>
@@ -551,13 +551,13 @@ import Layout from '../layouts/Layout.astro';
             <svg class="w-full h-full min-w-0" viewBox="0 0 800 220" preserveAspectRatio="none" id="modal-chart-svg" aria-label="BAC Concentration Curve Chart in Dialog">
               <defs>
                 <linearGradient id="modal-chart-area-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#0070f3" stop-opacity="0.25"/>
-                  <stop offset="100%" stop-color="#0070f3" stop-opacity="0.0"/>
+                  <stop offset="0%" stop-color="var(--color-link)" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="var(--color-link)" stop-opacity="0.0"/>
                 </linearGradient>
               </defs>
               
               <!-- Grid Lines -->
-              <g stroke="#ebebeb" stroke-width="1" id="modal-chart-grid">
+              <g stroke="var(--color-hairline)" stroke-width="1" id="modal-chart-grid">
                 <line x1="50" y1="180" x2="750" y2="180" />
                 <line x1="50" y1="140" x2="750" y2="140" />
                 <line x1="50" y1="100" x2="750" y2="100" />
@@ -566,7 +566,7 @@ import Layout from '../layouts/Layout.astro';
               </g>
 
               <!-- Y Labels -->
-              <g font-size="11" font-family="monospace" fill="#525252" text-anchor="end" id="modal-chart-y-axis">
+              <g font-size="11" font-family="monospace" fill="var(--color-mute)" text-anchor="end" id="modal-chart-y-axis">
                 <text x="40" y="183">0.00%</text>
                 <text x="40" y="143" id="modal-chart-y-label-1">0.02%</text>
                 <text x="40" y="103" id="modal-chart-y-label-2">0.04%</text>
@@ -575,7 +575,7 @@ import Layout from '../layouts/Layout.astro';
               </g>
 
               <!-- X Labels -->
-              <g font-size="11" font-family="monospace" fill="#525252" text-anchor="middle" id="modal-chart-x-axis">
+              <g font-size="11" font-family="monospace" fill="var(--color-mute)" text-anchor="middle" id="modal-chart-x-axis">
                 <!-- Injected dynamically -->
               </g>
 
@@ -584,16 +584,16 @@ import Layout from '../layouts/Layout.astro';
               <text x="745" y="175" font-size="11" font-family="monospace" fill="#ee0000" font-weight="bold" text-anchor="end" id="modal-chart-limit-label">LIMIT</text>
 
               <!-- Now Line -->
-              <line x1="50" y1="20" x2="50" y2="180" stroke="#525252" stroke-width="1.2" stroke-dasharray="2,2" id="modal-chart-now-line" />
-              <text x="55" y="30" font-size="11" font-family="monospace" fill="#525252" font-weight="bold" id="modal-chart-now-label">NOW</text>
+              <line x1="50" y1="20" x2="50" y2="180" stroke="var(--color-hairline-strong)" stroke-width="1.2" stroke-dasharray="2,2" id="modal-chart-now-line" />
+              <text x="55" y="30" font-size="11" font-family="monospace" fill="var(--color-mute)" font-weight="bold" id="modal-chart-now-label">NOW</text>
 
               <!-- Area & Line Path -->
               <path d="M 50 180 L 750 180 Z" fill="url(#modal-chart-area-grad)" id="modal-chart-area-path" />
-              <path d="M 50 180 L 750 180" fill="none" stroke="#0070f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="modal-chart-line-path" />
+              <path d="M 50 180 L 750 180" fill="none" stroke="var(--color-link)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="modal-chart-line-path" />
 
               <!-- Pulse Markers -->
-              <circle cx="-100" cy="-100" r="8" fill="#0070f3" fill-opacity="0.15" class="animate-pulse" id="modal-chart-pulse-ring" />
-              <circle cx="-100" cy="-100" r="4.5" fill="#0070f3" stroke="#fff" stroke-width="1.5" id="modal-chart-pulse-dot" />
+              <circle cx="-100" cy="-100" r="8" fill="var(--color-link)" fill-opacity="0.15" class="animate-pulse" id="modal-chart-pulse-ring" />
+              <circle cx="-100" cy="-100" r="4.5" fill="var(--color-link)" stroke="var(--color-canvas)" stroke-width="1.5" id="modal-chart-pulse-dot" />
             </svg>
           </div>
         </div>
@@ -2198,7 +2198,7 @@ import Layout from '../layouts/Layout.astro';
           txt.setAttribute('y', (baselineY + 20).toString());
           
           if (Math.abs(h) < 0.01) {
-            txt.setAttribute('fill', '#171717');
+            txt.setAttribute('fill', 'var(--color-primary)');
             txt.setAttribute('font-weight', 'bold');
             txt.textContent = "Now";
           } else if (h < 0) {

@@ -97,3 +97,40 @@ input:focus, select:focus, textarea:focus, button:focus-visible {
 .transition-vercel {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ─── Tailwind CSS v4 Selector-based Dark Mode configuration ─── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Vercel-style Dark Mode Color Theme variables */
+.dark {
+  --color-primary: #ffffff;
+  --color-on-primary: #171717;
+  --color-ink: #ffffff;
+  --color-body: #a1a1a1;
+  --color-mute: #666666;
+  --color-hairline: #333333;
+  --color-hairline-strong: #555555;
+  --color-canvas: #0a0a0a;
+  --color-canvas-soft: #121212;
+  --color-canvas-soft-2: #1c1c1c;
+
+  /* Custom overrides for specific elements in dark mode */
+  color-scheme: dark;
+}
+
+/* Dark mode shadow enhancements */
+.dark .shadow-vercel-1 {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+.dark .shadow-vercel-2 {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0px 1px 1px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.4);
+}
+.dark .shadow-vercel-3 {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 2px rgba(0, 0, 0, 0.4), 0px 8px 8px -8px rgba(0, 0, 0, 0.4);
+}
+.dark .shadow-vercel-4 {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0px 2px 2px rgba(0, 0, 0, 0.4), 0px 8px 16px -4px rgba(0, 0, 0, 0.4);
+}
+.dark .shadow-vercel-5 {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0px 1px 1px rgba(0, 0, 0, 0.2), 0px 8px 16px -4px rgba(0, 0, 0, 0.4), 0px 24px 32px -8px rgba(0, 0, 0, 0.5);
+}

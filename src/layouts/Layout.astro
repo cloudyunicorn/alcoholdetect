@@ -42,6 +42,18 @@ const {
     <!-- Preload Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Blocking script to prevent flash of light/dark theme -->
+    <script is:inline>
+      (() => {
+        const theme = localStorage.getItem('theme') || 'system';
+        if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
   </head>
   <body class="bg-canvas-soft text-ink min-h-screen flex flex-col antialiased selection:bg-primary selection:text-canvas-soft">
     
@@ -78,6 +90,36 @@ const {
           <a href="#calculator" class="inline-flex items-center justify-center text-xs font-semibold bg-primary hover:bg-primary/90 text-canvas-soft px-3.5 h-8 rounded-pill transition-vercel focus-visible:outline-none" id="nav-start-btn">
             Calculate Now
           </a>
+
+          <!-- Vercel-style Segmented Theme Selector -->
+          <div class="relative flex items-center bg-canvas-soft-2 border border-hairline p-0.5 rounded-full" id="theme-selector-group">
+            <!-- Sliding Active Background indicator -->
+            <span class="absolute top-0.5 bottom-0.5 rounded-full bg-canvas shadow-vercel-2 pointer-events-none" id="theme-indicator"></span>
+            
+            <!-- Light Mode Button -->
+            <button type="button" class="relative z-10 flex items-center justify-center w-8 h-8 rounded-full text-mute hover:text-ink focus:outline-none transition-colors cursor-pointer" data-theme-value="light" aria-label="Light Theme">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+              </svg>
+            </button>
+
+            <!-- System Preference Button -->
+            <button type="button" class="relative z-10 flex items-center justify-center w-8 h-8 rounded-full text-mute hover:text-ink focus:outline-none transition-colors cursor-pointer" data-theme-value="system" aria-label="System Theme">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </button>
+
+            <!-- Dark Mode Button -->
+            <button type="button" class="relative z-10 flex items-center justify-center w-8 h-8 rounded-full text-mute hover:text-ink focus:outline-none transition-colors cursor-pointer" data-theme-value="dark" aria-label="Dark Theme">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a9 9 0 1 0 9 9 9.75 9.75 0 0 0-.674-3.474 6 6 0 0 1-8.252-8.252A9.75 9.75 0 0 0 12 3z" />
+              </svg>
+            </button>
+          </div>
           
           <!-- Mobile Menu Toggle -->
           <button class="md:hidden p-1.5 text-body hover:text-ink focus-visible:outline-none" id="mobile-menu-toggle" aria-label="Toggle Menu">
@@ -216,6 +258,75 @@ const {
           closeMenu();
         }
       });
+
+      // Theme selector group handler
+      const themeSelector = document.getElementById('theme-selector-group');
+      const themeButtons = themeSelector ? themeSelector.querySelectorAll('[data-theme-value]') : [];
+      const themeIndicator = document.getElementById('theme-indicator');
+
+      let activeTheme = localStorage.getItem('theme') || 'system';
+
+      function applyTheme(theme: string) {
+        if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        
+        // Dispatch theme-change event for reactive parts (like charts)
+        window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme } }));
+      }
+
+      function updateSelectorUI(theme: string) {
+        themeButtons.forEach(button => {
+          const isSelected = button.getAttribute('data-theme-value') === theme;
+          if (isSelected) {
+            button.classList.add('text-ink');
+            button.classList.remove('text-mute');
+            
+            // Position sliding indicator
+            if (themeIndicator && themeSelector) {
+              themeIndicator.style.left = `${(button as HTMLElement).offsetLeft}px`;
+              themeIndicator.style.width = `${(button as HTMLElement).offsetWidth}px`;
+            }
+          } else {
+            button.classList.remove('text-ink');
+            button.classList.add('text-mute');
+          }
+        });
+      }
+
+      // Add click listeners to buttons
+      themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const theme = button.getAttribute('data-theme-value') || 'system';
+          activeTheme = theme;
+          localStorage.setItem('theme', theme);
+          applyTheme(theme);
+          updateSelectorUI(theme);
+        });
+      });
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (activeTheme === 'system') {
+          applyTheme('system');
+        }
+      });
+
+      // Initial layout sync
+      updateSelectorUI(activeTheme);
+      
+      // Enable transitions after a frame to prevent slide-in on load
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          themeIndicator?.classList.add('transition-all', 'duration-200', 'ease-in-out');
+        });
+      });
+
+      // Reposition on resize and load to ensure accurate client dimensions
+      window.addEventListener('resize', () => updateSelectorUI(activeTheme));
+      window.addEventListener('load', () => updateSelectorUI(activeTheme));
     </script>
   </body>
 </html>
