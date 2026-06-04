@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow indexing of the 404 page
+Disallow: /404/
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://alcoholdetect.com/sitemap.xml
