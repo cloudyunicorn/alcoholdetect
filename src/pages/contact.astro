@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact Us | Online Alcohol Detect"
+  description="Have questions, feedback, or inquiries? Get in touch with the Online Alcohol Detect support and editorial team."
+>
+  <section class="relative overflow-hidden bg-canvas py-12 border-b border-hairline">
+    <!-- Subtle Mesh Gradient Backdrop -->
+    <div class="absolute inset-0 pointer-events-none opacity-20 select-none overflow-hidden" aria-hidden="true">
+      <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] rounded-full bg-gradient-to-br from-gradient-develop-start to-gradient-develop-end blur-[120px] transform-gpu"></div>
+      <div class="absolute top-[-30%] right-[-10%] w-[50%] h-[80%] rounded-full bg-gradient-to-bl from-gradient-preview-start to-gradient-preview-end blur-[140px] transform-gpu"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-canvas-soft border border-hairline text-xs font-mono text-body mb-4 shadow-vercel-1">
+        GET IN TOUCH
+      </span>
+      <h1 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.5px] leading-[1.1] text-primary mb-4">
+        Contact Our Team
+      </h1>
+      <p class="text-xs font-mono text-mute">
+        We respond to inquiries within 24–48 business hours.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-canvas-soft">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Contact Form Card (Width: 7/12) -->
+        <div class="md:col-span-7 bg-canvas border border-hairline rounded-lg p-6 md:p-8 shadow-vercel-3">
+          <h3 class="font-sans text-lg font-semibold tracking-[-0.6px] text-primary mb-6">
+            Send Us a Message
+          </h3>
+
+          <!-- Form feedback container -->
+          <div id="contact-feedback" class="hidden p-4 mb-6 rounded-sm bg-success/10 border border-success/20 text-xs text-primary transition-vercel">
+            <span class="font-semibold block mb-1">Message Sent Successfully!</span>
+            Thank you for reaching out. A support representative will review your message and reply via email shortly.
+          </div>
+
+          <form id="contact-form" class="space-y-5">
+            <div>
+              <label for="contact-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Full Name</label>
+              <input type="text" id="contact-name" required class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="Jane Doe" />
+            </div>
+
+            <div>
+              <label for="contact-email" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Email Address</label>
+              <input type="email" id="contact-email" required class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="jane@example.com" />
+            </div>
+
+            <div>
+              <label for="contact-subject" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Subject</label>
+              <select id="contact-subject" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none appearance-none" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22none%22%3E%3Cpath d=%22M7 9l3 3 3-3%22 stroke=%22%23666%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E'); background-position: right 8px center; background-repeat: no-repeat; background-size: 20px;" aria-label="Select subject">
+                <option value="general">General Inquiry</option>
+                <option value="feedback">Calculator Feedback</option>
+                <option value="bug">Report a Bug / Error</option>
+                <option value="ads">Advertising & Partnerships</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Message</label>
+              <textarea id="contact-message" required rows="5" class="w-full p-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none resize-y" placeholder="Describe your inquiry in detail..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full h-10 bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Info Panel (Width: 5/12) -->
+        <div class="md:col-span-5 space-y-6">
+          
+          <!-- Direct Support Card -->
+          <div class="bg-canvas border border-hairline rounded-lg p-6 shadow-vercel-2">
+            <h4 class="font-sans font-semibold text-primary text-base mb-3">Direct Contacts</h4>
+            <div class="space-y-4 text-xs md:text-sm text-body">
+              <div>
+                <span class="block font-mono text-[10px] font-semibold text-mute uppercase tracking-wider mb-1">Support & Feedback Email</span>
+                <a href="mailto:support@alcoholdetect.com" class="text-primary font-medium hover:text-link transition-vercel">
+                  support@alcoholdetect.com
+                </a>
+              </div>
+              <div>
+                <span class="block font-mono text-[10px] font-semibold text-mute uppercase tracking-wider mb-1">Press & Advertising</span>
+                <a href="mailto:media@alcoholdetect.com" class="text-primary font-medium hover:text-link transition-vercel">
+                  media@alcoholdetect.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Important Note Card -->
+          <div class="bg-canvas border border-hairline rounded-lg p-6 shadow-vercel-2 border-l-warning-deep border-l-4">
+            <h4 class="font-sans font-semibold text-primary text-sm mb-2 flex items-center gap-1.5">
+              <svg class="h-4 w-4 text-warning-deep" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Not an Emergency Resource
+            </h4>
+            <p class="text-xs text-body leading-relaxed">
+              If you or someone near you has consumed a hazardous amount of alcohol and requires emergency medical assistance, please contact your local emergency services (such as <strong>911</strong> in the US, <strong>999</strong> in the UK, or <strong>000</strong> in Australia) immediately. We cannot respond to medical emergencies.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Script to handle simulated form submission -->
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const feedback = document.getElementById('contact-feedback');
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Simulate API submission delays
+      if (feedback && form) {
+        feedback.classList.remove('hidden');
+        form.reset();
+        
+        // Auto scroll to feedback
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  </script>
+</Layout>

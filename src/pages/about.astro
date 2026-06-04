@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About Us | Online Alcohol Detect"
+  description="Learn about the team, the vision, and the science behind Online Alcohol Detect, a tool designed to promote safety and awareness through clinical-grade calculations."
+>
+  <section class="relative overflow-hidden bg-canvas py-12 border-b border-hairline">
+    <!-- Subtle Mesh Gradient Backdrop -->
+    <div class="absolute inset-0 pointer-events-none opacity-20 select-none overflow-hidden" aria-hidden="true">
+      <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] rounded-full bg-gradient-to-br from-gradient-develop-start to-gradient-develop-end blur-[120px] transform-gpu"></div>
+      <div class="absolute top-[-30%] right-[-10%] w-[50%] h-[80%] rounded-full bg-gradient-to-bl from-gradient-preview-start to-gradient-preview-end blur-[140px] transform-gpu"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-canvas-soft border border-hairline text-xs font-mono text-body mb-4 shadow-vercel-1">
+        PROJECT PROFILE
+      </span>
+      <h1 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.5px] leading-[1.1] text-primary mb-4">
+        About Online Alcohol Detect
+      </h1>
+      <p class="text-xs font-mono text-mute">
+        Promoting safety, transparency, and clinical-grade awareness.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-canvas-soft">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-canvas border border-hairline rounded-lg p-6 md:p-12 shadow-vercel-3">
+        <div class="prose max-w-none text-body text-sm md:text-base leading-relaxed space-y-6 font-sans">
+          
+          <h2 class="font-sans text-2xl font-semibold tracking-[-0.8px] text-primary mb-2">Our Mission</h2>
+          <p>
+            At <strong>Online Alcohol Detect</strong>, our mission is to empower individuals with scientific insights into how their bodies metabolize alcohol. We believe that by providing free, highly accurate, and beautifully responsive tools, we can raise awareness about Blood Alcohol Concentration (BAC), promote responsible consumption, and contribute to safer roads.
+          </p>
+
+          <h2 class="font-sans text-xl font-semibold tracking-[-0.6px] text-primary pt-4 border-b border-hairline pb-2">
+            Why We Built This Tool
+          </h2>
+          <p>
+            Most online blood alcohol calculators use basic Widmark equations. While these are useful as a general rule of thumb, they ignore crucial biological markers like height, age, and individual body water index, leading to inaccurate results. 
+          </p>
+          <p>
+            We set out to build a tool that matches modern clinical-grade standards by integrating <strong>Watson's Total Body Water (TBW) formula</strong>. Watson's formula is the medical and scientific gold standard for calculating how alcohol spreads through body water, accounting for the unique physiological profiles of both male and female users.
+          </p>
+
+          <h2 class="font-sans text-xl font-semibold tracking-[-0.6px] text-primary pt-4 border-b border-hairline pb-2">
+            How It Works Scientifically
+          </h2>
+          <p>
+            When you enter your profile details, our system calculates your specific body water volume:
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>For Biological Males:</strong> We utilize regression equations modeling weight, height, and age to determine water distribution.</li>
+            <li><strong>For Biological Females:</strong> We model body water concentration using female-specific coefficients that recognize standard differences in fatty tissue and water composition.</li>
+          </ul>
+          <p>
+            Once you log drinks, our engine charts the absorption timeline (typically peaking within 30 to 90 minutes) and applies a linear metabolic elimination rate (typically 0.015% BAC per hour) to project your concentration curve.
+          </p>
+
+          <h2 class="font-sans text-xl font-semibold tracking-[-0.6px] text-primary pt-4 border-b border-hairline pb-2">
+            Our Key Principles
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <div class="p-4 bg-canvas-soft border border-hairline rounded-sm shadow-vercel-1">
+              <h4 class="font-sans font-semibold text-primary text-sm mb-1">1. Privacy First</h4>
+              <p class="text-xs text-body leading-normal">Your biological parameters and drink timelines never leave your browser. All computations are run client-side.</p>
+            </div>
+            <div class="p-4 bg-canvas-soft border border-hairline rounded-sm shadow-vercel-1">
+              <h4 class="font-sans font-semibold text-primary text-sm mb-1">2. Scientific Rigor</h4>
+              <p class="text-xs text-body leading-normal">We base our models on established clinical literature, including Watson's and Widmark's physiological research papers.</p>
+            </div>
+            <div class="p-4 bg-canvas-soft border border-hairline rounded-sm shadow-vercel-1">
+              <h4 class="font-sans font-semibold text-primary text-sm mb-1">3. Public Safety</h4>
+              <p class="text-xs text-body leading-normal">We emphasize emergency alternatives and educational content, working to ensure users never rely solely on calculators to drive.</p>
+            </div>
+          </div>
+
+          <h2 class="font-sans text-xl font-semibold tracking-[-0.6px] text-primary pt-4 border-b border-hairline pb-2">
+            Google AdSense Compliance & Openness
+          </h2>
+          <p>
+            To support the hosting and development of this free resource, we partner with advertisers through Google AdSense. We remain strictly transparent regarding data tracking, cookie usage, and privacy guidelines. You can read our complete <a href="/privacy" class="text-link hover:underline">Privacy Policy</a> to understand how cookies are processed for personalized ad serving.
+          </p>
+
+          <div class="mt-8 p-6 bg-canvas-soft border border-hairline rounded-md">
+            <h3 class="font-sans font-semibold text-primary text-base mb-2">Have Feedback?</h3>
+            <p class="text-xs md:text-sm text-body mb-4">
+              We are constantly refining our mathematical coefficients and interface designs. If you have questions, feedback, or would like to report a bug, please reach out to us.
+            </p>
+            <a href="/contact" class="inline-flex items-center justify-center bg-primary hover:bg-primary/95 text-canvas-soft text-xs font-semibold h-9 px-6 rounded-sm transition-vercel shadow-vercel-2">
+              Contact Our Team
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

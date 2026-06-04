@@ -16,8 +16,9 @@ const {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="icon" type="image/png" href="/icon.png?v=2" />
+    <link rel="icon" href="/favicon.ico?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
@@ -55,11 +56,7 @@ const {
         
         <!-- Logo -->
         <a href="/" class="flex items-center gap-2.5 focus-visible:outline-none" id="nav-logo-link">
-          <svg class="h-6 w-6 text-primary" viewBox="0 0 100 100" fill="currentColor">
-            <!-- Sleek minimalist triangle-shield representation of safety/shield/Vercel -->
-            <polygon points="50,15 90,85 10,85" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
-            <circle cx="50" cy="55" r="12" />
-          </svg>
+          <img src="/icon.png" alt="Online Alcohol Detect Logo" class="h-6 w-6 object-contain rounded-xs" />
           <span class="font-sans font-semibold tracking-[-0.6px] text-lg text-primary flex items-center gap-1.5">
             alcoholdetect<span class="text-xs font-mono font-normal bg-canvas-soft px-1.5 py-0.5 rounded-sm border border-hairline text-body">v1.0</span>
           </span>
@@ -140,8 +137,8 @@ const {
             <h3 class="font-mono text-[11px] font-semibold text-mute uppercase tracking-widest mb-4">Legal</h3>
             <ul class="space-y-3">
               <li><a href="#disclaimer" class="text-body hover:text-ink text-sm transition-vercel">Medical Disclaimer</a></li>
-              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Terms of Service</a></li>
-              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Privacy Policy</a></li>
+              <li><a href="/terms" class="text-body hover:text-ink text-sm transition-vercel">Terms & Conditions</a></li>
+              <li><a href="/privacy" class="text-body hover:text-ink text-sm transition-vercel">Privacy Policy</a></li>
               <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Cookie Settings</a></li>
             </ul>
           </div>
@@ -150,20 +147,17 @@ const {
           <div>
             <h3 class="font-mono text-[11px] font-semibold text-mute uppercase tracking-widest mb-4">About</h3>
             <ul class="space-y-3">
-              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">alcoholdetect.com</a></li>
+              <li><a href="/about" class="text-body hover:text-ink text-sm transition-vercel">About Us</a></li>
               <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-body hover:text-ink text-sm transition-vercel">Open Source ↗</a></li>
+              <li><a href="/contact" class="text-body hover:text-ink text-sm transition-vercel">Contact Support</a></li>
               <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Developer Portal</a></li>
-              <li><a href="#" class="text-body hover:text-ink text-sm transition-vercel">Contact Support</a></li>
             </ul>
           </div>
         </div>
 
         <div class="border-t border-hairline pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div class="flex items-center gap-3">
-            <svg class="h-5 w-5 text-mute" viewBox="0 0 100 100" fill="currentColor">
-              <polygon points="50,15 90,85 10,85" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
-              <circle cx="50" cy="55" r="12" />
-            </svg>
+            <img src="/icon.png" alt="Online Alcohol Detect Logo" class="h-5 w-5 object-contain opacity-80" />
             <p class="text-mute text-xs font-mono">
               © {new Date().getFullYear()} online alcohol detect. All rights reserved.
             </p>
@@ -202,16 +196,14 @@ const {
         menu?.classList.remove('opacity-100', 'scale-100');
       }
 
-      function toggleMenu(e) {
+      menuToggle?.addEventListener('click', (e) => {
         e.stopPropagation();
         if (isOpen) {
           closeMenu();
         } else {
           openMenu();
         }
-      }
-
-      menuToggle?.addEventListener('click', toggleMenu);
+      });
 
       menuLinks.forEach(link => {
         link?.addEventListener('click', closeMenu);
@@ -219,8 +211,8 @@ const {
 
       // Close menu if user clicks anywhere outside of the menu
       document.addEventListener('click', (e) => {
-        const target = e.target;
-        if (isOpen && menu && !menu.contains(target) && target !== menuToggle && !menuToggle?.contains(target)) {
+        const target = e.target as Node;
+        if (isOpen && menu && target && !menu.contains(target) && target !== menuToggle && (!menuToggle || !menuToggle.contains(target))) {
           closeMenu();
         }
       });

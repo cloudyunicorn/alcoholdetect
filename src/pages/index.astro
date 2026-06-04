@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout>
+<Layout
+  title="BAC Calculator | Blood Alcohol Content Calculator & Sobriety Estimator"
+  description="Estimate your Blood Alcohol Content (BAC) using our advanced blood alcohol calculator. Track sobriety time, calculate alcohol level by time, weight, gender, and country limit."
+>
   <!-- Hero Section with Mesh Gradient -->
   <section class="relative overflow-hidden bg-canvas py-16 md:py-24 border-b border-hairline" id="hero">
     <!-- Mesh Gradient Backdrop -->
@@ -164,6 +167,11 @@ import Layout from '../layouts/Layout.astro';
                   <select id="profile-country" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none appearance-none" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22none%22%3E%3Cpath d=%22M7 9l3 3 3-3%22 stroke=%22%23666%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E'); background-position: right 8px center; background-repeat: no-repeat; background-size: 20px;" aria-label="Select Country for Driving Limit">
                     <!-- JS to populate -->
                   </select>
+                  
+                  <!-- Country Limit Warning Box -->
+                  <div id="out-country-warning-box" class="mt-3 p-3 rounded-sm bg-canvas-soft border border-hairline text-xs text-body">
+                    <p id="out-country-warning-text">United States legal limit is <span class="font-mono font-semibold">0.08%</span> BAC. Strict limits for commercial drivers (0.04%) and zero-tolerance under 21.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -716,6 +724,318 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Rich SEO Copywriting Section (Blood Alcohol Concentration Guide) -->
+  <section class="py-16 md:py-24 bg-canvas border-b border-hairline scroll-mt-20 border-t border-hairline" id="about-tool">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="space-y-8 font-sans">
+        <div class="border-b border-hairline pb-6">
+          <h2 class="text-2xl md:text-3xl font-semibold tracking-[-1.2px] text-primary text-pretty mb-3">
+            Online BAC Calculator: Estimate Blood Alcohol Content and Sobriety Time
+          </h2>
+          <p class="text-body text-base leading-relaxed text-pretty">
+            Operating vehicles safely requires a clear, science-backed understanding of how alcohol interacts with your body. Whether you are checking your legal limits or asking yourself "what is my blood alcohol level?", calculating blood alcohol content is critical for making informed, responsible decisions. This clinical-grade <strong>online BAC calculator</strong> and <strong>BAC estimator</strong> simulates your <strong>blood alcohol percentage calculator</strong> values using Watson's Total Body Water (TBW) regression equations, representing the gold standard in forensic toxicology.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div>
+            <h3 class="text-lg font-semibold tracking-[-0.6px] text-primary mb-3">
+              How to Calculate Blood Alcohol Content Accurately
+            </h3>
+            <p class="text-body text-xs md:text-sm leading-relaxed mb-4">
+              A standard <strong>blood alcohol content calculator</strong> or <strong>BAC level calculator</strong> computes the ratio of alcohol in your bloodstream to your total blood volume. This value is expressed as a percentage of alcohol in the blood (e.g., 0.08% BAC represents 0.08 grams of alcohol per 100 milliliters of blood). While simple <strong>drunk calculator</strong> tools use the old Widmark method with a static distribution coefficient, our clinical <strong>alcohol level calculator</strong> utilizes Watson's formula to estimate Total Body Water. 
+            </p>
+            <p class="text-body text-xs md:text-sm leading-relaxed">
+              Because alcohol is water-soluble, it distributes itself in the water weight of your body rather than in body fat. Consequently, a <strong>blood alcohol by weight calculator</strong> or <strong>BAC calculator by weight</strong> is more accurate when it calculates TBW based on height, weight, age, and sex. This is why you will notice distinct differences when using a <strong>blood alcohol calculator male</strong> versus a <strong>blood alcohol calculator female</strong>. Biological females generally have a lower percentage of body water than males of equivalent weight, leading to a higher concentration of blood alcohol from the same number of drinks. For example, calculating the peak <strong>alcohol level after 3 beers</strong> for a 140 lb female will show a significantly higher BAC than for a 140 lb male.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold tracking-[-0.6px] text-primary mb-3">
+              The Role of Time: Elimination and Sobriety Counters
+            </h3>
+            <p class="text-body text-xs md:text-sm leading-relaxed mb-4">
+              Your body clears alcohol at a steady linear rate through liver metabolism. An <strong>alcohol metabolism calculator</strong> or <strong>BAC after drinking calculator</strong> tracks this clearance over time. On average, the human body clears alcohol at a rate of 0.015% BAC per hour (also known as the beta elimination rate). You can utilize our <strong>alcohol calculator by time</strong> or <strong>BAC reduction calculator</strong> to see how your body recovers.
+            </p>
+            <p class="text-body text-xs md:text-sm leading-relaxed">
+              Many users query, "<strong>how long until sober calculator</strong>?" or "<strong>when can i drive calculator</strong>?". Our <strong>sober time calculator</strong> and <strong>alcohol elimination calculator</strong> show a live, interactive countdown timeline. If your peak concentration reaches 0.08% BAC, your <strong>time to sober up calculator</strong> values will estimate approximately 5.3 hours of pure metabolic activity to reach a 0.00% sober baseline. Roadside statistics show that even a <strong>BAC after 2 hours</strong> of drinking remains highly elevated. It is important to know that drinking coffee, taking cold showers, or exercising does not accelerate liver clearance; only time can lower your <strong>alcohol intoxication calculator</strong> results.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pt-6 border-t border-hairline">
+          <div>
+            <h3 class="text-lg font-semibold tracking-[-0.6px] text-primary mb-3">
+              Global Legal Driving Limits: USA, UK, and Australia
+            </h3>
+            <p class="text-body text-xs md:text-sm leading-relaxed mb-4">
+              Legal driving limits vary by country, and exceeding them carries severe criminal penalties. It is essential to consult a <strong>legal BAC limit calculator</strong> or <strong>legal alcohol limit calculator</strong> to understand the laws in your region:
+            </p>
+            <ul class="text-body text-xs md:text-sm list-disc pl-5 space-y-2 mb-4 leading-relaxed">
+              <li><strong>United States:</strong> The federal driving baseline is 0.08% BAC. If you drive at or above this, you face DUI charges. Zero-tolerance laws apply to minors. You can check your compliance using our <strong>DUI BAC calculator</strong>, <strong>drunk driving calculator</strong>, and <strong>BAC calculator USA</strong> presets.</li>
+              <li><strong>United Kingdom:</strong> England and Wales enforce a limit of 0.08% BAC. Scotland is stricter at 0.05% BAC. Drivers can verify their status with the <strong>drink drive calculator UK</strong>, <strong>alcohol limit calculator UK</strong>, <strong>blood alcohol calculator UK</strong>, or <strong>UK BAC calculator</strong> profiles.</li>
+              <li><strong>Australia:</strong> Full license holders face a strict limit of 0.05% BAC. Zero-tolerance (0.00% BAC) applies to learner, provisional, and heavy vehicle drivers. Check your limits using the <strong>BAC calculator Australia</strong> or <strong>alcohol limit calculator Australia</strong> guidelines.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold tracking-[-0.6px] text-primary mb-3">
+              Impacting Factors: Drink-Specific Concentration
+            </h3>
+            <p class="text-body text-xs md:text-sm leading-relaxed mb-4">
+              Alcohol levels also depend heavily on the type and rate of consumption of specific drink varieties. High-strength spirits, including whiskey, vodka, and tequila, contain 40% alcohol by volume (ABV), causing rapid absorption and high BAC spikes. In comparison, a bottle of wine (750ml, 12% to 14% ABV) is digested more gradually but contains a high volume of pure ethanol, equal to 5 standard drinks. A single regular beer (355ml at 5% ABV) delivers approximately 14 grams of alcohol, which is processed by the liver in about 1.5 to 2 hours.
+            </p>
+            <div class="p-3 bg-canvas-soft border border-hairline rounded-sm text-[11px] text-mute leading-relaxed">
+              <strong>Safety Reminder:</strong> Even if our <strong>blood alcohol level calculator</strong> shows your BAC is below the legal limit, you should not drive if you feel impaired. Safety is always the highest priority.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section with Interactive Accordions -->
+  <section class="py-16 md:py-24 bg-canvas-soft border-b border-hairline scroll-mt-20" id="faq">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-sans text-3xl font-semibold tracking-[-1.28px] text-primary text-balance mb-4">
+          Frequently Asked Questions.
+        </h2>
+        <p class="text-body text-base leading-relaxed text-pretty">
+          Have questions about Blood Alcohol Concentration (BAC) or how our calculator works? Find answers below.
+        </p>
+      </div>
+
+      <div class="space-y-4 max-w-3xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              What is the most accurate way to calculate my Blood Alcohol Concentration (BAC)?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                The most accurate mathematical method to calculate Blood Alcohol Concentration is using Watson's Total Body Water (TBW) regression equations. Unlike the basic Widmark formula which relies on generic constants, the Watson method estimates the exact volume of water in your body based on your age, sex, weight, and height. Since alcohol is water-soluble, it distributes itself in total body water, making the Watson equation the most precise formula for estimating blood alcohol percentage before chemical analysis (such as a breathalyzer or blood test).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              How long does it take to sober up after drinking alcohol?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                The human body clears alcohol at a constant linear rate of approximately 0.015% BAC per hour. This rate is fixed because the liver can only process a set amount of ethanol per hour regardless of how much you have consumed. For example, if your BAC peaks at 0.08%, it will take about 5.3 hours of pure metabolic activity to eliminate the alcohol and reach a 0.00% sober baseline. Note that drinking water, coffee, or taking cold showers does not speed up alcohol elimination.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              How does my weight and gender affect my blood alcohol content?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                Body mass and biological sex significantly impact your alcohol level. A higher body weight provides a larger volume of water (Total Body Water) to dilute the consumed alcohol, resulting in a lower BAC. Biological females typically have a lower body water percentage and higher fat tissue ratio than males of equal weight. Because fat does not absorb alcohol, females experience a higher blood alcohol concentration from the same amount of drinks. Our blood alcohol calculator male and blood alcohol calculator female profiles account for these critical biological differences.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              What is the legal BAC driving limit in the US, UK, and Australia?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                Legal driving limits vary by country: In the United States, the federal legal limit for DUI is 0.08% BAC for drivers over 21 (Utah enforces 0.05% BAC). In the United Kingdom, the limit is 0.08% BAC in England, Wales, and Northern Ireland, while Scotland enforces a stricter limit of 0.05% BAC. In Australia, the national legal driving limit is 0.05% BAC for full license holders, and a strict 0.00% limit applies to learner and provisional drivers.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              How many drinks put you over the legal limit?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                For an average 180 lb (81 kg) male, drinking three standard beers (355ml at 5% ABV) in one hour will yield a BAC of approximately 0.06%, which is over the limit in Australia and Scotland but below the 0.08% limit in the US. However, for a 130 lb (59 kg) female, those same three beers will push her BAC to around 0.095%, which is over the legal driving limit in the US and UK. The safest choice is always not to drive after drinking.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              How does an online BAC calculator estimate my alcohol level over time?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                An online BAC calculator or BAC level calculator estimates your blood alcohol content by combining your biological profile (using Watson's formula) with the timestamp and volume of each drink. As soon as you consume alcohol, the alcohol metabolism calculator models the absorption phase (which typically peaks within 30 to 90 minutes) and then applies a linear alcohol elimination calculator rate (typically 0.015% per hour) to project your BAC at any given time, showing you how your alcohol level reduces after 1, 2, or more hours.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              How can I determine "how drunk am I" using a drunk calculator?
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                A drunk calculator or alcohol intoxication calculator estimates your blood alcohol percentage calculator metric to give you a clinical representation of your impairment. At 0.02% to 0.04% BAC, you may feel mild relaxation. By 0.05% to 0.07%, minor impairment in balance, speech, and coordination begins. At 0.08% BAC (the legal limit in many areas) and above, cognitive function and motor skills are significantly degraded. While a how drunk am i calculator can estimate your impairment based on standard averages, physical reactions vary widely based on tolerance, genetics, and food intake.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 8 -->
+        <div class="bg-canvas border border-hairline rounded-lg overflow-hidden transition-vercel shadow-vercel-2" data-faq-item>
+          <button type="button" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none" aria-expanded="false" data-faq-trigger>
+            <span class="font-sans font-semibold text-primary text-sm md:text-base">
+              How long after drinking does it take for my BAC to drop? (e.g. BAC after 2 hours)
+            </span>
+            <svg class="h-5 w-5 text-mute transition-vercel transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-faq-icon>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-vercel" data-faq-content>
+            <div class="px-6 pb-5 pt-1 text-xs md:text-sm text-body leading-relaxed border-t border-hairline bg-canvas-soft">
+              <p>
+                Your BAC continues to change depending on the timeline of your drinks. For example, if you check your BAC after 2 hours of having 1 or 2 beers, your body will have already metabolized a portion of the alcohol (approx. 0.03% total reduction). However, if you drink rapidly (e.g. an alcohol level after 3 beers in under an hour), your peak BAC will occur around 45 minutes after your last drink, and then decrease slowly over the following hours. A when can i drive calculator helps trace this curve to estimate when your BAC will fall below the legal threshold.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON-LD FAQ Schema for Search Engine SEO -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the most accurate way to calculate my Blood Alcohol Concentration (BAC)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>The most accurate mathematical method to calculate Blood Alcohol Concentration is using Watson's Total Body Water (TBW) regression equations. Unlike the basic Widmark formula which relies on generic constants, the Watson method estimates the exact volume of water in your body based on your age, sex, weight, and height. Since alcohol is water-soluble, it distributes itself in total body water, making the Watson equation the most precise formula for estimating blood alcohol percentage before chemical analysis (such as a breathalyzer or blood test).</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to sober up after drinking alcohol?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>The human body clears alcohol at a constant linear rate of approximately 0.015% BAC per hour. This rate is fixed because the liver can only process a set amount of ethanol per hour regardless of how much you have consumed. For example, if your BAC peaks at 0.08%, it will take about 5.3 hours of pure metabolic activity to eliminate the alcohol and reach a 0.00% sober baseline. Note that drinking water, coffee, or taking cold showers does not speed up alcohol elimination.</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does my weight and gender affect my blood alcohol content?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Body mass and biological sex significantly impact your alcohol level. A higher body weight provides a larger volume of water (Total Body Water) to dilute the consumed alcohol, resulting in a lower BAC. Biological females typically have a lower body water percentage and higher fat tissue ratio than males of equal weight. Because fat does not absorb alcohol, females experience a higher blood alcohol concentration from the same amount of drinks. Our blood alcohol calculator male and blood alcohol calculator female profiles account for these critical biological differences.</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the legal BAC driving limit in the US, UK, and Australia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Legal driving limits vary by country: In the United States, the federal legal limit for DUI is 0.08% BAC for drivers over 21 (Utah enforces 0.05% BAC). In the United Kingdom, the limit is 0.08% BAC in England, Wales, and Northern Ireland, while Scotland enforces a stricter limit of 0.05% BAC. In Australia, the national legal driving limit is 0.05% BAC for full license holders, and a strict 0.00% limit applies to learner and provisional drivers.</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many drinks put you over the legal limit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>For an average 180 lb (81 kg) male, drinking three standard beers (355ml at 5% ABV) in one hour will yield a BAC of approximately 0.06%, which is over the limit in Australia and Scotland but below the 0.08% limit in the US. However, for a 130 lb (59 kg) female, those same three beers will push her BAC to around 0.095%, which is over the legal driving limit in the US and UK. The safest choice is always not to drive after drinking.</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does an online BAC calculator estimate my alcohol level over time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>An online BAC calculator or BAC level calculator estimates your blood alcohol content by combining your biological profile (using Watson's formula) with the timestamp and volume of each drink. As soon as you consume alcohol, the alcohol metabolism calculator models the absorption phase (which typically peaks within 30 to 90 minutes) and then applies a linear alcohol elimination calculator rate (typically 0.015% per hour) to project your BAC at any given time, showing you how your alcohol level reduces after 1, 2, or more hours.</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I determine \"how drunk am I\" using a drunk calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>A drunk calculator or alcohol intoxication calculator estimates your blood alcohol percentage calculator metric to give you a clinical representation of your impairment. At 0.02% to 0.04% BAC, you may feel mild relaxation. By 0.05% to 0.07%, minor impairment in balance, speech, and coordination begins. At 0.08% BAC (the legal limit in many areas) and above, cognitive function and motor skills are significantly degraded. While a how drunk am i calculator can estimate your impairment based on standard averages, physical reactions vary widely based on tolerance, genetics, and food intake.</p>"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long after drinking does it take for my BAC to drop? (e.g. BAC after 2 hours)",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Your BAC continues to change depending on the timeline of your drinks. For example, if you check your BAC after 2 hours of having 1 or 2 beers, your body will have already metabolized a portion of the alcohol (approx. 0.03% total reduction). However, if you drink rapidly (e.g. an alcohol level after 3 beers in under an hour), your peak BAC will occur around 45 minutes after your last drink, and then decrease slowly over the following hours. A when can i drive calculator helps trace this curve to estimate when your BAC will fall below the legal threshold.</p>"
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Medical Disclaimer & Emergency Alternative Section -->
   <section class="py-16 md:py-24 bg-canvas-soft border-b border-hairline scroll-mt-20" id="disclaimer">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
@@ -837,6 +1157,15 @@ import Layout from '../layouts/Layout.astro';
     ];
 
     // ─── State Management ───
+    interface LoggedDrink {
+      id: string;
+      name: string;
+      vol: number;
+      abv: number;
+      timeAgo: number;
+      addedAt: number;
+    }
+
     let userState = {
       gender: 'male',
       age: 30,
@@ -847,95 +1176,93 @@ import Layout from '../layouts/Layout.astro';
       countryCode: 'US'
     };
 
-    let loggedDrinks = [];
+    let loggedDrinks: LoggedDrink[] = [];
     let drinkCount = 1;
     let logUnlocked = false; // step 2 lock state
     let resultsUnlocked = false; // step 3 lock state
-    let lastAddedDrinkId = null;
-
-
+    let lastAddedDrinkId: string | null = null;
 
     // ─── Cache DOM References ───
     const elements = {
       // Lanes
-      colProfile: document.getElementById('col-profile'),
-      colLog: document.getElementById('col-log'),
-      colResults: document.getElementById('col-results'),
+      colProfile: document.getElementById('col-profile') as HTMLElement,
+      colLog: document.getElementById('col-log') as HTMLElement,
+      colResults: document.getElementById('col-results') as HTMLElement,
 
       // Tab Buttons (Progress tabs)
-      tabResults: document.getElementById('tab-results'),
-      tabLog: document.getElementById('tab-log'),
-      tabProfile: document.getElementById('tab-profile'),
+      tabResults: document.getElementById('tab-results') as HTMLElement,
+      tabLog: document.getElementById('tab-log') as HTMLElement,
+      tabProfile: document.getElementById('tab-profile') as HTMLElement,
       
       // Step numbers/visual indicators
-      stepNum1: document.getElementById('step-num-1'),
-      stepTxt1: document.getElementById('step-txt-1'),
-      stepLine1: document.getElementById('step-line-1'),
-      stepNum2: document.getElementById('step-num-2'),
-      stepTxt2: document.getElementById('step-txt-2'),
-      stepLine2: document.getElementById('step-line-2'),
-      stepNum3: document.getElementById('step-num-3'),
-      stepTxt3: document.getElementById('step-txt-3'),
+      stepNum1: document.getElementById('step-num-1') as HTMLElement,
+      stepTxt1: document.getElementById('step-txt-1') as HTMLElement,
+      stepLine1: document.getElementById('step-line-1') as HTMLElement,
+      stepNum2: document.getElementById('step-num-2') as HTMLElement,
+      stepTxt2: document.getElementById('step-txt-2') as HTMLElement,
+      stepLine2: document.getElementById('step-line-2') as HTMLElement,
+      stepNum3: document.getElementById('step-num-3') as HTMLElement,
+      stepTxt3: document.getElementById('step-txt-3') as HTMLElement,
 
       // Onboarding transition buttons
-      btnToStep2: document.getElementById('btn-to-step-2'),
-      btnToStep3: document.getElementById('btn-to-step-3'),
+      btnToStep2: document.getElementById('btn-to-step-2') as HTMLButtonElement,
+      btnToStep3: document.getElementById('btn-to-step-3') as HTMLButtonElement,
 
       // Results Lock Overlay
-      resultsLockOverlay: document.getElementById('results-lock-overlay'),
-      resultsDashboardContent: document.getElementById('results-dashboard-content'),
+      resultsLockOverlay: document.getElementById('results-lock-overlay') as HTMLElement,
+      resultsDashboardContent: document.getElementById('results-dashboard-content') as HTMLElement,
 
       // Log Lock Overlay
-      logLockOverlay: document.getElementById('log-lock-overlay'),
-      logDashboardContent: document.getElementById('log-dashboard-content'),
+      logLockOverlay: document.getElementById('log-lock-overlay') as HTMLElement,
+      logDashboardContent: document.getElementById('log-dashboard-content') as HTMLElement,
 
       // Modal Elements
-      resultsModal: document.getElementById('results-modal'),
-      modalCard: document.getElementById('modal-card'),
-      btnCloseModal: document.getElementById('btn-close-modal'),
-      btnCloseModalBottom: document.getElementById('btn-close-modal-bottom'),
+      resultsModal: document.getElementById('results-modal') as HTMLElement,
+      modalCard: document.getElementById('modal-card') as HTMLElement,
+      btnCloseModal: document.getElementById('btn-close-modal') as HTMLButtonElement,
+      btnCloseModalBottom: document.getElementById('btn-close-modal-bottom') as HTMLButtonElement,
 
       // Profile inputs
-      btnMale: document.getElementById('btn-gender-male'),
-      btnFemale: document.getElementById('btn-gender-female'),
-      btnOther: document.getElementById('btn-gender-other'),
-      ageSlider: document.getElementById('profile-age-slider'),
-      ageInput: document.getElementById('profile-age'),
-      ageLbl: document.getElementById('lbl-age-val'),
-      weightInput: document.getElementById('profile-weight'),
-      weightUnitLbl: document.getElementById('profile-weight-unit'),
-      btnKg: document.getElementById('btn-weight-kg'),
-      btnLbs: document.getElementById('btn-weight-lbs'),
-      heightInput: document.getElementById('profile-height'),
-      heightUnitLbl: document.getElementById('profile-height-unit'),
-      btnCm: document.getElementById('btn-height-cm'),
-      btnIn: document.getElementById('btn-height-in'),
-      countrySelect: document.getElementById('profile-country'),
-      countryWarningBox: document.getElementById('out-country-warning-box'),
-      countryWarningText: document.getElementById('out-country-warning-text'),
+      btnMale: document.getElementById('btn-gender-male') as HTMLButtonElement,
+      btnFemale: document.getElementById('btn-gender-female') as HTMLButtonElement,
+      btnOther: document.getElementById('btn-gender-other') as HTMLButtonElement,
+      ageSlider: document.getElementById('profile-age-slider') as HTMLInputElement,
+      ageInput: document.getElementById('profile-age') as HTMLInputElement,
+      ageLbl: document.getElementById('lbl-age-val') as HTMLElement,
+      weightInput: document.getElementById('profile-weight') as HTMLInputElement,
+      weightUnitLbl: document.getElementById('profile-weight-unit') as HTMLElement,
+      btnKg: document.getElementById('btn-weight-kg') as HTMLButtonElement,
+      btnLbs: document.getElementById('btn-weight-lbs') as HTMLButtonElement,
+      heightInput: document.getElementById('profile-height') as HTMLInputElement,
+      heightUnitLbl: document.getElementById('profile-height-unit') as HTMLElement,
+      btnCm: document.getElementById('btn-height-cm') as HTMLButtonElement,
+      btnIn: document.getElementById('btn-height-in') as HTMLButtonElement,
+      countrySelect: document.getElementById('profile-country') as HTMLSelectElement,
+      countryWarningBox: document.getElementById('out-country-warning-box') as HTMLElement,
+      countryWarningText: document.getElementById('out-country-warning-text') as HTMLElement,
       
       // Drink Adder Form
-      drinkSelect: document.getElementById('drink-select'),
-      customLabelContainer: document.getElementById('custom-drink-label-container'),
-      drinkName: document.getElementById('drink-name'),
-      drinkVolume: document.getElementById('drink-volume'),
-      drinkVolumeUnit: document.getElementById('drink-volume-unit'),
-      btnVolMl: document.getElementById('btn-volume-ml'),
-      btnVolOz: document.getElementById('btn-volume-oz'),
-      abvSlider: document.getElementById('drink-abv-slider'),
-      abvInput: document.getElementById('drink-abv'),
-      abvLbl: document.getElementById('lbl-abv-val'),
-      timeAgoSlider: document.getElementById('drink-time-ago'),
-      timeAgoLbl: document.getElementById('drink-time-ago-label'),
-      btnAdd: document.getElementById('btn-add-drink'),
-      btnClear: document.getElementById('btn-clear-timeline'),
+      drinkSelect: document.getElementById('drink-select') as HTMLSelectElement,
+      customLabelContainer: document.getElementById('custom-drink-label-container') as HTMLElement,
+      drinkName: document.getElementById('drink-name') as HTMLInputElement,
+      drinkVolume: document.getElementById('drink-volume') as HTMLInputElement,
+      drinkVolumeUnit: document.getElementById('drink-volume-unit') as HTMLElement,
+      btnVolMl: document.getElementById('btn-volume-ml') as HTMLButtonElement,
+      btnVolOz: document.getElementById('btn-volume-oz') as HTMLButtonElement,
+      abvSlider: document.getElementById('drink-abv-slider') as HTMLInputElement,
+      abvInput: document.getElementById('drink-abv') as HTMLInputElement,
+      abvLbl: document.getElementById('lbl-abv-val') as HTMLElement,
+      timeAgoSlider: document.getElementById('drink-time-ago') as HTMLInputElement,
+      timeAgoLbl: document.getElementById('drink-time-ago-label') as HTMLElement,
+      btnAdd: document.getElementById('btn-add-drink') as HTMLButtonElement,
+      btnClear: document.getElementById('btn-clear-timeline') as HTMLButtonElement,
       
       // Lists & Containers
-      timelineList: document.getElementById('timeline-list'),
-      timelineEmpty: document.getElementById('timeline-empty-state'),
-      timelineContent: document.getElementById('timeline-content'),
-      timelineCount: document.getElementById('timeline-count'),
-      toastContainer: document.getElementById('toast-container')
+      timelineList: document.getElementById('timeline-list') as HTMLUListElement,
+      timelineEmpty: document.getElementById('timeline-empty-state') as HTMLElement,
+      timelineContent: document.getElementById('timeline-content') as HTMLElement,
+      timelineCount: document.getElementById('timeline-count') as HTMLElement,
+      toastContainer: document.getElementById('toast-container') as HTMLElement
     };
 
     // ─── Initialization ───
@@ -963,37 +1290,37 @@ import Layout from '../layouts/Layout.astro';
 
       // Staggered entrance for columns on desktop
       if (window.innerWidth >= 1024) {
-        animate(elements.colProfile, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, easing: [0.16, 1, 0.3, 1] });
-        animate(elements.colLog, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.1, easing: [0.16, 1, 0.3, 1] });
-        animate(elements.colResults, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.2, easing: [0.16, 1, 0.3, 1] });
+        (animate as any)(elements.colProfile, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, easing: [0.16, 1, 0.3, 1] });
+        (animate as any)(elements.colLog, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.1, easing: [0.16, 1, 0.3, 1] });
+        (animate as any)(elements.colResults, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.2, easing: [0.16, 1, 0.3, 1] });
       }
     }
 
     // Helper: Manage button toggle styling in Vercel design
-    function setActiveGenderButton(activeBtn) {
+    function setActiveGenderButton(activeBtn: HTMLButtonElement) {
       [elements.btnMale, elements.btnFemale, elements.btnOther].forEach(btn => {
         btn.className = "py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none";
       });
       activeBtn.className = "py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none";
     }
 
-    function setActiveUnitButton(activeBtn, inactiveBtn) {
+    function setActiveUnitButton(activeBtn: HTMLButtonElement, inactiveBtn: HTMLButtonElement) {
       activeBtn.className = "px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none";
       inactiveBtn.className = "px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none";
     }
 
     // Set wizard active step indices and mobile lane tab toggles
-    function setStepSelection(stepNum) {
+    function setStepSelection(stepNum: number) {
       const isMobile = window.innerWidth < 1024;
 
       // 1. Manage mobile tab display lanes
       if (stepNum === 1) {
         elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 block";
-        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
+        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
         elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
 
         if (isMobile) {
-          animate(elements.colProfile, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+          (animate as any)(elements.colProfile, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
         }
       } else if (stepNum === 2) {
         // Only allow switching to step 2 if log is unlocked
@@ -1002,11 +1329,11 @@ import Layout from '../layouts/Layout.astro';
           return;
         }
         elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
-        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 block";
+        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] block";
         elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
 
         if (isMobile) {
-          animate(elements.colLog, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+          (animate as any)(elements.colLog, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
         }
       } else if (stepNum === 3) {
         // Only allow switching to step 3 on mobile if results are unlocked
@@ -1015,11 +1342,11 @@ import Layout from '../layouts/Layout.astro';
           return;
         }
         elements.colProfile.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
-        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 hidden lg:block";
+        elements.colLog.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] hidden lg:block";
         elements.colResults.className = "col-span-1 lg:col-span-4 space-y-6 relative min-h-[500px] block";
 
         if (isMobile) {
-          animate(elements.colResults, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+          (animate as any)(elements.colResults, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
         }
       }
 
@@ -1104,18 +1431,20 @@ import Layout from '../layouts/Layout.astro';
 
       // Age Inputs (sync range slider & numerical input)
       elements.ageSlider.addEventListener('input', (e) => {
-        elements.ageInput.value = e.target.value;
-        elements.ageLbl.textContent = e.target.value;
-        userState.age = parseInt(e.target.value, 10);
+        const target = e.target as HTMLInputElement;
+        elements.ageInput.value = target.value;
+        elements.ageLbl.textContent = target.value;
+        userState.age = parseInt(target.value, 10);
         updateAll();
       });
       elements.ageInput.addEventListener('input', (e) => {
-        let val = parseInt(e.target.value, 10);
+        const target = e.target as HTMLInputElement;
+        let val = parseInt(target.value, 10);
         if (isNaN(val)) val = 16;
         if (val < 16) val = 16;
         if (val > 90) val = 90;
-        elements.ageSlider.value = val;
-        elements.ageLbl.textContent = val;
+        elements.ageSlider.value = val.toString();
+        elements.ageLbl.textContent = val.toString();
         userState.age = val;
         updateAll();
       });
@@ -1127,7 +1456,7 @@ import Layout from '../layouts/Layout.astro';
           setActiveUnitButton(elements.btnKg, elements.btnLbs);
           elements.weightUnitLbl.textContent = 'kg';
           let currentVal = parseFloat(elements.weightInput.value);
-          elements.weightInput.value = Math.round(currentVal * 0.453592);
+          elements.weightInput.value = Math.round(currentVal * 0.453592).toString();
           userState.weight = parseInt(elements.weightInput.value, 10);
           updateAll();
         }
@@ -1138,13 +1467,14 @@ import Layout from '../layouts/Layout.astro';
           setActiveUnitButton(elements.btnLbs, elements.btnKg);
           elements.weightUnitLbl.textContent = 'lbs';
           let currentVal = parseFloat(elements.weightInput.value);
-          elements.weightInput.value = Math.round(currentVal / 0.453592);
+          elements.weightInput.value = Math.round(currentVal / 0.453592).toString();
           userState.weight = parseInt(elements.weightInput.value, 10);
           updateAll();
         }
       });
       elements.weightInput.addEventListener('input', (e) => {
-        let val = parseFloat(e.target.value);
+        const target = e.target as HTMLInputElement;
+        let val = parseFloat(target.value);
         if (isNaN(val)) val = 70;
         userState.weight = val;
         updateAll();
@@ -1157,7 +1487,7 @@ import Layout from '../layouts/Layout.astro';
           setActiveUnitButton(elements.btnCm, elements.btnIn);
           elements.heightUnitLbl.textContent = 'cm';
           let currentVal = parseFloat(elements.heightInput.value);
-          elements.heightInput.value = Math.round(currentVal * 2.54);
+          elements.heightInput.value = Math.round(currentVal * 2.54).toString();
           userState.height = parseInt(elements.heightInput.value, 10);
           updateAll();
         }
@@ -1168,13 +1498,14 @@ import Layout from '../layouts/Layout.astro';
           setActiveUnitButton(elements.btnIn, elements.btnCm);
           elements.heightUnitLbl.textContent = 'in';
           let currentVal = parseFloat(elements.heightInput.value);
-          elements.heightInput.value = Math.round(currentVal / 2.54);
+          elements.heightInput.value = Math.round(currentVal / 2.54).toString();
           userState.height = parseInt(elements.heightInput.value, 10);
           updateAll();
         }
       });
       elements.heightInput.addEventListener('input', (e) => {
-        let val = parseFloat(e.target.value);
+        const target = e.target as HTMLInputElement;
+        let val = parseFloat(target.value);
         if (isNaN(val)) val = 170;
         userState.height = val;
         updateAll();
@@ -1182,9 +1513,12 @@ import Layout from '../layouts/Layout.astro';
 
       // Country Select
       elements.countrySelect.addEventListener('change', (e) => {
-        userState.countryCode = e.target.value;
+        const target = e.target as HTMLSelectElement;
+        userState.countryCode = target.value;
         const country = COUNTRIES.find(c => c.code === userState.countryCode);
-        elements.countryWarningText.innerHTML = `${country.name} legal limit is <span class="font-mono font-semibold">${country.limit.toFixed(2)}%</span> BAC. ${country.note}`;
+        if (country) {
+          elements.countryWarningText.innerHTML = `${country.name} legal limit is <span class="font-mono font-semibold">${country.limit.toFixed(2)}%</span> BAC. ${country.note}`;
+        }
         updateAll();
       });
 
@@ -1197,7 +1531,7 @@ import Layout from '../layouts/Layout.astro';
           setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
           elements.drinkVolumeUnit.textContent = 'ml';
           let currentVal = parseFloat(elements.drinkVolume.value);
-          elements.drinkVolume.value = Math.round(currentVal * 29.5735);
+          elements.drinkVolume.value = Math.round(currentVal * 29.5735).toString();
         }
       });
       elements.btnVolOz.addEventListener('click', () => {
@@ -1211,21 +1545,24 @@ import Layout from '../layouts/Layout.astro';
 
       // Drink ABV slider sync
       elements.abvSlider.addEventListener('input', (e) => {
-        elements.abvInput.value = e.target.value;
-        elements.abvLbl.textContent = parseFloat(e.target.value).toFixed(1);
+        const target = e.target as HTMLInputElement;
+        elements.abvInput.value = target.value;
+        elements.abvLbl.textContent = parseFloat(target.value).toFixed(1);
       });
       elements.abvInput.addEventListener('input', (e) => {
-        let val = parseFloat(e.target.value);
+        const target = e.target as HTMLInputElement;
+        let val = parseFloat(target.value);
         if (isNaN(val)) val = 5.0;
         if (val < 0.1) val = 0.1;
         if (val > 100.0) val = 100.0;
-        elements.abvSlider.value = val;
+        elements.abvSlider.value = val.toString();
         elements.abvLbl.textContent = val.toFixed(1);
       });
 
       // Drink time ago slider label updating
       elements.timeAgoSlider.addEventListener('input', (e) => {
-        let mins = parseInt(e.target.value, 10);
+        const target = e.target as HTMLInputElement;
+        let mins = parseInt(target.value, 10);
         if (mins === 0) {
           elements.timeAgoLbl.textContent = 'Just now';
         } else if (mins < 60) {
@@ -1261,9 +1598,9 @@ import Layout from '../layouts/Layout.astro';
       if (!selectedOpt) return;
       
       const valType = selectedOpt.value;
-      const name = selectedOpt.getAttribute('data-name');
-      const volMl = parseFloat(selectedOpt.getAttribute('data-vol'));
-      const abv = parseFloat(selectedOpt.getAttribute('data-abv'));
+      const name = selectedOpt.getAttribute('data-name') || "";
+      const volMl = parseFloat(selectedOpt.getAttribute('data-vol') || "0");
+      const abv = parseFloat(selectedOpt.getAttribute('data-abv') || "0");
       
       // Update Name & toggle custom container visibility
       if (valType === 'custom') {
@@ -1289,7 +1626,7 @@ import Layout from '../layouts/Layout.astro';
       elements.abvLbl.textContent = abv.toFixed(1);
       
       // Highlight form elements container
-      const container = elements.drinkVolume.parentElement.parentElement.parentElement;
+      const container = elements.drinkVolume.parentElement?.parentElement?.parentElement;
       if (container) {
         container.classList.add('ring-2', 'ring-link/30');
         setTimeout(() => container.classList.remove('ring-2', 'ring-link/30'), 500);
@@ -1315,7 +1652,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // ─── Dynamic Toast Notification System ───
-    function showToast(message) {
+    function showToast(message: string) {
       const toast = document.createElement('div');
       toast.className = "bg-canvas text-primary shadow-vercel-4 border border-hairline rounded-md py-3 px-4 flex items-center justify-between gap-3 text-sm font-sans select-none pointer-events-auto opacity-0 translate-y-4";
       toast.style.transition = "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease-out";
@@ -1335,7 +1672,9 @@ import Layout from '../layouts/Layout.astro';
       `;
 
       const closeBtn = toast.querySelector('button');
-      closeBtn.addEventListener('click', dismiss);
+      if (closeBtn) {
+        closeBtn.addEventListener('click', dismiss);
+      }
 
       elements.toastContainer.appendChild(toast);
 
@@ -1358,7 +1697,7 @@ import Layout from '../layouts/Layout.astro';
 
     // ─── Mathematical Estimator Calculations ───
     
-    function calculateTBW(gender, weightKg, heightCm, ageYears) {
+    function calculateTBW(gender: string, weightKg: number, heightCm: number, ageYears: number): number {
       if (gender === 'male') {
         return 2.447 - (0.09516 * ageYears) + (0.1074 * heightCm) + (0.3362 * weightKg);
       } else if (gender === 'female') {
@@ -1370,14 +1709,14 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    function formatTimeLabel(relativeHours) {
+    function formatTimeLabel(relativeHours: number): string {
       const now = new Date();
       now.setSeconds(0);
       now.setMilliseconds(0);
       
       const targetTime = new Date(now.getTime() + (relativeHours * 60 * 60 * 1000));
       let h = targetTime.getHours();
-      let m = targetTime.getMinutes();
+      let m: number | string = targetTime.getMinutes();
       const ampm = h >= 12 ? 'PM' : 'AM';
       h = h % 12;
       h = h ? h : 12;
@@ -1385,7 +1724,7 @@ import Layout from '../layouts/Layout.astro';
       return `${h}:${m} ${ampm}`;
     }
 
-    function calculateBACAt(H, drinksList, biology, tbwLiters) {
+    function calculateBACAt(H: number, drinksList: LoggedDrink[], tbwLiters: number): number {
       if (drinksList.length === 0) return 0;
       
       let totalBAC = 0;
@@ -1456,7 +1795,7 @@ import Layout from '../layouts/Layout.astro';
       
       // Update logged list display
       renderTimeline();
-
+ 
       // If results were unlocked previously, re-lock them until user recalculates explicitly
       if (resultsUnlocked) {
         resultsUnlocked = false;
@@ -1465,7 +1804,7 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    function removeDrink(id, name) {
+    function removeDrink(id: string, name: string): void {
       loggedDrinks = loggedDrinks.filter(d => d.id !== id);
       renderTimeline();
       showToast(`${name} removed from log.`);
@@ -1499,19 +1838,20 @@ import Layout from '../layouts/Layout.astro';
       
       let peakBAC = 0;
       let peakHour = 0;
-      let currentBAC = calculateBACAt(0, loggedDrinks, bio, tbw);
-      let soberHour = null;
-      let safeHour = null;
+      let currentBAC = calculateBACAt(0, loggedDrinks, tbw);
+      let soberHour: number | null = null;
+      let safeHour: number | null = null;
       
       const country = COUNTRIES.find(c => c.code === userState.countryCode);
+      if (!country) return;
       const limit = country.limit;
 
-      const scanPoints = [];
+      const scanPoints: { h: number; val: number }[] = [];
       const scanStep = 0.05;
       const endScan = 16.0;
       
       for (let h = startHour; h <= endScan; h += scanStep) {
-        const val = calculateBACAt(h, loggedDrinks, bio, tbw);
+        const val = calculateBACAt(h, loggedDrinks, tbw);
         scanPoints.push({ h, val });
         
         if (val > peakBAC) {
@@ -1543,8 +1883,8 @@ import Layout from '../layouts/Layout.astro';
       elements.modalCard.classList.remove('scale-95', 'opacity-0');
       
       // Smooth animated entry for modal overlay and card
-      animate(elements.resultsModal, { opacity: [0, 1] }, { duration: 0.25 });
-      animate(elements.modalCard, { scale: [0.95, 1], y: [15, 0], opacity: [0, 1] }, { 
+      (animate as any)(elements.resultsModal, { opacity: [0, 1] }, { duration: 0.25 });
+      (animate as any)(elements.modalCard, { scale: [0.95, 1], y: [15, 0], opacity: [0, 1] }, { 
         duration: 0.45, 
         easing: [0.16, 1, 0.3, 1]
       });
@@ -1553,8 +1893,8 @@ import Layout from '../layouts/Layout.astro';
     function closeModal() {
       // Smooth animated exit for modal overlay and card
       Promise.all([
-        animate(elements.resultsModal, { opacity: 0 }, { duration: 0.2 }),
-        animate(elements.modalCard, { scale: 0.95, y: 15, opacity: 0 }, { duration: 0.2 })
+        (animate as any)(elements.resultsModal, { opacity: 0 }, { duration: 0.2 }),
+        (animate as any)(elements.modalCard, { scale: 0.95, y: 15, opacity: 0 }, { duration: 0.2 })
       ]).then(() => {
         elements.resultsModal.classList.remove('flex');
         elements.resultsModal.classList.add('hidden');
@@ -1566,12 +1906,12 @@ import Layout from '../layouts/Layout.astro';
         resultsUnlocked = true;
         
         // Fade out overlay and fade in dashboard content
-        animate(elements.resultsLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
+        (animate as any)(elements.resultsLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
           elements.resultsLockOverlay.classList.add('pointer-events-none');
         });
         
         elements.resultsDashboardContent.classList.remove('pointer-events-none', 'select-none');
-        animate(elements.resultsDashboardContent, { opacity: [0.3, 1] }, { duration: 0.5, easing: "ease-out" });
+        (animate as any)(elements.resultsDashboardContent, { opacity: [0.3, 1] }, { duration: 0.5, easing: "ease-out" });
         
         // Auto navigate to Step 3 tab on mobile viewports
         setStepSelection(3);
@@ -1583,20 +1923,29 @@ import Layout from '../layouts/Layout.astro';
       logUnlocked = true;
 
       // Animate unlock overlay fading out
-      animate(elements.logLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
+      (animate as any)(elements.logLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
         elements.logLockOverlay.classList.add('pointer-events-none');
       });
 
       // Animate content fading in
       elements.logDashboardContent.classList.remove('pointer-events-none', 'select-none');
-      animate(elements.logDashboardContent, { opacity: [0.3, 1] }, { duration: 0.5, easing: "ease-out" });
+      (animate as any)(elements.logDashboardContent, { opacity: [0.3, 1] }, { duration: 0.5, easing: "ease-out" });
     }
 
     // ─── Dynamic Layout Rendering Engine ───
     
-    function updateUIContainer(prefix, currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, countryName) {
-      const isModal = prefix === 'modal-';
-      
+    function updateUIContainer(
+      prefix: string,
+      currentBAC: number,
+      peakBAC: number,
+      limit: number,
+      soberHour: number | null,
+      safeHour: number | null,
+      peakHour: number,
+      scanPoints: { h: number; val: number }[],
+      startHour: number,
+      countryName: string
+    ) {
       // Query DOM nodes dynamically
       const elCurrent = document.getElementById(`${prefix}bac-current`);
       const elSober = document.getElementById(`${prefix}time-sober`);
@@ -1612,19 +1961,19 @@ import Layout from '../layouts/Layout.astro';
 
       // Set digital values (animated count-up)
       if (elCurrent) {
-        animate(0, currentBAC, {
+        (animate as any)(0, currentBAC, {
           duration: 0.8,
           easing: [0.16, 1, 0.3, 1],
-          onUpdate: (latest) => {
+          onUpdate: (latest: number) => {
             elCurrent.textContent = `${latest.toFixed(3)}%`;
           }
         });
       }
       if (elPeak) {
-        animate(0, peakBAC, {
+        (animate as any)(0, peakBAC, {
           duration: 0.8,
           easing: [0.16, 1, 0.3, 1],
-          onUpdate: (latest) => {
+          onUpdate: (latest: number) => {
             elPeak.textContent = `${latest.toFixed(3)}%`;
           }
         });
@@ -1714,7 +2063,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // Get maximum Y value head room
-    function yMaxVal(points, limit) {
+    function yMaxVal(points: { h: number; val: number }[], limit: number): number {
       let maxVal = Math.max(...points.map(p => p.val));
       if (maxVal < limit) maxVal = limit;
       if (maxVal < 0.04) maxVal = 0.04;
@@ -1722,7 +2071,14 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // Dynamic drawing function for horizontal and vertical axis plots
-    function drawChartForContainer(prefix, points, startHour, limit, currentBAC, yMax) {
+    function drawChartForContainer(
+      prefix: string,
+      points: { h: number; val: number }[],
+      startHour: number,
+      limit: number,
+      currentBAC: number,
+      yMax: number
+    ): void {
       const isModal = prefix === 'modal-';
       const baselineY = isModal ? 180 : 220; // different container height variables
       const scaleHeight = isModal ? 160 : 200;
@@ -1736,17 +2092,17 @@ import Layout from '../layouts/Layout.astro';
       
       const displayPoints = points.filter(p => p.h >= tMin && p.h <= tMax);
 
-      function getX(h) {
+      function getX(h: number): number {
         return 50 + ((h - tMin) / (tMax - tMin)) * 700;
       }
       
-      function getY(val) {
+      function getY(val: number): number {
         return baselineY - (val / yMax) * scaleHeight;
       }
 
       // Select targets
-      const pathLine = document.getElementById(`${prefix}chart-line-path`);
-      const pathArea = document.getElementById(`${prefix}chart-area-path`);
+      const pathLine = document.getElementById(`${prefix}chart-line-path`) as SVGPathElement | null;
+      const pathArea = document.getElementById(`${prefix}chart-area-path`) as SVGPathElement | null;
       const lineLimit = document.getElementById(`${prefix}chart-limit-line`);
       const lblLimit = document.getElementById(`${prefix}chart-limit-label`);
       const lineNow = document.getElementById(`${prefix}chart-now-line`);
@@ -1790,14 +2146,14 @@ import Layout from '../layouts/Layout.astro';
         try {
           const pathLength = pathLine.getTotalLength();
           pathLine.style.strokeDasharray = pathLength.toString();
-          animate(pathLine, { strokeDashoffset: [pathLength, 0] }, { duration: 0.8, easing: "ease-out" });
+          (animate as any)(pathLine, { strokeDashoffset: [pathLength, 0] }, { duration: 0.8, easing: "ease-out" });
         } catch (e) {
           // Fallback if SVG isn't fully rendered in some environments
         }
       }
       if (pathArea) {
         pathArea.setAttribute('d', areaD);
-        animate(pathArea, { opacity: [0, 1] }, { duration: 0.8, easing: "ease-out" });
+        (animate as any)(pathArea, { opacity: [0, 1] }, { duration: 0.8, easing: "ease-out" });
       }
 
       // Position Limit Line
@@ -1919,18 +2275,18 @@ import Layout from '../layouts/Layout.astro';
           </div>
         `;
         
-        li.querySelector('button').addEventListener('click', (e) => {
-          const btn = e.currentTarget;
-          const id = btn.getAttribute('data-id');
-          const name = btn.getAttribute('data-name');
-          removeDrink(id, name);
-        });
+        const removeBtn = li.querySelector('button');
+        if (removeBtn) {
+          removeBtn.addEventListener('click', () => {
+            removeDrink(drink.id, drink.name);
+          });
+        }
 
         elements.timelineList.appendChild(li);
         
         // If this drink was just added, animate its entry
         if (drink.id === lastAddedDrinkId) {
-          animate(li, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
+          (animate as any)(li, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
         }
       });
       
@@ -1947,6 +2303,46 @@ import Layout from '../layouts/Layout.astro';
       });
       renderTimeline();
     }
+
+    // ─── FAQ Accordion Interactivity ───
+    const faqTriggers = document.querySelectorAll('[data-faq-trigger]');
+    faqTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('[data-faq-item]');
+        if (!item) return;
+        const content = item.querySelector('[data-faq-content]') as HTMLElement;
+        const icon = item.querySelector('[data-faq-icon]');
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+
+        if (!content || !icon) return;
+
+        // Close all other accordions first (Vercel clean UX)
+        document.querySelectorAll('[data-faq-item]').forEach(otherItem => {
+          if (otherItem !== item) {
+            const otherTrigger = otherItem.querySelector('[data-faq-trigger]');
+            const otherContent = otherItem.querySelector('[data-faq-content]') as HTMLElement;
+            const otherIcon = otherItem.querySelector('[data-faq-icon]');
+            
+            if (otherTrigger && otherContent && otherIcon) {
+              otherTrigger.setAttribute('aria-expanded', 'false');
+              otherIcon.classList.remove('rotate-180');
+              otherContent.style.maxHeight = '0px';
+            }
+          }
+        });
+
+        // Toggle current accordion
+        if (expanded) {
+          trigger.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('rotate-180');
+          content.style.maxHeight = '0px';
+        } else {
+          trigger.setAttribute('aria-expanded', 'true');
+          icon.classList.add('rotate-180');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
 
     init();
   </script>
