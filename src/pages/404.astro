@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page Not Found (404) | Online Alcohol Detect"
+  description="The page you are looking for does not exist. Calculate your Blood Alcohol Content (BAC) or return to the safety dashboard."
+>
+  <!-- Main 404 Section with Mesh Gradient -->
+  <section class="relative overflow-hidden bg-canvas py-20 md:py-32 flex-grow flex items-center justify-center border-b border-hairline min-h-[70vh]">
+    <!-- Mesh Gradient Backdrop -->
+    <div class="absolute inset-0 pointer-events-none opacity-45 select-none overflow-hidden" aria-hidden="true">
+      <div class="absolute top-[-10%] left-[-20%] w-[60%] h-[70%] rounded-full bg-gradient-to-br from-gradient-develop-start to-gradient-develop-end blur-[120px] transform-gpu animate-pulse"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[80%] rounded-full bg-gradient-to-bl from-gradient-preview-start to-gradient-preview-end blur-[140px] transform-gpu"></div>
+      <div class="absolute top-[20%] right-[30%] w-[35%] h-[50%] rounded-full bg-gradient-to-tr from-gradient-ship-start to-gradient-ship-end blur-[130px] transform-gpu opacity-30"></div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 relative z-10 text-center flex flex-col items-center">
+      <!-- Section Eyebrow -->
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-error/10 border border-error/15 text-xs font-mono text-error mb-8 shadow-vercel-1 animate-bounce">
+        <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+        CRITICAL ERROR: 404
+      </span>
+
+      <!-- Interactive BAC 4.04% Dial Visual -->
+      <div class="relative w-64 h-64 mb-8 flex items-center justify-center select-none" id="dial-container">
+        <!-- SVG Gauge -->
+        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
+          <!-- Background circle track -->
+          <circle cx="50" cy="50" r="42" stroke="var(--color-hairline)" stroke-width="6" fill="transparent" />
+          <!-- Active warning gauge arc -->
+          <circle cx="50" cy="50" r="42" stroke="var(--color-error)" stroke-width="6" fill="transparent"
+            stroke-dasharray="264" stroke-dashoffset="100" stroke-linecap="round" id="gauge-arc" />
+        </svg>
+        
+        <!-- Text inside Dial -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <span class="font-mono text-[10px] font-semibold text-mute uppercase tracking-widest mb-0.5">Estimated BAC</span>
+          <div class="text-4xl font-mono font-bold tracking-tighter text-error tabular-nums animate-pulse" id="bac-readout">
+            4.04%
+          </div>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 mt-2 text-[10px] font-mono font-bold rounded-pill bg-error-soft text-error-deep border border-error/10" id="badge-readout">
+            LIMIT EXCEEDED
+          </span>
+        </div>
+      </div>
+      
+      <!-- Headline -->
+      <h1 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.8px] leading-[1.1] text-primary max-w-lg mb-4 text-balance">
+        Lost in the concentration curve.
+      </h1>
+      
+      <!-- Description -->
+      <p class="font-sans text-sm md:text-base text-body max-w-lg mb-10 leading-relaxed text-pretty">
+        Your Blood Alcohol Concentration is mathematically impossible, and so is this URL. The page you are looking for has metabolically expired or never existed.
+      </p>
+      
+      <!-- CTA Button Row -->
+      <div class="flex flex-col sm:flex-row gap-4 items-center w-full sm:w-auto">
+        <a href="/" class="w-full sm:w-auto inline-flex items-center justify-center bg-primary hover:bg-primary/95 text-canvas-soft text-sm font-semibold tracking-wide h-11 px-8 rounded-pill transition-vercel shadow-vercel-3 focus:ring-2 focus:ring-link focus:outline-none" id="btn-back-home">
+          Return to Dashboard
+        </a>
+        <a href="/#calculator" class="w-full sm:w-auto inline-flex items-center justify-center bg-canvas hover:bg-canvas-soft border border-hairline text-ink text-sm font-semibold tracking-wide h-11 px-8 rounded-pill transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-calc-jump">
+          Start BAC Estimator
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side animation logic using Motion -->
+  <script>
+    import { animate } from 'motion';
+
+    function init404Animation() {
+      const readout = document.getElementById('bac-readout');
+      const arc = document.getElementById('gauge-arc');
+      const badge = document.getElementById('badge-readout');
+      const dialContainer = document.getElementById('dial-container');
+
+      if (readout) {
+        // Animate counter from 0.00% to 4.04%
+        (animate as any)(0, 4.04, {
+          duration: 1.5,
+          easing: [0.16, 1, 0.3, 1],
+          onUpdate: (latest: number) => {
+            readout.textContent = `${latest.toFixed(2)}%`;
+          }
+        });
+      }
+
+      if (arc) {
+        // Active warning gauge arc fill-up animation
+        // total circumference = 2 * PI * r = 2 * 3.14159 * 42 = ~263.89
+        const strokeLength = 264;
+        const targetOffset = 70; // 4.04% warning level representation
+        
+        (animate as any)(strokeLength, targetOffset, {
+          duration: 1.5,
+          easing: [0.16, 1, 0.3, 1],
+          onUpdate: (latest: number) => {
+            arc.setAttribute('stroke-dashoffset', latest.toString());
+          }
+        });
+      }
+
+      if (badge) {
+        // Staggered entry for limit badge
+        (animate as any)(badge, { opacity: [0, 1], scale: [0.8, 1] }, { duration: 0.5, delay: 1.2 });
+      }
+
+      if (dialContainer) {
+        // Subtle floating micro-animation for the entire dial container
+        (animate as any)(dialContainer, { y: [-4, 4] }, { 
+          duration: 3, 
+          easing: "ease-in-out", 
+          direction: "alternate", 
+          repeat: Infinity 
+        });
+      }
+    }
+
+    // Run animation on DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init404Animation);
+    } else {
+      init404Animation();
+    }
+  </script>
+</Layout>
