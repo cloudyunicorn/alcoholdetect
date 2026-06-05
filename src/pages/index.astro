@@ -310,12 +310,15 @@ import Layout from '../layouts/Layout.astro';
                 <!-- JS will inject items -->
               </ul>
             </div>
-            
-            <!-- Global "Show BAC Result" button below timeline -->
-            <button type="button" class="w-full h-10 mt-auto bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-to-step-3">
-              Show BAC Results
-            </button>
           </div>
+
+          <!-- Standalone Show BAC Results Button -->
+          <button type="button" class="w-full h-11 bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none flex items-center justify-center gap-2 cursor-pointer" id="btn-to-step-3">
+            <span>Show BAC Results</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
           </div>
         </div>
 
@@ -601,7 +604,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Modal Close CTA at bottom -->
-      <button type="button" class="w-full h-10 bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none" id="btn-close-modal-bottom">
+      <button type="button" class="w-full h-10 bg-primary hover:bg-primary/95 text-canvas-soft font-semibold text-sm rounded-sm transition-vercel shadow-vercel-2 focus:ring-2 focus:ring-link focus:outline-none cursor-pointer" id="btn-close-modal-bottom">
         Close Report
       </button>
 
@@ -1121,7 +1124,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Fixed Toast Container for Notifications -->
-  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 w-full max-w-sm px-4 select-none pointer-events-none" aria-live="polite" role="status">
+  <div id="toast-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm px-4 h-48 select-none pointer-events-none overflow-visible" aria-live="polite" role="status">
     <!-- Toast notifications injected dynamically here -->
   </div>
 
@@ -1672,20 +1675,56 @@ import Layout from '../layouts/Layout.astro';
       };
     }
 
-    // ─── Dynamic Toast Notification System ───
+    // ─── Dynamic Stacked Toast Notification System ───
+    function updateToastStack() {
+      const toasts = Array.from(elements.toastContainer.children) as HTMLElement[];
+      const reversed = [...toasts].reverse(); // newest is index 0
+      
+      reversed.forEach((toast, idx) => {
+        if (idx === 0) {
+          // Newest toast (fully visible on top)
+          toast.style.transform = 'translateY(0px) scale(1)';
+          toast.style.opacity = '1';
+          toast.style.zIndex = '100';
+        } else if (idx === 1) {
+          // Second toast (shifted down and slightly scaled down)
+          toast.style.transform = 'translateY(10px) scale(0.95)';
+          toast.style.opacity = '0.9';
+          toast.style.zIndex = '90';
+        } else if (idx === 2) {
+          // Third toast (shifted further down and scaled down)
+          toast.style.transform = 'translateY(20px) scale(0.90)';
+          toast.style.opacity = '0.6';
+          toast.style.zIndex = '80';
+        } else {
+          // Older toasts fade out and are deleted
+          toast.style.transform = 'translateY(30px) scale(0.85)';
+          toast.style.opacity = '0';
+          toast.style.zIndex = '70';
+          setTimeout(() => {
+            if (toast.parentNode === elements.toastContainer) {
+              toast.remove();
+            }
+          }, 400);
+        }
+      });
+    }
+
     function showToast(message: string) {
       const toast = document.createElement('div');
-      toast.className = "bg-canvas text-primary shadow-vercel-4 border border-hairline rounded-md py-3 px-4 flex items-center justify-between gap-3 text-sm font-sans select-none pointer-events-auto opacity-0 translate-y-4";
-      toast.style.transition = "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease-out";
+      // Position absolute inside top-center container. Start slightly raised and transparent
+      toast.className = "absolute top-0 left-0 right-0 bg-canvas text-primary shadow-vercel-4 border border-hairline rounded-md py-3 px-4 flex items-center justify-between gap-3 text-sm font-sans select-none pointer-events-auto opacity-0";
+      toast.style.transform = "translateY(-15px) scale(0.9)";
+      toast.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.4s ease";
       
       toast.innerHTML = `
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 min-w-0">
           <svg class="h-4.5 w-4.5 text-success shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span class="font-medium truncate max-w-[220px]">${message}</span>
         </div>
-        <button type="button" class="text-mute hover:text-ink focus:outline-none p-1 rounded-sm" aria-label="Close Notification">
+        <button type="button" class="text-mute hover:text-ink focus:outline-none p-1 rounded-sm shrink-0" aria-label="Close Notification">
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -1699,22 +1738,29 @@ import Layout from '../layouts/Layout.astro';
 
       elements.toastContainer.appendChild(toast);
 
+      // Force reflow and animate stack
       requestAnimationFrame(() => {
-        toast.classList.remove('opacity-0', 'translate-y-4');
-        toast.classList.add('opacity-100', 'translate-y-0');
+        updateToastStack();
       });
 
-      const timeoutId = setTimeout(dismiss, 3000);
+      const timeoutId = setTimeout(dismiss, 3500);
 
       function dismiss() {
         clearTimeout(timeoutId);
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'translate-y-4');
-        toast.addEventListener('transitionend', () => {
-          toast.remove();
-        });
+        // Animate exit upwards and fade out
+        toast.style.transform = 'translateY(-20px) scale(0.9)';
+        toast.style.opacity = '0';
+        
+        setTimeout(() => {
+          if (toast.parentNode === elements.toastContainer) {
+            toast.remove();
+            updateToastStack();
+          }
+        }, 400);
       }
     }
+
+
 
     // ─── Mathematical Estimator Calculations ───
     
