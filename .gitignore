@@ -29,3 +29,9 @@ pnpm-debug.log*
 .claude/
 DESIGN.md
 skills-lock.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
