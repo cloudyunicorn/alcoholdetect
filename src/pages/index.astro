@@ -1594,7 +1594,7 @@ import Layout from '../layouts/Layout.astro';
         
         // Relock Step 3 (Results) on clear
         resultsUnlocked = false;
-        elements.resultsLockOverlay.classList.remove('pointer-events-none');
+        elements.resultsLockOverlay.classList.remove('pointer-events-none', 'hidden');
         elements.resultsLockOverlay.style.opacity = "";
         elements.resultsLockOverlay.style.transform = "";
         elements.resultsDashboardContent.className = "flex flex-col flex-grow gap-6 opacity-30 pointer-events-none transition-vercel select-none";
@@ -1856,7 +1856,9 @@ import Layout from '../layouts/Layout.astro';
       if (resultsUnlocked) {
         if (loggedDrinks.length === 0) {
           resultsUnlocked = false;
-          elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none', 'hidden');
+          elements.resultsLockOverlay.style.opacity = "";
+          elements.resultsLockOverlay.style.transform = "";
           elements.resultsDashboardContent.className = "flex flex-col flex-grow gap-6 opacity-30 pointer-events-none transition-vercel select-none";
         } else {
           recalculateAndUpdateDashboard();
@@ -1868,6 +1870,29 @@ import Layout from '../layouts/Layout.astro';
       loggedDrinks = loggedDrinks.filter(d => d.id !== id);
       renderTimeline();
       showToast(`${name} removed from log.`);
+      
+      if (resultsUnlocked) {
+        if (loggedDrinks.length === 0) {
+          resultsUnlocked = false;
+          elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none', 'hidden');
+          elements.resultsLockOverlay.style.opacity = "";
+          elements.resultsLockOverlay.style.transform = "";
+          elements.resultsDashboardContent.className = "flex flex-col flex-grow gap-6 opacity-30 pointer-events-none transition-vercel select-none";
+          
+          // Reset dynamic readouts and SVG chart paths to sober baselines
+          const country = COUNTRIES.find(c => c.code === userState.countryCode);
+          const limit = country ? country.limit : 0.05;
+          const countryName = country ? country.name : "United States";
+          
+          updateUIContainer('out-', 0, 0, limit, null, null, 0, [], 0, countryName, false);
+          updateUIContainer('modal-', 0, 0, limit, null, null, 0, [], 0, countryName, false);
+          
+          // Auto navigate to step 2 on mobile if timeline becomes empty
+          setStepSelection(2);
+        } else {
+          recalculateAndUpdateDashboard();
+        }
+      }
     }
 
     // ─── Real-time Recalculation & Update (No Re-locking) ───
@@ -2020,7 +2045,7 @@ import Layout from '../layouts/Layout.astro';
         
         // Fade out overlay and fade in dashboard content
         (animate as any)(elements.resultsLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
-          elements.resultsLockOverlay.classList.add('pointer-events-none');
+          elements.resultsLockOverlay.classList.add('pointer-events-none', 'hidden');
         });
         
         elements.resultsDashboardContent.classList.remove('pointer-events-none', 'select-none');
@@ -2037,7 +2062,7 @@ import Layout from '../layouts/Layout.astro';
 
       // Animate unlock overlay fading out
       (animate as any)(elements.logLockOverlay, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).then(() => {
-        elements.logLockOverlay.classList.add('pointer-events-none');
+        elements.logLockOverlay.classList.add('pointer-events-none', 'hidden');
       });
 
       // Animate content fading in
@@ -2476,6 +2501,10 @@ import Layout from '../layouts/Layout.astro';
         drink.timeAgo = Math.max(0, elapsedMins);
       });
       renderTimeline();
+
+      if (resultsUnlocked && loggedDrinks.length > 0) {
+        recalculateAndUpdateDashboard();
+      }
     }
 
     // ─── FAQ Accordion Interactivity ───
