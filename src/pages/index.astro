@@ -113,9 +113,9 @@ import Layout from '../layouts/Layout.astro';
                 <div>
                   <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Biological Gender</label>
                   <div class="grid grid-cols-3 gap-2 bg-canvas-soft-2 p-1 rounded-sm border border-hairline" role="group" aria-label="Gender Select">
-                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none" id="btn-gender-male" data-gender="male">Male</button>
-                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none" id="btn-gender-female" data-gender="female">Female</button>
-                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none" id="btn-gender-other" data-gender="other" title="Uses average biological metrics for inclusive calculation.">Average</button>
+                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none focus-visible:ring-0 focus-visible:outline-none" id="btn-gender-male" data-gender="male">Male</button>
+                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink border border-transparent transition-vercel focus:outline-none focus-visible:ring-0 focus-visible:outline-none" id="btn-gender-female" data-gender="female">Female</button>
+                    <button type="button" class="py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink border border-transparent transition-vercel focus:outline-none focus-visible:ring-0 focus-visible:outline-none" id="btn-gender-other" data-gender="other" title="Uses average biological metrics for inclusive calculation.">Others</button>
                   </div>
                 </div>
 
@@ -414,17 +414,17 @@ import Layout from '../layouts/Layout.astro';
                 </span>
               </div>
 
-              <div class="flex-grow relative" id="chart-container">
-                <svg class="w-full h-full min-w-0" viewBox="0 0 800 260" preserveAspectRatio="none" id="chart-svg" aria-label="BAC Concentration Curve Chart">
+              <div class="flex-grow relative" id="out-chart-container">
+                <svg class="w-full h-full min-w-0" viewBox="0 0 800 260" id="out-chart-svg" aria-label="BAC Concentration Curve Chart">
                   <defs>
                     <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="var(--color-link)" stop-opacity="0.25"/>
+                       <stop offset="0%" stop-color="var(--color-link)" stop-opacity="0.25"/>
                       <stop offset="100%" stop-color="var(--color-link)" stop-opacity="0.0"/>
                     </linearGradient>
                   </defs>
                   
                   <!-- Grid Lines -->
-                  <g stroke="var(--color-hairline)" stroke-width="1" id="chart-grid">
+                  <g stroke="var(--color-hairline)" stroke-width="1" id="out-chart-grid">
                     <line x1="50" y1="220" x2="750" y2="220" />
                     <line x1="50" y1="170" x2="750" y2="170" />
                     <line x1="50" y1="120" x2="750" y2="120" />
@@ -539,7 +539,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Safety alert box -->
         <div class="p-4 rounded-sm shadow-vercel-1" id="modal-safety-alert">
           <h4 class="font-sans text-xs font-semibold uppercase tracking-wider mb-1" id="modal-safety-alert-title">Sober</h4>
-          <p class="text-xs leading-relaxed" id="modal-safety-alert-desc">
+          <p class="text-xs text-body leading-relaxed" id="modal-safety-alert-desc">
             No alcohol detected in blood.
           </p>
         </div>
@@ -548,7 +548,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="bg-canvas border border-hairline rounded-lg p-4 flex flex-col h-[280px]">
           <span class="font-mono text-[9px] font-semibold text-mute uppercase tracking-widest mb-2 block">BAC Projections Graph</span>
           <div class="flex-grow relative">
-            <svg class="w-full h-full min-w-0" viewBox="0 0 800 220" preserveAspectRatio="none" id="modal-chart-svg" aria-label="BAC Concentration Curve Chart in Dialog">
+            <svg class="w-full h-full min-w-0" viewBox="0 0 800 220" id="modal-chart-svg" aria-label="BAC Concentration Curve Chart in Dialog">
               <defs>
                 <linearGradient id="modal-chart-area-grad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stop-color="var(--color-link)" stop-opacity="0.25"/>
@@ -687,13 +687,13 @@ import Layout from '../layouts/Layout.astro';
   <section class="py-20 md:py-28 bg-primary text-canvas-soft scroll-mt-20" id="science">
     <div class="max-w-3xl mx-auto px-4 md:px-6 space-y-12">
       <div class="space-y-4 text-center">
-        <span class="inline-block font-mono text-xs uppercase tracking-widest text-cyan-soft font-semibold">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-cyan-soft dark:text-link font-semibold">
           UNDER THE HOOD
         </span>
         <h2 class="font-sans text-3xl md:text-4xl font-semibold tracking-[-1.28px] text-canvas leading-tight text-balance">
           The Mathematics of Alcohol Metabolism.
         </h2>
-        <p class="text-mute text-sm md:text-base leading-relaxed max-w-2xl mx-auto text-center text-pretty">
+        <p class="text-hairline-strong dark:text-mute text-sm md:text-base leading-relaxed max-w-2xl mx-auto text-center text-pretty">
           Rather than relying on generic population averages, this calculator estimates **Total Body Water (TBW)** using biological regression equations. Body composition determines how alcohol is distributed across body tissues, which directly impacts blood concentration.
         </p>
       </div>
@@ -703,21 +703,21 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-10 h-10 rounded-full bg-canvas/10 text-canvas font-mono text-sm font-semibold flex items-center justify-center shrink-0">1</div>
           <div>
             <h4 class="text-sm font-semibold text-canvas">Watson Equation</h4>
-            <p class="text-xs text-mute leading-relaxed mt-1.5">Calculates Total Body Water in liters using your weight, height, age, and sex. This acts as the distribution volume coefficient, replacing the crude Widmark average (r).</p>
+            <p class="text-xs text-hairline-strong dark:text-mute leading-relaxed mt-1.5">Calculates Total Body Water in liters using your weight, height, age, and sex. This acts as the distribution volume coefficient, replacing the crude Widmark average (r).</p>
           </div>
         </div>
         <div class="flex flex-col items-center text-center gap-3">
           <div class="w-10 h-10 rounded-full bg-canvas/10 text-canvas font-mono text-sm font-semibold flex items-center justify-center shrink-0">2</div>
           <div>
             <h4 class="text-sm font-semibold text-canvas">Pure Alcohol Mass (g)</h4>
-            <p class="text-xs text-mute leading-relaxed mt-1.5">Converts volume and strength into pure ethanol mass in grams: Volume (ml) × (ABV / 100) × 0.789 (where 0.789 g/ml is the density of ethanol).</p>
+            <p class="text-xs text-hairline-strong dark:text-mute leading-relaxed mt-1.5">Converts volume and strength into pure ethanol mass in grams: Volume (ml) × (ABV / 100) × 0.789 (where 0.789 g/ml is the density of ethanol).</p>
           </div>
         </div>
         <div class="flex flex-col items-center text-center gap-3">
           <div class="w-10 h-10 rounded-full bg-canvas/10 text-canvas font-mono text-sm font-semibold flex items-center justify-center shrink-0">3</div>
           <div>
             <h4 class="text-sm font-semibold text-canvas">Linear Elimination</h4>
-            <p class="text-xs text-mute leading-relaxed mt-1.5">Calculates the elimination curve assuming a zero-order metabolism rate (β = 0.015% BAC clearance per hour) starting from the moment of consumption.</p>
+            <p class="text-xs text-hairline-strong dark:text-mute leading-relaxed mt-1.5">Calculates the elimination curve assuming a zero-order metabolism rate (β = 0.015% BAC clearance per hour) starting from the moment of consumption.</p>
           </div>
         </div>
       </div>
@@ -1299,9 +1299,9 @@ import Layout from '../layouts/Layout.astro';
     // Helper: Manage button toggle styling in Vercel design
     function setActiveGenderButton(activeBtn: HTMLButtonElement) {
       [elements.btnMale, elements.btnFemale, elements.btnOther].forEach(btn => {
-        btn.className = "py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink transition-vercel focus:outline-none";
+        btn.className = "py-1.5 text-xs font-medium rounded-xs text-body hover:text-ink border border-transparent transition-vercel focus:outline-none focus-visible:ring-0 focus-visible:outline-none";
       });
-      activeBtn.className = "py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none";
+      activeBtn.className = "py-1.5 text-xs font-medium rounded-xs text-primary bg-canvas shadow-vercel-2 border border-hairline/20 transition-vercel focus:outline-none focus-visible:ring-0 focus-visible:outline-none";
     }
 
     function setActiveUnitButton(activeBtn: HTMLButtonElement, inactiveBtn: HTMLButtonElement) {
@@ -1348,6 +1348,13 @@ import Layout from '../layouts/Layout.astro';
         if (isMobile) {
           (animate as any)(elements.colResults, { opacity: [0, 1], y: [15, 0] }, { duration: 0.35, easing: [0.16, 1, 0.3, 1] });
         }
+
+        // Force chart redraw after tab becomes visible (to calculate correct clientWidth)
+        setTimeout(() => {
+          if (loggedDrinks.length > 0) {
+            recalculateAndUpdateDashboard();
+          }
+        }, 50);
       }
 
       // 2. Stepper Visual styling
@@ -1582,13 +1589,27 @@ import Layout from '../layouts/Layout.astro';
         loggedDrinks = [];
         drinkCount = 1;
         
-        // Relock step 3 on clear
+        // Relock Step 3 (Results) on clear
         resultsUnlocked = false;
-        elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
-        elements.resultsDashboardContent.className = "space-y-6 opacity-30 pointer-events-none transition-vercel select-none";
+        elements.resultsLockOverlay.classList.remove('pointer-events-none');
+        elements.resultsLockOverlay.style.opacity = "";
+        elements.resultsLockOverlay.style.transform = "";
+        elements.resultsDashboardContent.className = "flex flex-col flex-grow gap-6 opacity-30 pointer-events-none transition-vercel select-none";
+
+        // Reset dynamic readouts and SVG chart paths to sober baselines
+        const country = COUNTRIES.find(c => c.code === userState.countryCode);
+        const limit = country ? country.limit : 0.05;
+        const countryName = country ? country.name : "United States";
+        
+        updateUIContainer('out-', 0, 0, limit, null, null, 0, [], 0, countryName, false);
+        updateUIContainer('modal-', 0, 0, limit, null, null, 0, [], 0, countryName, false);
         
         updateAll();
-        showToast('Timeline cleared successfully.');
+
+        // Auto navigate back to Step 1
+        setStepSelection(1);
+        
+        showToast('Drinking log cleared and reset successfully.');
       });
     }
 
@@ -1780,27 +1801,20 @@ import Layout from '../layouts/Layout.astro';
       // Toast notification trigger (But do NOT update visual result directly on page yet)
       showToast(`${name} added to timeline.`);
       
-      // Reset form variables to default
-      elements.drinkSelect.value = "beer-reg";
-      elements.customLabelContainer.classList.add('hidden');
-      elements.drinkName.value = "Regular Beer";
-      elements.drinkVolume.value = "355";
-      elements.drinkVolumeUnit.textContent = "ml";
-      setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
-      elements.abvInput.value = "5.0";
-      elements.abvSlider.value = "5.0";
-      elements.abvLbl.textContent = "5.0";
-      elements.timeAgoSlider.value = "0";
-      elements.timeAgoLbl.textContent = "Just now";
+      // Keep the time slider on the last recorded time value instead of resetting to "0" / "Just now"
       
       // Update logged list display
       renderTimeline();
  
-      // If results were unlocked previously, re-lock them until user recalculates explicitly
+      // If results were unlocked previously, update the live dashboard in real-time or re-lock if timeline is cleared
       if (resultsUnlocked) {
-        resultsUnlocked = false;
-        elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
-        elements.resultsDashboardContent.className = "space-y-6 opacity-30 pointer-events-none transition-vercel select-none";
+        if (loggedDrinks.length === 0) {
+          resultsUnlocked = false;
+          elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          elements.resultsDashboardContent.className = "flex flex-col flex-grow gap-6 opacity-30 pointer-events-none transition-vercel select-none";
+        } else {
+          recalculateAndUpdateDashboard();
+        }
       }
     }
 
@@ -1808,12 +1822,65 @@ import Layout from '../layouts/Layout.astro';
       loggedDrinks = loggedDrinks.filter(d => d.id !== id);
       renderTimeline();
       showToast(`${name} removed from log.`);
+    }
+
+    // ─── Real-time Recalculation & Update (No Re-locking) ───
+    function recalculateAndUpdateDashboard() {
+      if (loggedDrinks.length === 0) return;
       
-      // Re-lock if timeline changed
-      if (resultsUnlocked) {
-        resultsUnlocked = false;
-        elements.resultsLockOverlay.classList.remove('opacity-0', 'pointer-events-none');
-        elements.resultsDashboardContent.className = "space-y-6 opacity-30 pointer-events-none transition-vercel select-none";
+      const bio = getNormalizedBiology();
+      const tbw = calculateTBW(bio.gender, bio.weightKg, bio.heightCm, bio.age);
+      
+      const nowMs = Date.now();
+      loggedDrinks.forEach(drink => {
+        const elapsedMins = Math.round((nowMs - drink.addedAt) / 60000);
+        drink.timeAgo = Math.max(0, elapsedMins);
+      });
+
+      let earliestDrinkAgo = 0;
+      loggedDrinks.forEach(d => {
+        if (d.timeAgo > earliestDrinkAgo) earliestDrinkAgo = d.timeAgo;
+      });
+      const startHour = -(earliestDrinkAgo / 60) - 0.5;
+      
+      let peakBAC = 0;
+      let peakHour = 0;
+      let currentBAC = calculateBACAt(0, loggedDrinks, tbw);
+      let soberHour: number | null = null;
+      let safeHour: number | null = null;
+      
+      const country = COUNTRIES.find(c => c.code === userState.countryCode);
+      if (!country) return;
+      const limit = country.limit;
+
+      const scanPoints: { h: number; val: number }[] = [];
+      const scanStep = 0.05;
+      const endScan = 16.0;
+      
+      for (let h = startHour; h <= endScan; h += scanStep) {
+        const val = calculateBACAt(h, loggedDrinks, tbw);
+        scanPoints.push({ h, val });
+        
+        if (val > peakBAC) {
+          peakBAC = val;
+          peakHour = h;
+        }
+        
+        if (h >= 0) {
+          if (soberHour === null && val <= 0.0001) {
+            soberHour = h;
+          }
+          if (safeHour === null && val < limit) {
+            safeHour = h;
+          }
+        }
+      }
+
+      // Render Results inside the main Dashboard container (unlocked)
+      updateUIContainer('out-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name, false);
+      
+      if (elements.resultsModal && !elements.resultsModal.classList.contains('hidden')) {
+        updateUIContainer('modal-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name, false);
       }
     }
 
@@ -1869,17 +1936,17 @@ import Layout from '../layouts/Layout.astro';
         }
       }
 
-      // 2. Render Results inside the Modal container
-      updateUIContainer('modal-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name);
-
-      // 3. Render Results inside the main Dashboard container (will be unlocked)
-      updateUIContainer('out-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name);
-
-      // 4. Open Modal Dialog
+      // 2. Open Modal Dialog first so container width can be computed correctly
       elements.resultsModal.classList.remove('hidden');
       elements.resultsModal.classList.add('flex');
       document.body.style.overflow = 'hidden'; // Lock scrolling
-      
+
+      // 3. Render Results inside the Modal container
+      updateUIContainer('modal-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name);
+
+      // 4. Render Results inside the main Dashboard container (will be unlocked)
+      updateUIContainer('out-', currentBAC, peakBAC, limit, soberHour, safeHour, peakHour, scanPoints, startHour, country.name);
+
       elements.modalCard.classList.remove('scale-95', 'opacity-0');
       
       // Smooth animated entry for modal overlay and card
@@ -1944,7 +2011,8 @@ import Layout from '../layouts/Layout.astro';
       peakHour: number,
       scanPoints: { h: number; val: number }[],
       startHour: number,
-      countryName: string
+      countryName: string,
+      animateLine: boolean = true
     ) {
       // Query DOM nodes dynamically
       const elCurrent = document.getElementById(`${prefix}bac-current`);
@@ -1959,22 +2027,26 @@ import Layout from '../layouts/Layout.astro';
       const elAlertTitle = document.getElementById(`${prefix}safety-alert-title`);
       const elAlertDesc = document.getElementById(`${prefix}safety-alert-desc`);
 
-      // Set digital values (animated count-up)
+      // Set digital values (animated count-up from previous value to prevent jarring resets)
       if (elCurrent) {
-        (animate as any)(0, currentBAC, {
+        const prevBAC = parseFloat(elCurrent.textContent || "0.0") || 0.0;
+        (animate as any)(prevBAC, currentBAC, {
           duration: 0.8,
           easing: [0.16, 1, 0.3, 1],
           onUpdate: (latest: number) => {
-            elCurrent.textContent = `${latest.toFixed(3)}%`;
+            const mgVal = Math.round(latest * 1000);
+            elCurrent.innerHTML = `${latest.toFixed(3)}% <span class="text-lg text-mute font-sans font-normal block mt-1 sm:inline sm:mt-0 sm:ml-2">(${mgVal} mg/100ml)</span>`;
           }
         });
       }
       if (elPeak) {
-        (animate as any)(0, peakBAC, {
+        const prevPeak = parseFloat(elPeak.textContent || "0.0") || 0.0;
+        (animate as any)(prevPeak, peakBAC, {
           duration: 0.8,
           easing: [0.16, 1, 0.3, 1],
           onUpdate: (latest: number) => {
-            elPeak.textContent = `${latest.toFixed(3)}%`;
+            const mgVal = Math.round(latest * 1000);
+            elPeak.textContent = `${latest.toFixed(3)}% (${mgVal} mg/100ml)`;
           }
         });
       }
@@ -2025,28 +2097,32 @@ import Layout from '../layouts/Layout.astro';
         if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-error animate-ping";
         if (elBadgeText) elBadgeText.textContent = "Over Legal Limit";
         
-        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-error-soft text-error-deep border border-error/10";
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-error-soft text-error-deep border border-error/10 dark:border-error/25";
         if (elAlertTitle) elAlertTitle.textContent = "DO NOT DRIVE";
         if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-error-deep";
-        if (elAlertDesc) elAlertDesc.textContent = `Your blood alcohol concentration is above the legal limit of ${limit.toFixed(2)}% in ${countryName}. Driving is strictly illegal, dangerous, and carries severe criminal penalties.`;
+        const limMg = Math.round(limit * 1000);
+        if (elAlertDesc) elAlertDesc.textContent = `Your blood alcohol concentration is above the legal limit of ${limit.toFixed(2)}% (${limMg} mg/100ml) in ${countryName}. Driving is strictly illegal, dangerous, and carries severe criminal penalties.`;
       } else if (currentBAC > 0.0001) {
         if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-warning/10 text-warning border border-warning/15";
         if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-warning";
         if (elBadgeText) elBadgeText.textContent = "Impaired (Below Limit)";
         
-        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-warning-soft text-warning-deep border border-warning/10";
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-warning-soft text-warning-deep border border-warning/10 dark:border-warning/25";
         if (elAlertTitle) elAlertTitle.textContent = "CAUTION ADVISED";
         if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-warning-deep";
-        if (elAlertDesc) elAlertDesc.textContent = `Your BAC of ${currentBAC.toFixed(3)}% is below the legal limit of ${limit.toFixed(2)}% in ${countryName}. However, cognitive and motor skills remain impaired. We advise waiting until you are completely sober (0.00%).`;
+        const curMg = Math.round(currentBAC * 1000);
+        const limMg = Math.round(limit * 1000);
+        if (elAlertDesc) elAlertDesc.textContent = `Your BAC of ${currentBAC.toFixed(3)}% (${curMg} mg/100ml) is below the legal limit of ${limit.toFixed(2)}% (${limMg} mg/100ml) in ${countryName}. However, cognitive and motor skills remain impaired. We advise waiting until you are completely sober (0.00%).`;
       } else if (peakBAC > 0.0001) {
         if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-warning/10 text-warning border border-warning/15";
         if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-warning animate-pulse";
         if (elBadgeText) elBadgeText.textContent = "Alcohol Absorbing";
         
-        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-warning-soft text-warning-deep border border-warning/10";
+        if (elAlert) elAlert.className = "mt-4 p-4 rounded-sm transition-vercel shadow-vercel-1 bg-warning-soft text-warning-deep border border-warning/10 dark:border-warning/25";
         if (elAlertTitle) elAlertTitle.textContent = "BAC RISING";
         if (elAlertTitle) elAlertTitle.className = "font-sans text-xs font-semibold uppercase tracking-wider mb-1 text-warning-deep";
-        if (elAlertDesc) elAlertDesc.textContent = `You are currently under the limit, but alcohol is still absorbing. Your BAC is projected to peak at ${peakBAC.toFixed(3)}%. Do not operate a vehicle.`;
+        const peakMg = Math.round(peakBAC * 1000);
+        if (elAlertDesc) elAlertDesc.textContent = `You are currently under the limit, but alcohol is still absorbing. Your BAC is projected to peak at ${peakBAC.toFixed(3)}% (${peakMg} mg/100ml). Do not operate a vehicle.`;
       } else {
         if (elBadge) elBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 mt-4 text-xs font-mono font-semibold rounded-pill tracking-wide bg-success/10 text-success border border-success/15";
         if (elBadgeDot) elBadgeDot.className = "w-1.5 h-1.5 rounded-full bg-success";
@@ -2059,7 +2135,7 @@ import Layout from '../layouts/Layout.astro';
       }
 
       // Draw SVG Line Chart for this container context
-      drawChartForContainer(prefix, scanPoints, startHour, limit, currentBAC, yMaxVal(scanPoints, limit));
+      drawChartForContainer(prefix, scanPoints, startHour, limit, currentBAC, yMaxVal(scanPoints, limit), animateLine);
     }
 
     // Get maximum Y value head room
@@ -2077,11 +2153,24 @@ import Layout from '../layouts/Layout.astro';
       startHour: number,
       limit: number,
       currentBAC: number,
-      yMax: number
+      yMax: number,
+      animateLine: boolean = true
     ): void {
       const isModal = prefix === 'modal-';
       const baselineY = isModal ? 180 : 220; // different container height variables
       const scaleHeight = isModal ? 160 : 200;
+
+      const svg = document.getElementById(`${prefix}chart-svg`) as SVGSVGElement | null;
+      if (!svg) return;
+
+      const container = svg.parentElement;
+      const width = container && container.clientWidth > 0 ? container.clientWidth : 800;
+      
+      svg.setAttribute('viewBox', `0 0 ${width} ${baselineY + 40}`);
+
+      const paddingLeft = 50;
+      const paddingRight = 20;
+      const chartWidth = width - paddingLeft - paddingRight;
 
       const tMin = startHour;
       let tMax = 8.0;
@@ -2093,11 +2182,21 @@ import Layout from '../layouts/Layout.astro';
       const displayPoints = points.filter(p => p.h >= tMin && p.h <= tMax);
 
       function getX(h: number): number {
-        return 50 + ((h - tMin) / (tMax - tMin)) * 700;
+        return paddingLeft + ((h - tMin) / (tMax - tMin)) * chartWidth;
       }
       
       function getY(val: number): number {
         return baselineY - (val / yMax) * scaleHeight;
+      }
+
+      // Position Grid Lines dynamically
+      const grid = document.getElementById(`${prefix}chart-grid`);
+      if (grid) {
+        const lines = grid.querySelectorAll('line');
+        lines.forEach(line => {
+          line.setAttribute('x1', paddingLeft.toString());
+          line.setAttribute('x2', (width - paddingRight).toString());
+        });
       }
 
       // Select targets
@@ -2122,7 +2221,21 @@ import Layout from '../layouts/Layout.astro';
       if (lblY3) lblY3.textContent = `${(yMax * 0.75).toFixed(3)}%`;
       if (lblY4) lblY4.textContent = `${(yMax).toFixed(3)}%`;
 
-      if (displayPoints.length === 0) return;
+      if (displayPoints.length === 0) {
+        if (pathLine) {
+          pathLine.setAttribute('d', '');
+          pathLine.style.strokeDasharray = "";
+          pathLine.style.strokeDashoffset = "";
+        }
+        if (pathArea) {
+          pathArea.setAttribute('d', '');
+          pathArea.style.opacity = "0";
+        }
+        if (dotPulse) dotPulse.setAttribute('cx', '-100');
+        if (ringPulse) ringPulse.setAttribute('cx', '-100');
+        if (xAxis) xAxis.innerHTML = "";
+        return;
+      }
 
       // Draw path
       let lineD = "";
@@ -2143,28 +2256,41 @@ import Layout from '../layouts/Layout.astro';
 
       if (pathLine) {
         pathLine.setAttribute('d', lineD);
-        try {
-          const pathLength = pathLine.getTotalLength();
-          pathLine.style.strokeDasharray = pathLength.toString();
-          (animate as any)(pathLine, { strokeDashoffset: [pathLength, 0] }, { duration: 0.8, easing: "ease-out" });
-        } catch (e) {
-          // Fallback if SVG isn't fully rendered in some environments
+        if (animateLine) {
+          try {
+            const pathLength = pathLine.getTotalLength();
+            pathLine.style.strokeDasharray = pathLength.toString();
+            (animate as any)(pathLine, { strokeDashoffset: [pathLength, 0] }, { duration: 0.8, easing: "ease-out" });
+          } catch (e) {
+            // Fallback if SVG isn't fully rendered in some environments
+          }
+        } else {
+          pathLine.style.strokeDasharray = "";
+          pathLine.style.strokeDashoffset = "";
         }
       }
       if (pathArea) {
         pathArea.setAttribute('d', areaD);
-        (animate as any)(pathArea, { opacity: [0, 1] }, { duration: 0.8, easing: "ease-out" });
+        if (animateLine) {
+          (animate as any)(pathArea, { opacity: [0, 1] }, { duration: 0.8, easing: "ease-out" });
+        } else {
+          pathArea.style.opacity = "1";
+        }
       }
 
       // Position Limit Line
       const yLimit = getY(limit);
       if (lineLimit) {
+        lineLimit.setAttribute('x1', paddingLeft.toString());
+        lineLimit.setAttribute('x2', (width - paddingRight).toString());
         lineLimit.setAttribute('y1', yLimit.toString());
         lineLimit.setAttribute('y2', yLimit.toString());
       }
       if (lblLimit) {
+        lblLimit.setAttribute('x', (width - paddingRight - 5).toString());
         lblLimit.setAttribute('y', (yLimit - 5).toString());
-        lblLimit.textContent = `LIMIT (${limit.toFixed(2)}%)`;
+        const limMg = Math.round(limit * 1000);
+        lblLimit.textContent = `LIMIT (${limit.toFixed(2)}% [${limMg} mg/100ml])`;
         if (limit === 0) lblLimit.setAttribute('y', (baselineY - 10).toString());
       }
 
@@ -2173,6 +2299,8 @@ import Layout from '../layouts/Layout.astro';
       if (lineNow) {
         lineNow.setAttribute('x1', xNow.toString());
         lineNow.setAttribute('x2', xNow.toString());
+        lineNow.setAttribute('y1', '20');
+        lineNow.setAttribute('y2', baselineY.toString());
       }
       if (lblNow) lblNow.setAttribute('x', (xNow + 5).toString());
 
@@ -2345,5 +2473,16 @@ import Layout from '../layouts/Layout.astro';
     });
 
     init();
+
+    // Redraw charts on window resize for proper responsiveness without squishing text/graph
+    let resizeTimer: any;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (loggedDrinks.length > 0) {
+          recalculateAndUpdateDashboard();
+        }
+      }, 150);
+    });
   </script>
 </Layout>

@@ -54,6 +54,15 @@ const {
         }
       })();
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-E0W8P7Y27K"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-E0W8P7Y27K');
+    </script>
   </head>
   <body class="bg-canvas-soft text-ink min-h-screen flex flex-col antialiased selection:bg-primary selection:text-canvas-soft">
     
@@ -70,7 +79,7 @@ const {
         <a href="/" class="flex items-center gap-2.5 focus-visible:outline-none" id="nav-logo-link">
           <img src="/icon.png" alt="Online Alcohol Detect Logo" class="h-6 w-6 object-contain rounded-xs" />
           <span class="font-sans font-semibold tracking-[-0.6px] text-lg text-primary flex items-center gap-1.5">
-            alcoholdetect<span class="text-xs font-mono font-normal bg-canvas-soft px-1.5 py-0.5 rounded-sm border border-hairline text-body">v1.0</span>
+            alcoholdetect<span class="text-xs font-mono font-normal bg-canvas-soft px-1.5 py-0.5 rounded-sm border border-hairline text-body hidden sm:inline-block">v1.0</span>
           </span>
         </a>
 
@@ -87,12 +96,23 @@ const {
           <a href="#emergency" class="hidden sm:inline-flex items-center justify-center text-xs font-mono font-medium border border-hairline bg-canvas hover:bg-canvas-soft text-primary px-3 h-8 rounded-sm transition-vercel focus-visible:outline-none" id="nav-emergency-btn">
             Emergency Contacts
           </a>
-          <a href="#calculator" class="inline-flex items-center justify-center text-xs font-semibold bg-primary hover:bg-primary/90 text-canvas-soft px-3.5 h-8 rounded-pill transition-vercel focus-visible:outline-none" id="nav-start-btn">
+          <a href="#calculator" class="hidden sm:inline-flex items-center justify-center text-xs font-semibold bg-primary hover:bg-primary/90 text-canvas-soft px-3.5 h-8 rounded-pill transition-vercel focus-visible:outline-none" id="nav-start-btn">
             Calculate Now
           </a>
 
+          <!-- Mobile Theme Toggle (Single Button) -->
+          <button type="button" class="md:hidden flex items-center justify-center w-8 h-8 rounded-full border border-hairline bg-canvas-soft hover:bg-canvas text-mute hover:text-ink focus:outline-none transition-colors cursor-pointer" id="mobile-theme-toggle" aria-label="Toggle Theme">
+            <svg class="h-4 w-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+            <svg class="h-4 w-4 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+
           <!-- Vercel-style Segmented Theme Selector -->
-          <div class="relative flex items-center bg-canvas-soft-2 border border-hairline p-0.5 rounded-full" id="theme-selector-group">
+          <div class="hidden md:flex relative items-center bg-canvas-soft-2 border border-hairline p-0.5 rounded-full" id="theme-selector-group">
             <!-- Sliding Active Background indicator -->
             <span class="absolute top-0.5 bottom-0.5 rounded-full bg-canvas shadow-vercel-2 pointer-events-none" id="theme-indicator"></span>
             
@@ -323,6 +343,19 @@ const {
           themeIndicator?.classList.add('transition-all', 'duration-200', 'ease-in-out');
         });
       });
+
+      // Mobile theme toggle click handler
+      const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+      if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', () => {
+          const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          activeTheme = newTheme;
+          localStorage.setItem('theme', newTheme);
+          applyTheme(newTheme);
+          updateSelectorUI(newTheme);
+        });
+      }
 
       // Reposition on resize and load to ensure accurate client dimensions
       window.addEventListener('resize', () => updateSelectorUI(activeTheme));

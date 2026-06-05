@@ -114,6 +114,12 @@ input:focus, select:focus, textarea:focus, button:focus-visible {
   --color-canvas-soft: #121212;
   --color-canvas-soft-2: #1c1c1c;
 
+  /* Alert styling dark mode overrides */
+  --color-warning-soft: rgba(245, 166, 35, 0.08);
+  --color-warning-deep: #f5a623;
+  --color-error-soft: rgba(238, 0, 0, 0.08);
+  --color-error-deep: #ff4d4d;
+
   /* Custom overrides for specific elements in dark mode */
   color-scheme: dark;
 }
