@@ -11,7 +11,7 @@
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name alcoholdetect"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.6.1",
