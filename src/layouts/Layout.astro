@@ -10,6 +10,9 @@ const {
   title = "Online Alcohol Detect | Advanced BAC Calculator & Safety Guide",
   description = "Estimate your Blood Alcohol Concentration (BAC) using the scientifically refined Watson formula. Track drinks over time, check driving limits by country, and view real-time countdowns to sobriety."
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://alcoholdetect.com');
+const ogImageURL = new URL('/og-image.png', 'https://alcoholdetect.com');
 ---
 
 <!DOCTYPE html>
@@ -22,6 +25,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -29,15 +35,17 @@ const {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content={ogImageURL} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/og-image.png" />
+    <meta property="twitter:image" content={ogImageURL} />
     
     <!-- Preload Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
