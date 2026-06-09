@@ -244,9 +244,9 @@ import Layout from '../layouts/Layout.astro';
                     <span class="text-xl">🍷</span>
                     <span class="text-[10px] font-semibold">Wine</span>
                   </button>
-                  <button type="button" data-preset-cat="shot" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Shot Category">
+                  <button type="button" data-preset-cat="shot" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Liquor/Shot Category">
                     <span class="text-xl">🥃</span>
-                    <span class="text-[10px] font-semibold">Shot</span>
+                    <span class="text-[10px] font-semibold">Liquor/Shot</span>
                   </button>
                   <button type="button" data-preset-cat="cocktail" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Cocktail Category">
                     <span class="text-xl">🍸</span>
@@ -1214,6 +1214,14 @@ import Layout from '../layouts/Layout.astro';
       { code: 'FR', name: 'France', limit: 0.05, note: 'Stricter limit of 0.02% applies to novice drivers and bus operators.' },
       { code: 'IN', name: 'India', limit: 0.03, note: 'Equivalent to 30 mg alcohol per 100 ml blood. Zero tolerance in several states.' },
       { code: 'JP', name: 'Japan', limit: 0.03, note: 'Extremely strict penalties. Virtually zero tolerance in practical enforcement.' },
+      { code: 'KR', name: 'South Korea', limit: 0.03, note: 'Strictly enforced. Reduced from 0.05% under the Yoon Chang-ho law.' },
+      { code: 'SG', name: 'Singapore', limit: 0.08, note: 'Equivalent to 80 mg/100 ml blood. High fines and mandatory jail for repeat offenders.' },
+      { code: 'TH', name: 'Thailand', limit: 0.05, note: 'Stricter limit of 0.02% for drivers under 20 or with provisional licenses.' },
+      { code: 'VN', name: 'Vietnam', limit: 0.00, note: 'Decree 100 enforces a strict absolute zero-tolerance for all vehicles, including motorbikes.' },
+      { code: 'PH', name: 'Philippines', limit: 0.05, note: '0.05% limit, but strict 0.00% zero-tolerance for public utility and commercial drivers.' },
+      { code: 'TW', name: 'Taiwan', limit: 0.03, note: 'Equivalent to 0.15 mg/L breath alcohol. Criminal prosecution starts at 0.05% BAC.' },
+      { code: 'MY', name: 'Malaysia', limit: 0.05, note: 'Limit was reduced from 0.08% to 0.05% in 2020. Breath limit is 22 mcg/100 ml.' },
+      { code: 'ID', name: 'Indonesia', limit: 0.00, note: 'Strict zero tolerance for any driving under the influence.' },
       { code: 'SE', name: 'Sweden', limit: 0.02, note: 'Zero-tolerance baseline.' },
       { code: 'NO', name: 'Norway', limit: 0.02, note: 'Strict limits. Income-based fines for violations.' },
       { code: 'ES', name: 'Spain', limit: 0.05, note: 'Stricter limit of 0.03% applies to novice and professional drivers.' },
@@ -1588,6 +1596,19 @@ import Layout from '../layouts/Layout.astro';
         if (country) {
           elements.countryWarningText.innerHTML = `${country.name} legal limit is <span class="font-mono font-semibold">${country.limit.toFixed(2)}%</span> BAC. ${country.note}`;
         }
+        
+        // Update the active drink presets for the new country
+        const activeCatBtn = document.querySelector('[data-preset-cat].bg-primary');
+        const cat = activeCatBtn ? activeCatBtn.getAttribute('data-preset-cat') || 'beer' : 'beer';
+        
+        // Re-render sub-presets
+        renderSubPresets(cat);
+        
+        // Update input fields to default values for this country's category
+        updateDrinkInputsToPresetDefaults(cat);
+        
+        syncActivePills();
+        updateImpactPreview();
         updateAll();
       });
 
@@ -1731,55 +1752,563 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // ─── Visual Drink Preset System ───
-    const CATEGORY_PRESETS: Record<string, { volumes: { label: string, ml: number }[], abvs: { label: string, val: number }[] }> = {
-      beer: {
-        volumes: [
-          { label: "12 oz (355ml)", ml: 355 },
-          { label: "16 oz (473ml)", ml: 473 },
-          { label: "Pint (568ml)", ml: 568 }
-        ],
-        abvs: [
-          { label: "Light (4.2%)", val: 4.2 },
-          { label: "Regular (5%)", val: 5.0 },
-          { label: "IPA (7%)", val: 7.0 }
-        ]
-      },
-      wine: {
-        volumes: [
-          { label: "Glass (148ml)", ml: 148 },
-          { label: "Large (250ml)", ml: 250 },
-          { label: "Bottle (750ml)", ml: 750 }
-        ],
-        abvs: [
-          { label: "White (12%)", val: 12.0 },
-          { label: "Red (13.5%)", val: 13.5 },
-          { label: "Strong (15%)", val: 15.0 }
-        ]
-      },
-      shot: {
-        volumes: [
-          { label: "Single (44ml)", ml: 44 },
-          { label: "Double (88ml)", ml: 88 }
-        ],
-        abvs: [
-          { label: "Liqueur (35%)", val: 35.0 },
-          { label: "Standard (40%)", val: 40.0 },
-          { label: "Overproof (45%)", val: 45.0 }
-        ]
-      },
-      cocktail: {
-        volumes: [
-          { label: "Martini (90ml)", ml: 90 },
-          { label: "Standard (120ml)", ml: 120 },
-          { label: "Long (200ml)", ml: 200 }
-        ],
-        abvs: [
-          { label: "Light (6%)", val: 6.0 },
-          { label: "Regular (12%)", val: 12.0 },
-          { label: "Strong (18%)", val: 18.0 }
-        ]
+    function getCategoryPresetsForCountry(countryCode: string): Record<string, { volumes: { label: string, ml: number }[], abvs: { label: string, val: number }[], defaultVolIndex: number, defaultAbvIndex: number }> {
+      const isUSOrCA = ['US', 'CA'].includes(countryCode);
+      const isUKOrIE = ['GB', 'SC', 'IE'].includes(countryCode);
+      const isAUOrNZOrZA = ['AU', 'NZ', 'ZA'].includes(countryCode);
+      const isIndia = countryCode === 'IN';
+      const isJapan = countryCode === 'JP';
+      const isSouthKorea = countryCode === 'KR';
+      const isChinaOrTaiwan = ['CN', 'TW'].includes(countryCode);
+      const isSingapore = countryCode === 'SG';
+      const isThailand = countryCode === 'TH';
+      const isVietnam = countryCode === 'VN';
+      const isPhilippines = countryCode === 'PH';
+      
+      if (isUSOrCA) {
+        return {
+          beer: {
+            volumes: [
+              { label: "12 oz (355ml)", ml: 355 },
+              { label: "16 oz (473ml)", ml: 473 },
+              { label: "Pint (590ml)", ml: 590 }
+            ],
+            abvs: [
+              { label: "Light (4.2%)", val: 4.2 },
+              { label: "Regular (5%)", val: 5.0 },
+              { label: "IPA (7%)", val: 7.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 1
+          },
+          wine: {
+            volumes: [
+              { label: "Glass (148ml)", ml: 148 },
+              { label: "Large (236ml)", ml: 236 },
+              { label: "Bottle (750ml)", ml: 750 }
+            ],
+            abvs: [
+              { label: "White (12%)", val: 12.0 },
+              { label: "Red (13.5%)", val: 13.5 },
+              { label: "Strong (15%)", val: 15.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 1
+          },
+          shot: {
+            volumes: [
+              { label: "Single (44ml)", ml: 44 },
+              { label: "Double (88ml)", ml: 88 }
+            ],
+            abvs: [
+              { label: "Liqueur (35%)", val: 35.0 },
+              { label: "Standard (40%)", val: 40.0 },
+              { label: "Overproof (45%)", val: 45.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 1
+          },
+          cocktail: {
+            volumes: [
+              { label: "Martini (90ml)", ml: 90 },
+              { label: "Margarita (120ml)", ml: 120 },
+              { label: "Long (240ml)", ml: 240 }
+            ],
+            abvs: [
+              { label: "Light (6%)", val: 6.0 },
+              { label: "Regular (12%)", val: 12.0 },
+              { label: "Strong (18%)", val: 18.0 }
+            ],
+            defaultVolIndex: 1,
+            defaultAbvIndex: 1
+          }
+        };
+      } else if (isUKOrIE) {
+        return {
+          beer: {
+            volumes: [
+              { label: "Bottle (330ml)", ml: 330 },
+              { label: "Half Pint (284ml)", ml: 284 },
+              { label: "Pint (568ml)", ml: 568 }
+            ],
+            abvs: [
+              { label: "Session (4.0%)", val: 4.0 },
+              { label: "Regular (4.5%)", val: 4.5 },
+              { label: "Strong (6.0%)", val: 6.0 }
+            ],
+            defaultVolIndex: 2, // Pint (568ml)
+            defaultAbvIndex: 1  // Regular (4.5%)
+          },
+          wine: {
+            volumes: [
+              { label: "Small (125ml)", ml: 125 },
+              { label: "Standard (175ml)", ml: 175 },
+              { label: "Large (250ml)", ml: 250 }
+            ],
+            abvs: [
+              { label: "White (12%)", val: 12.0 },
+              { label: "Red (13.5%)", val: 13.5 },
+              { label: "Strong (15%)", val: 15.0 }
+            ],
+            defaultVolIndex: 1, // Standard (175ml)
+            defaultAbvIndex: 1  // Red (13.5%)
+          },
+          shot: {
+            volumes: [
+              { label: "Single (25ml)", ml: 25 },
+              { label: "Single (35ml)", ml: 35 },
+              { label: "Double (50ml)", ml: 50 }
+            ],
+            abvs: [
+              { label: "Liqueur (35%)", val: 35.0 },
+              { label: "Standard (40%)", val: 40.0 },
+              { label: "Overproof (45%)", val: 45.0 }
+            ],
+            defaultVolIndex: 0, // Single (25ml)
+            defaultAbvIndex: 1  // Standard (40%)
+          },
+          cocktail: {
+            volumes: [
+              { label: "Short (120ml)", ml: 120 },
+              { label: "Long (200ml)", ml: 200 }
+            ],
+            abvs: [
+              { label: "Light (6%)", val: 6.0 },
+              { label: "Regular (12%)", val: 12.0 },
+              { label: "Strong (18%)", val: 18.0 }
+            ],
+            defaultVolIndex: 1, // Long (200ml)
+            defaultAbvIndex: 1
+          }
+        };
+      } else if (isAUOrNZOrZA) {
+        return {
+          beer: {
+            volumes: [
+              { label: "Middy/Pot (285ml)", ml: 285 },
+              { label: "Schooner (425ml)", ml: 425 },
+              { label: "Pint (570ml)", ml: 570 }
+            ],
+            abvs: [
+              { label: "Light (3.5%)", val: 3.5 },
+              { label: "Regular (4.8%)", val: 4.8 },
+              { label: "Strong (6.5%)", val: 6.5 }
+            ],
+            defaultVolIndex: 1, // Schooner (425ml)
+            defaultAbvIndex: 1  // Regular (4.8%)
+          },
+          wine: {
+            volumes: [
+              { label: "Standard (100ml)", ml: 100 },
+              { label: "Glass (150ml)", ml: 150 },
+              { label: "Large (250ml)", ml: 250 }
+            ],
+            abvs: [
+              { label: "White (12.5%)", val: 12.5 },
+              { label: "Red (14.0%)", val: 14.0 },
+              { label: "Strong (15.5%)", val: 15.5 }
+            ],
+            defaultVolIndex: 1, // Glass (150ml)
+            defaultAbvIndex: 1  // Red (14.0%)
+          },
+          shot: {
+            volumes: [
+              { label: "Nip (30ml)", ml: 30 },
+              { label: "Double (60ml)", ml: 60 }
+            ],
+            abvs: [
+              { label: "Liqueur (35%)", val: 35.0 },
+              { label: "Standard (40%)", val: 40.0 },
+              { label: "Overproof (45%)", val: 45.0 }
+            ],
+            defaultVolIndex: 0, // Nip (30ml)
+            defaultAbvIndex: 1  // Standard (40%)
+          },
+          cocktail: {
+            volumes: [
+              { label: "Short (120ml)", ml: 120 },
+              { label: "Long (200ml)", ml: 200 }
+            ],
+            abvs: [
+              { label: "Light (6%)", val: 6.0 },
+              { label: "Regular (12%)", val: 12.0 },
+              { label: "Strong (18%)", val: 18.0 }
+            ],
+            defaultVolIndex: 1, // Long (200ml)
+            defaultAbvIndex: 1
+          }
+        };
+      } else if (isIndia) {
+        return {
+          beer: {
+            volumes: [
+              { label: "Pint Bottle (330ml)", ml: 330 },
+              { label: "Can (500ml)", ml: 500 },
+              { label: "Large Bottle (650ml)", ml: 650 }
+            ],
+            abvs: [
+              { label: "Light Beer (4.5%)", val: 4.5 },
+              { label: "Regular Beer (5.0%)", val: 5.0 },
+              { label: "Strong Beer (8.0%)", val: 8.0 }
+            ],
+            defaultVolIndex: 0, // Pint Bottle (330ml)
+            defaultAbvIndex: 1  // Regular Beer (5.0%)
+          },
+          wine: {
+            volumes: [
+              { label: "Glass (150ml)", ml: 150 },
+              { label: "Large Glass (200ml)", ml: 200 },
+              { label: "Bottle (750ml)", ml: 750 }
+            ],
+            abvs: [
+              { label: "Regular (12.5%)", val: 12.5 },
+              { label: "Strong (14.0%)", val: 14.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          },
+          shot: {
+            volumes: [
+              { label: "Small Peg (30ml)", ml: 30 },
+              { label: "Large Peg (60ml)", ml: 60 }
+            ],
+            abvs: [
+              { label: "Standard Spirit (40%)", val: 40.0 },
+              { label: "Indian IMFL (42.8%)", val: 42.8 }
+            ],
+            defaultVolIndex: 1, // Large Peg (60ml)
+            defaultAbvIndex: 1  // Indian IMFL (42.8%)
+          },
+          cocktail: {
+            volumes: [
+              { label: "Short (150ml)", ml: 150 },
+              { label: "Tall (250ml)", ml: 250 }
+            ],
+            abvs: [
+              { label: "Regular (10%)", val: 10.0 },
+              { label: "Strong (15%)", val: 15.0 }
+            ],
+            defaultVolIndex: 1,
+            defaultAbvIndex: 0
+          }
+        };
+      } else if (isJapan) {
+        return {
+          beer: {
+            volumes: [
+              { label: "Small Mug (350ml)", ml: 350 },
+              { label: "Large Mug (500ml)", ml: 500 },
+              { label: "Dai-bin Bottle (633ml)", ml: 633 }
+            ],
+            abvs: [
+              { label: "Regular (5.0%)", val: 5.0 },
+              { label: "Strong Beer (7.0%)", val: 7.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          },
+          wine: {
+            volumes: [
+              { label: "Sake Cup/Ochoko (60ml)", ml: 60 },
+              { label: "Sake Carafe/Tokkuri (180ml)", ml: 180 },
+              { label: "Wine Glass (120ml)", ml: 120 }
+            ],
+            abvs: [
+              { label: "Sake (15.0%)", val: 15.0 },
+              { label: "Wine (12.5%)", val: 12.5 },
+              { label: "Shochu (25.0%)", val: 25.0 }
+            ],
+            defaultVolIndex: 1, // Tokkuri (180ml)
+            defaultAbvIndex: 0  // Sake (15.0%)
+          },
+          shot: {
+            volumes: [
+              { label: "Single (30ml)", ml: 30 },
+              { label: "Double (60ml)", ml: 60 }
+            ],
+            abvs: [
+              { label: "Shochu (25.0%)", val: 25.0 },
+              { label: "Whiskey (40.0%)", val: 40.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0 // Shochu (25.0%)
+          },
+          cocktail: {
+            volumes: [
+              { label: "Highball/Chuhai Can (350ml)", ml: 350 },
+              { label: "Large Can (500ml)", ml: 500 }
+            ],
+            abvs: [
+              { label: "Light (3.0%)", val: 3.0 },
+              { label: "Regular Chuhai (5.0%)", val: 5.0 },
+              { label: "Strong Zero (9.0%)", val: 9.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 1 // Regular Chuhai (5%)
+          }
+        };
+      } else if (isSouthKorea) {
+        return {
+          beer: {
+            volumes: [
+              { label: "Small Glass (225ml)", ml: 225 },
+              { label: "Bottle (330ml)", ml: 330 },
+              { label: "Large Bottle/Mug (500ml)", ml: 500 }
+            ],
+            abvs: [
+              { label: "Cass/Hite (4.5%)", val: 4.5 },
+              { label: "Strong Beer (6.0%)", val: 6.0 }
+            ],
+            defaultVolIndex: 2,
+            defaultAbvIndex: 0
+          },
+          wine: {
+            volumes: [
+              { label: "Soju Glass (45ml)", ml: 45 },
+              { label: "Half Soju Bottle (180ml)", ml: 180 },
+              { label: "Soju Bottle (360ml)", ml: 360 }
+            ],
+            abvs: [
+              { label: "Mild Soju (16.5%)", val: 16.5 },
+              { label: "Classic Soju (17.2%)", val: 17.2 },
+              { label: "Fresh/Strong Soju (20.1%)", val: 20.1 }
+            ],
+            defaultVolIndex: 2, // Soju Bottle (360ml)
+            defaultAbvIndex: 1  // Classic Soju (17.2%)
+          },
+          shot: {
+            volumes: [
+              { label: "Soju Shot (45ml)", ml: 45 },
+              { label: "Double Soju (90ml)", ml: 90 }
+            ],
+            abvs: [
+              { label: "Mild Soju (16.5%)", val: 16.5 },
+              { label: "Classic Soju (17.2%)", val: 17.2 },
+              { label: "Standard Spirit (40%)", val: 40.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 1
+          },
+          cocktail: {
+            volumes: [
+              { label: "Somaek (200ml)", ml: 200 },
+              { label: "Highball Glass (350ml)", ml: 350 }
+            ],
+            abvs: [
+              { label: "Somaek (8.0%)", val: 8.0 },
+              { label: "Strong (12.0%)", val: 12.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          }
+        };
+      } else if (isChinaOrTaiwan) {
+        return {
+          beer: {
+            volumes: [
+              { label: "Small Cup (150ml)", ml: 150 },
+              { label: "Bottle (330ml)", ml: 330 },
+              { label: "Large Bottle (640ml)", ml: 640 }
+            ],
+            abvs: [
+              { label: "Light (3.6%)", val: 3.6 },
+              { label: "Tsingtao/Regular (4.0%)", val: 4.0 },
+              { label: "Strong (5.0%)", val: 5.0 }
+            ],
+            defaultVolIndex: 1,
+            defaultAbvIndex: 1
+          },
+          wine: {
+            volumes: [
+              { label: "Shaoxing Cup (100ml)", ml: 100 },
+              { label: "Wine Glass (120ml)", ml: 120 }
+            ],
+            abvs: [
+              { label: "Shaoxing Wine (15.0%)", val: 15.0 },
+              { label: "Table Wine (12.5%)", val: 12.5 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          },
+          shot: {
+            volumes: [
+              { label: "Baijiu Small Cup (15ml)", ml: 15 },
+              { label: "Baijiu Regular Cup (30ml)", ml: 30 },
+              { label: "Baijiu Glass (50ml)", ml: 50 }
+            ],
+            abvs: [
+              { label: "Light Baijiu (38.0%)", val: 38.0 },
+              { label: "Standard Baijiu (52.0%)", val: 52.0 },
+              { label: "Strong Baijiu (60.0%)", val: 60.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 1
+          },
+          cocktail: {
+            volumes: [
+              { label: "Standard (200ml)", ml: 200 },
+              { label: "Highball (250ml)", ml: 250 }
+            ],
+            abvs: [
+              { label: "Regular (8.0%)", val: 8.0 },
+              { label: "Strong (12.0%)", val: 12.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          }
+        };
+      } else if (isSingapore || isThailand || isVietnam || isPhilippines || countryCode === 'MY' || countryCode === 'ID') {
+        // Southeast Asia
+        return {
+          beer: {
+            volumes: [
+              { label: "Can/Bottle (330ml)", ml: 330 },
+              { label: "Pint/Big Can (500ml)", ml: 500 },
+              { label: "Large Bottle (620ml)", ml: 620 }
+            ],
+            abvs: [
+              { label: "Tiger/Singha/Mild (5.0%)", val: 5.0 },
+              { label: "Red Horse/Chang/Strong (8.0%)", val: 8.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          },
+          wine: {
+            volumes: [
+              { label: "Glass (120ml)", ml: 120 },
+              { label: "Large Glass (180ml)", ml: 180 },
+              { label: "Bottle (750ml)", ml: 750 }
+            ],
+            abvs: [
+              { label: "Table Wine (13.5%)", val: 13.5 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          },
+          shot: {
+            volumes: [
+              { label: "Single (30ml)", ml: 30 },
+              { label: "Double (60ml)", ml: 60 }
+            ],
+            abvs: [
+              { label: "Standard Spirit (40.0%)", val: 40.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          },
+          cocktail: {
+            volumes: [
+              { label: "Standard Drink (150ml)", ml: 150 },
+              { label: "Large Drink (250ml)", ml: 250 }
+            ],
+            abvs: [
+              { label: "Regular (10.0%)", val: 10.0 },
+              { label: "Strong (15.0%)", val: 15.0 }
+            ],
+            defaultVolIndex: 0,
+            defaultAbvIndex: 0
+          }
+        };
+      } else {
+        // European / Rest of World
+        return {
+          beer: {
+            volumes: [
+              { label: "Small (330ml)", ml: 330 },
+              { label: "Medium (400ml)", ml: 400 },
+              { label: "Large (500ml)", ml: 500 }
+            ],
+            abvs: [
+              { label: "Pilsner (4.8%)", val: 4.8 },
+              { label: "Regular (5.0%)", val: 5.0 },
+              { label: "Strong (6.5%)", val: 6.5 }
+            ],
+            defaultVolIndex: 0, // Small (330ml)
+            defaultAbvIndex: 1  // Regular (5.0%)
+          },
+          wine: {
+            volumes: [
+              { label: "Small (100ml)", ml: 100 },
+              { label: "Glass (150ml)", ml: 150 },
+              { label: "Large (200ml)", ml: 200 }
+            ],
+            abvs: [
+              { label: "White (11.5%)", val: 11.5 },
+              { label: "Red (13.0%)", val: 13.0 },
+              { label: "Strong (14.5%)", val: 14.5 }
+            ],
+            defaultVolIndex: 1, // Glass (150ml)
+            defaultAbvIndex: 1  // Red (13.0%)
+          },
+          shot: {
+            volumes: [
+              { label: "Single (20ml)", ml: 20 },
+              { label: "Double (40ml)", ml: 40 },
+              { label: "Standard (50ml)", ml: 50 }
+            ],
+            abvs: [
+              { label: "Liqueur (35%)", val: 35.0 },
+              { label: "Standard (40%)", val: 40.0 },
+              { label: "Overproof (45%)", val: 45.0 }
+            ],
+            defaultVolIndex: 0, // Single (20ml)
+            defaultAbvIndex: 1  // Standard (40%)
+          },
+          cocktail: {
+            volumes: [
+              { label: "Short (120ml)", ml: 120 },
+              { label: "Long (200ml)", ml: 200 }
+            ],
+            abvs: [
+              { label: "Light (6%)", val: 6.0 },
+              { label: "Regular (12%)", val: 12.0 },
+              { label: "Strong (18%)", val: 18.0 }
+            ],
+            defaultVolIndex: 1, // Long (200ml)
+            defaultAbvIndex: 1
+          }
+        };
       }
-    };
+    }
+
+    function updateDrinkInputsToPresetDefaults(cat: string) {
+      if (cat === 'custom') {
+        elements.customLabelContainer.classList.remove('hidden');
+        elements.drinkName.value = "Custom Drink";
+        return;
+      }
+      
+      elements.customLabelContainer.classList.add('hidden');
+      
+      let prettyName = cat.charAt(0).toUpperCase() + cat.slice(1);
+      if (prettyName === 'Shot') prettyName = 'Liquor/Shot';
+      elements.drinkName.value = prettyName;
+      
+      const presets = getCategoryPresetsForCountry(userState.countryCode);
+      const preset = presets[cat];
+      if (preset) {
+        const volIdx = preset.defaultVolIndex;
+        const abvIdx = preset.defaultAbvIndex;
+        
+        const v = preset.volumes[volIdx] || preset.volumes[0];
+        const a = preset.abvs[abvIdx] || preset.abvs[0];
+        
+        if (v) {
+          const isOz = elements.drinkVolumeUnit.textContent === 'oz';
+          if (isOz) {
+            elements.drinkVolume.value = (v.ml / 29.5735).toFixed(1);
+          } else {
+            elements.drinkVolume.value = v.ml.toString();
+          }
+        }
+        
+        if (a) {
+          elements.abvInput.value = a.val.toString();
+          elements.abvSlider.value = a.val.toString();
+          elements.abvLbl.textContent = a.val.toFixed(1);
+        }
+      }
+    }
 
     function renderSubPresets(cat: string) {
       const volContainer = document.getElementById('sub-presets-volume');
@@ -1789,7 +2318,9 @@ import Layout from '../layouts/Layout.astro';
       
       if (!volContainer || !abvContainer || !volList || !abvList) return;
       
-      if (cat === 'custom' || !CATEGORY_PRESETS[cat]) {
+      const presets = getCategoryPresetsForCountry(userState.countryCode);
+      
+      if (cat === 'custom' || !presets[cat]) {
         volContainer.classList.add('hidden');
         abvContainer.classList.add('hidden');
         return;
@@ -1798,7 +2329,7 @@ import Layout from '../layouts/Layout.astro';
       volContainer.classList.remove('hidden');
       abvContainer.classList.remove('hidden');
       
-      const preset = CATEGORY_PRESETS[cat];
+      const preset = presets[cat];
       
       // Render volume pills
       volList.innerHTML = '';
@@ -1864,7 +2395,11 @@ import Layout from '../layouts/Layout.astro';
       const volList = document.getElementById('volume-pills-list');
       const abvList = document.getElementById('abv-pills-list');
       
-      if (volList) {
+      const presets = getCategoryPresetsForCountry(userState.countryCode);
+      const activeCatBtn = document.querySelector('[data-preset-cat].bg-primary');
+      const cat = activeCatBtn ? activeCatBtn.getAttribute('data-preset-cat') || 'beer' : 'beer';
+      
+      if (volList && cat !== 'custom' && presets[cat]) {
         let currentVolMl = parseFloat(elements.drinkVolume.value);
         if (isNaN(currentVolMl)) currentVolMl = 0;
         if (elements.drinkVolumeUnit.textContent === 'oz') {
@@ -1881,7 +2416,7 @@ import Layout from '../layouts/Layout.astro';
         });
       }
       
-      if (abvList) {
+      if (abvList && cat !== 'custom' && presets[cat]) {
         let currentAbv = parseFloat(elements.abvInput.value);
         if (isNaN(currentAbv)) currentAbv = 0;
         Array.from(abvList.children).forEach(btn => {
@@ -1936,15 +2471,8 @@ import Layout from '../layouts/Layout.astro';
           });
           btn.className = 'py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-transparent bg-primary text-canvas-soft shadow-vercel-2 rounded-sm transition-vercel focus:outline-none cursor-pointer';
           
-          // Map to hidden select value and trigger change event
-          let selectVal = 'custom';
-          if (cat === 'beer') selectVal = 'beer-reg';
-          else if (cat === 'wine') selectVal = 'wine-red';
-          else if (cat === 'shot') selectVal = 'shot-whiskey';
-          else if (cat === 'cocktail') selectVal = 'cocktail-gt';
-          
-          elements.drinkSelect.value = selectVal;
-          elements.drinkSelect.dispatchEvent(new Event('change'));
+          // Update inputs based on preset defaults
+          updateDrinkInputsToPresetDefaults(cat);
           
           // Render sub-presets
           renderSubPresets(cat);
@@ -2016,6 +2544,7 @@ import Layout from '../layouts/Layout.astro';
       }
 
       // Initial Category trigger to populate Beer sub-presets
+      updateDrinkInputsToPresetDefaults('beer');
       renderSubPresets('beer');
       syncActivePills();
       updateImpactPreview();
