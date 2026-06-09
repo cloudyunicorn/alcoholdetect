@@ -210,67 +210,132 @@ import Layout from '../layouts/Layout.astro';
 
             <!-- Custom Form Inputs -->
             <div class="space-y-4 border-t border-hairline pt-5">
-              <!-- Drink Select Dropdown -->
-              <div>
-                <label for="drink-select" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Select Drink</label>
-                <select id="drink-select" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none appearance-none" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22none%22%3E%3Cpath d=%22M7 9l3 3 3-3%22 stroke=%22%23666%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E'); background-position: right 8px center; background-repeat: no-repeat; background-size: 20px;" aria-label="Select drink type">
-                  <option value="beer-reg" data-name="Regular Beer" data-vol="355" data-abv="5.0">🍺 Regular Beer (355ml, 5%)</option>
-                  <option value="beer-light" data-name="Light Beer" data-vol="355" data-abv="4.2">🍺 Light Beer (355ml, 4.2%)</option>
-                  <option value="beer-craft" data-name="Craft IPA" data-vol="355" data-abv="7.0">🍻 Craft IPA (355ml, 7%)</option>
-                  <option value="wine-red" data-name="Red Wine" data-vol="148" data-abv="13.5">🍷 Red Wine (148ml, 13.5%)</option>
-                  <option value="wine-white" data-name="White Wine" data-vol="148" data-abv="12.0">🥂 White Wine (148ml, 12%)</option>
-                  <option value="champagne" data-name="Champagne" data-vol="120" data-abv="12.0">🍾 Champagne (120ml, 12%)</option>
-                  <option value="shot-whiskey" data-name="Whiskey Shot" data-vol="44" data-abv="40.0">🥃 Whiskey Shot (44ml, 40%)</option>
-                  <option value="shot-vodka" data-name="Vodka Shot" data-vol="44" data-abv="40.0">🥃 Vodka Shot (44ml, 40%)</option>
-                  <option value="shot-tequila" data-name="Tequila Shot" data-vol="44" data-abv="40.0">🥃 Tequila Shot (44ml, 40%)</option>
-                  <option value="cider" data-name="Apple Cider" data-vol="473" data-abv="5.0">🍏 Cider (473ml, 5%)</option>
-                  <option value="cocktail-gt" data-name="Gin & Tonic" data-vol="200" data-abv="6.0">🍸 Gin & Tonic (200ml, 6%)</option>
-                  <option value="cocktail-margarita" data-name="Margarita" data-vol="120" data-abv="15.0">🍹 Margarita (120ml, 15%)</option>
-                  <option value="cocktail-martini" data-name="Martini" data-vol="90" data-abv="30.0">🍸 Martini (90ml, 30%)</option>
-                  <option value="cocktail-rumcoke" data-name="Rum & Coke" data-vol="200" data-abv="8.0">🥃 Rum & Coke (200ml, 8%)</option>
+              <!-- Hidden select dropdown for backward compatibility/JS logic -->
+              <div class="hidden">
+                <label for="drink-select">Select Drink</label>
+                <select id="drink-select">
+                  <option value="beer-reg" data-name="Regular Beer" data-vol="355" data-abv="5.0">🍺 Regular Beer</option>
+                  <option value="beer-light" data-name="Light Beer" data-vol="355" data-abv="4.2">🍺 Light Beer</option>
+                  <option value="beer-craft" data-name="Craft IPA" data-vol="355" data-abv="7.0">🍻 Craft IPA</option>
+                  <option value="wine-red" data-name="Red Wine" data-vol="148" data-abv="13.5">🍷 Red Wine</option>
+                  <option value="wine-white" data-name="White Wine" data-vol="148" data-abv="12.0">🥂 White Wine</option>
+                  <option value="champagne" data-name="Champagne" data-vol="120" data-abv="12.0">🍾 Champagne</option>
+                  <option value="shot-whiskey" data-name="Whiskey Shot" data-vol="44" data-abv="40.0">🥃 Whiskey Shot</option>
+                  <option value="shot-vodka" data-name="Vodka Shot" data-vol="44" data-abv="40.0">🥃 Vodka Shot</option>
+                  <option value="shot-tequila" data-name="Tequila Shot" data-vol="44" data-abv="40.0">🥃 Tequila Shot</option>
+                  <option value="cider" data-name="Apple Cider" data-vol="473" data-abv="5.0">🍏 Cider</option>
+                  <option value="cocktail-gt" data-name="Gin & Tonic" data-vol="200" data-abv="6.0">🍸 Gin & Tonic</option>
+                  <option value="cocktail-margarita" data-name="Margarita" data-vol="120" data-abv="15.0">🍹 Margarita</option>
+                  <option value="cocktail-martini" data-name="Martini" data-vol="90" data-abv="30.0">🍸 Martini</option>
+                  <option value="cocktail-rumcoke" data-name="Rum & Coke" data-vol="200" data-abv="8.0">🥃 Rum & Coke</option>
                   <option value="custom" data-name="Custom Drink" data-vol="355" data-abv="5.0">⚙️ Custom Drink...</option>
                 </select>
               </div>
 
-              <!-- Custom Label input (hidden by default) -->
-              <div id="custom-drink-label-container" class="hidden">
-                <label for="drink-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Custom Drink Name</label>
-                <input type="text" id="drink-name" value="Regular Beer" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="Enter custom name…" autocomplete="off" />
+              <!-- Visual Preset Categories -->
+              <div>
+                <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-2">Select Category</label>
+                <div class="grid grid-cols-5 gap-1.5" role="group" aria-label="Drink Category Presets">
+                  <button type="button" data-preset-cat="beer" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-transparent bg-primary text-canvas-soft shadow-vercel-2 rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Beer Category">
+                    <span class="text-xl">🍺</span>
+                    <span class="text-[10px] font-semibold">Beer</span>
+                  </button>
+                  <button type="button" data-preset-cat="wine" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Wine Category">
+                    <span class="text-xl">🍷</span>
+                    <span class="text-[10px] font-semibold">Wine</span>
+                  </button>
+                  <button type="button" data-preset-cat="shot" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Shot Category">
+                    <span class="text-xl">🥃</span>
+                    <span class="text-[10px] font-semibold">Shot</span>
+                  </button>
+                  <button type="button" data-preset-cat="cocktail" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Cocktail Category">
+                    <span class="text-xl">🍸</span>
+                    <span class="text-[10px] font-semibold">Cocktail</span>
+                  </button>
+                  <button type="button" data-preset-cat="custom" class="py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer" aria-label="Select Custom Category">
+                    <span class="text-xl">⚙️</span>
+                    <span class="text-[10px] font-semibold">Custom</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Volume -->
-              <div>
-                <div class="flex justify-between items-center mb-1.5">
-                  <label for="drink-volume" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Volume</label>
-                  <div class="flex rounded-sm bg-canvas-soft-2 p-0.5 border border-hairline" role="group" aria-label="Volume Unit Switch">
-                    <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none" id="btn-volume-ml" data-unit="ml">ML</button>
-                    <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none" id="btn-volume-oz" data-unit="oz">OZ</button>
+              <!-- Contextual Presets (Volume & ABV) -->
+              <div id="sub-presets-volume" class="transition-vercel">
+                <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Quick Size</label>
+                <div id="volume-pills-list" class="flex flex-wrap gap-1.5">
+                  <!-- JS Injected Volume Pills -->
+                </div>
+              </div>
+
+              <div id="sub-presets-abv" class="transition-vercel">
+                <label class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Quick Strength</label>
+                <div id="abv-pills-list" class="flex flex-wrap gap-1.5">
+                  <!-- JS Injected ABV Pills -->
+                </div>
+              </div>
+
+              <!-- Advanced Fine-Tuning Block -->
+              <div class="border-t border-hairline/60 pt-4 mt-3">
+                <h4 class="font-mono text-[10px] font-bold text-mute uppercase tracking-wider mb-2 flex items-center justify-between cursor-pointer select-none" id="advanced-toggle" role="button" aria-expanded="false" aria-controls="advanced-form-fields">
+                  <span>Fine-tune Drink Details</span>
+                  <svg id="advanced-toggle-icon" class="h-3 w-3 transform transition-transform duration-200 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </h4>
+                
+                <div id="advanced-form-fields" class="space-y-4 hidden transition-all duration-300">
+                  <!-- Custom Label input (hidden by default unless category is custom) -->
+                  <div id="custom-drink-label-container" class="hidden">
+                    <label for="drink-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Custom Drink Name</label>
+                    <input type="text" id="drink-name" value="Regular Beer" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm focus:ring-2 focus:ring-link focus:outline-none" placeholder="Enter custom name…" autocomplete="off" />
+                  </div>
+
+                  <!-- Volume Input -->
+                  <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                      <label for="drink-volume" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Volume</label>
+                      <div class="flex rounded-sm bg-canvas-soft-2 p-0.5 border border-hairline" role="group" aria-label="Volume Unit Switch">
+                        <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-primary bg-canvas shadow-vercel-1 border border-hairline/10 focus:outline-none" id="btn-volume-ml" data-unit="ml">ML</button>
+                        <button type="button" class="px-2 py-0.5 text-[10px] font-semibold font-mono rounded-xs text-body hover:text-ink focus:outline-none" id="btn-volume-oz" data-unit="oz">OZ</button>
+                      </div>
+                    </div>
+                    <div class="relative">
+                      <input type="number" id="drink-volume" min="5" max="3000" value="355" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="Drink volume" />
+                      <span class="absolute right-3 top-2.5 text-xs text-mute font-mono" id="drink-volume-unit">ml</span>
+                    </div>
+                  </div>
+
+                  <!-- ABV Input -->
+                  <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                      <label for="drink-abv" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">ABV (%)</label>
+                      <span class="text-xs font-mono font-medium text-primary"><span id="lbl-abv-val">5.0</span>%</span>
+                    </div>
+                    <div class="flex gap-4 items-center">
+                      <input type="range" id="drink-abv-slider" min="0.5" max="75.0" step="0.5" value="5.0" class="w-full accent-primary h-1 bg-canvas-soft-2 rounded-lg cursor-pointer" aria-label="ABV slider" />
+                      <input type="number" id="drink-abv" min="0.5" max="75.0" step="0.1" value="5.0" class="w-16 h-8 text-center text-sm border border-hairline rounded-sm bg-canvas font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="ABV value in percent" />
+                    </div>
                   </div>
                 </div>
-                <div class="relative">
-                  <input type="number" id="drink-volume" min="5" max="3000" value="355" class="w-full h-10 px-3 border border-hairline rounded-sm bg-canvas text-sm font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="Drink volume" />
-                  <span class="absolute right-3 top-2.5 text-xs text-mute font-mono" id="drink-volume-unit">ml</span>
-                </div>
               </div>
 
-              <!-- ABV -->
-              <div>
-                <div class="flex justify-between items-center mb-1.5">
-                  <label for="drink-abv" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">ABV (%)</label>
-                  <span class="text-xs font-mono font-medium text-primary"><span id="lbl-abv-val">5.0</span>%</span>
-                </div>
-                <div class="flex gap-4 items-center">
-                  <input type="range" id="drink-abv-slider" min="0.5" max="75.0" step="0.5" value="5.0" class="w-full accent-primary h-1 bg-canvas-soft-2 rounded-lg cursor-pointer" aria-label="ABV slider" />
-                  <input type="number" id="drink-abv" min="0.5" max="75.0" step="0.1" value="5.0" class="w-16 h-8 text-center text-sm border border-hairline rounded-sm bg-canvas font-mono focus:ring-2 focus:ring-link focus:outline-none" aria-label="ABV value in percent" />
-                </div>
-              </div>
-
-              <!-- Time Ago -->
+              <!-- Time Ago Slider / Quick Pills -->
               <div>
                 <div class="flex justify-between items-center mb-1.5">
                   <label for="drink-time-ago" class="font-mono text-[11px] font-semibold text-mute uppercase tracking-wider">Time Consumed</label>
                   <span class="text-xs font-mono font-medium text-primary" id="drink-time-ago-label">Just now</span>
                 </div>
+                
+                <!-- Time Quick Pills -->
+                <div class="flex flex-wrap gap-1.5 mb-2.5">
+                  <button type="button" data-time-val="0" class="time-quick-btn px-2 py-0.5 text-[10px] font-semibold rounded-xs border border-transparent bg-primary text-canvas-soft shadow-vercel-1 transition-vercel focus:outline-none cursor-pointer">Just now</button>
+                  <button type="button" data-time-val="15" class="time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer">15m ago</button>
+                  <button type="button" data-time-val="30" class="time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer">30m ago</button>
+                  <button type="button" data-time-val="60" class="time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer">1h ago</button>
+                  <button type="button" data-time-val="120" class="time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer">2h ago</button>
+                  <button type="button" data-time-val="180" class="time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer">3h ago</button>
+                </div>
+                
                 <input type="range" id="drink-time-ago" min="0" max="480" step="5" value="0" class="w-full accent-primary h-1 bg-canvas-soft-2 rounded-lg cursor-pointer" aria-label="Time consumed slider" />
                 <div class="flex justify-between text-[10px] font-mono text-mute mt-1 px-1">
                   <span>Just now</span>
@@ -279,6 +344,12 @@ import Layout from '../layouts/Layout.astro';
                   <span>6h ago</span>
                   <span>8h ago</span>
                 </div>
+              </div>
+
+              <!-- Impact Preview Info Box -->
+              <div id="impact-preview-box" class="p-2.5 rounded-sm bg-canvas-soft border border-hairline text-[10px] text-mute flex justify-between items-center font-mono select-none">
+                <span>BAC IMPACT ESTIMATE:</span>
+                <span id="impact-preview-val" class="font-semibold text-primary font-mono">+0.000% BAC · +0.0h sober</span>
               </div>
             </div>
 
@@ -1542,6 +1613,8 @@ import Layout from '../layouts/Layout.astro';
           elements.drinkVolumeUnit.textContent = 'ml';
           let currentVal = parseFloat(elements.drinkVolume.value);
           elements.drinkVolume.value = Math.round(currentVal * 29.5735).toString();
+          syncActivePills();
+          updateImpactPreview();
         }
       });
       elements.btnVolOz.addEventListener('click', () => {
@@ -1550,6 +1623,8 @@ import Layout from '../layouts/Layout.astro';
           elements.drinkVolumeUnit.textContent = 'oz';
           let currentVal = parseFloat(elements.drinkVolume.value);
           elements.drinkVolume.value = (currentVal / 29.5735).toFixed(1);
+          syncActivePills();
+          updateImpactPreview();
         }
       });
 
@@ -1614,6 +1689,9 @@ import Layout from '../layouts/Layout.astro';
         
         showToast('Drinking log cleared and reset successfully.');
       });
+      
+      // Initialize Visual Preset Grid & Quick Pills
+      setupPresets();
     }
 
     // Populate the drink input form fields on dropdown select change
@@ -1649,12 +1727,310 @@ import Layout from '../layouts/Layout.astro';
       elements.abvSlider.value = abv.toString();
       elements.abvLbl.textContent = abv.toFixed(1);
       
-      // Highlight form elements container
-      const container = elements.drinkVolume.parentElement?.parentElement?.parentElement;
-      if (container) {
-        container.classList.add('ring-2', 'ring-link/30');
-        setTimeout(() => container.classList.remove('ring-2', 'ring-link/30'), 500);
+      // Highlight the active category card
+      let cat = 'custom';
+      if (valType.startsWith('beer')) cat = 'beer';
+      else if (valType.startsWith('wine')) cat = 'wine';
+      else if (valType.startsWith('shot')) cat = 'shot';
+      else if (valType.startsWith('cocktail')) cat = 'cocktail';
+      else if (valType === 'cider') cat = 'beer';
+      
+      const presetBtn = document.querySelector(`[data-preset-cat="${cat}"]`);
+      if (presetBtn) {
+        presetBtn.classList.add('ring-2', 'ring-link/30');
+        setTimeout(() => presetBtn.classList.remove('ring-2', 'ring-link/30'), 500);
       }
+    }
+
+    // ─── Visual Drink Preset System ───
+    const CATEGORY_PRESETS: Record<string, { volumes: { label: string, ml: number }[], abvs: { label: string, val: number }[] }> = {
+      beer: {
+        volumes: [
+          { label: "12 oz (355ml)", ml: 355 },
+          { label: "16 oz (473ml)", ml: 473 },
+          { label: "Pint (568ml)", ml: 568 }
+        ],
+        abvs: [
+          { label: "Light (4.2%)", val: 4.2 },
+          { label: "Regular (5%)", val: 5.0 },
+          { label: "IPA (7%)", val: 7.0 }
+        ]
+      },
+      wine: {
+        volumes: [
+          { label: "Glass (148ml)", ml: 148 },
+          { label: "Large (250ml)", ml: 250 },
+          { label: "Bottle (750ml)", ml: 750 }
+        ],
+        abvs: [
+          { label: "White (12%)", val: 12.0 },
+          { label: "Red (13.5%)", val: 13.5 },
+          { label: "Strong (15%)", val: 15.0 }
+        ]
+      },
+      shot: {
+        volumes: [
+          { label: "Single (44ml)", ml: 44 },
+          { label: "Double (88ml)", ml: 88 }
+        ],
+        abvs: [
+          { label: "Liqueur (35%)", val: 35.0 },
+          { label: "Standard (40%)", val: 40.0 },
+          { label: "Overproof (45%)", val: 45.0 }
+        ]
+      },
+      cocktail: {
+        volumes: [
+          { label: "Martini (90ml)", ml: 90 },
+          { label: "Standard (120ml)", ml: 120 },
+          { label: "Long (200ml)", ml: 200 }
+        ],
+        abvs: [
+          { label: "Light (6%)", val: 6.0 },
+          { label: "Regular (12%)", val: 12.0 },
+          { label: "Strong (18%)", val: 18.0 }
+        ]
+      }
+    };
+
+    function renderSubPresets(cat: string) {
+      const volContainer = document.getElementById('sub-presets-volume');
+      const abvContainer = document.getElementById('sub-presets-abv');
+      const volList = document.getElementById('volume-pills-list');
+      const abvList = document.getElementById('abv-pills-list');
+      
+      if (!volContainer || !abvContainer || !volList || !abvList) return;
+      
+      if (cat === 'custom' || !CATEGORY_PRESETS[cat]) {
+        volContainer.classList.add('hidden');
+        abvContainer.classList.add('hidden');
+        return;
+      }
+      
+      volContainer.classList.remove('hidden');
+      abvContainer.classList.remove('hidden');
+      
+      const preset = CATEGORY_PRESETS[cat];
+      
+      // Render volume pills
+      volList.innerHTML = '';
+      preset.volumes.forEach((v) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'px-2.5 py-1 text-[11px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer';
+        btn.textContent = v.label;
+        btn.setAttribute('data-ml', v.ml.toString());
+        
+        btn.addEventListener('click', () => {
+          const isOz = elements.drinkVolumeUnit.textContent === 'oz';
+          if (isOz) {
+            elements.drinkVolume.value = (v.ml / 29.5735).toFixed(1);
+          } else {
+            elements.drinkVolume.value = v.ml.toString();
+          }
+          
+          syncActivePills();
+          updateImpactPreview();
+          
+          // Flash volume input container to show update
+          const parent = elements.drinkVolume.parentElement;
+          if (parent) {
+            parent.classList.add('ring-2', 'ring-link/30');
+            setTimeout(() => parent.classList.remove('ring-2', 'ring-link/30'), 400);
+          }
+        });
+        
+        volList.appendChild(btn);
+      });
+      
+      // Render ABV pills
+      abvList.innerHTML = '';
+      preset.abvs.forEach((a) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'px-2.5 py-1 text-[11px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer';
+        btn.textContent = a.label;
+        btn.setAttribute('data-abv', a.val.toString());
+        
+        btn.addEventListener('click', () => {
+          elements.abvInput.value = a.val.toString();
+          elements.abvSlider.value = a.val.toString();
+          elements.abvLbl.textContent = a.val.toFixed(1);
+          
+          syncActivePills();
+          updateImpactPreview();
+          
+          // Flash ABV slider container to show update
+          const parent = elements.abvSlider.parentElement;
+          if (parent) {
+            parent.classList.add('ring-2', 'ring-link/30');
+            setTimeout(() => parent.classList.remove('ring-2', 'ring-link/30'), 400);
+          }
+        });
+        
+        abvList.appendChild(btn);
+      });
+    }
+
+    function syncActivePills() {
+      const volList = document.getElementById('volume-pills-list');
+      const abvList = document.getElementById('abv-pills-list');
+      
+      if (volList) {
+        let currentVolMl = parseFloat(elements.drinkVolume.value);
+        if (isNaN(currentVolMl)) currentVolMl = 0;
+        if (elements.drinkVolumeUnit.textContent === 'oz') {
+          currentVolMl = Math.round(currentVolMl * 29.5735);
+        }
+        
+        Array.from(volList.children).forEach(btn => {
+          const ml = parseFloat(btn.getAttribute('data-ml') || '0');
+          if (Math.abs(ml - currentVolMl) < 5) {
+            btn.className = 'px-2.5 py-1 text-[11px] font-semibold rounded-xs border border-transparent bg-primary text-canvas-soft shadow-vercel-1 transition-vercel focus:outline-none';
+          } else {
+            btn.className = 'px-2.5 py-1 text-[11px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none';
+          }
+        });
+      }
+      
+      if (abvList) {
+        let currentAbv = parseFloat(elements.abvInput.value);
+        if (isNaN(currentAbv)) currentAbv = 0;
+        Array.from(abvList.children).forEach(btn => {
+          const abv = parseFloat(btn.getAttribute('data-abv') || '0');
+          if (Math.abs(abv - currentAbv) < 0.1) {
+            btn.className = 'px-2.5 py-1 text-[11px] font-semibold rounded-xs border border-transparent bg-primary text-canvas-soft shadow-vercel-1 transition-vercel focus:outline-none';
+          } else {
+            btn.className = 'px-2.5 py-1 text-[11px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none';
+          }
+        });
+      }
+    }
+
+    function updateImpactPreview() {
+      const bio = getNormalizedBiology();
+      const tbw = calculateTBW(bio.gender, bio.weightKg, bio.heightCm, bio.age);
+      
+      let vol = parseFloat(elements.drinkVolume.value);
+      const abv = parseFloat(elements.abvInput.value);
+      
+      if (isNaN(vol) || vol <= 0 || isNaN(abv) || abv <= 0 || isNaN(tbw) || tbw <= 0) {
+        const previewVal = document.getElementById('impact-preview-val');
+        if (previewVal) previewVal.textContent = "+0.000% BAC · +0.0h sober";
+        return;
+      }
+      
+      if (elements.drinkVolumeUnit.textContent === 'oz') {
+        vol = vol * 29.5735;
+      }
+      
+      const pureAlcoholGrams = vol * (abv / 100) * 0.789;
+      const peakBAC = (pureAlcoholGrams * 0.8) / (tbw * 10);
+      const hoursToSober = peakBAC / 0.015;
+      
+      const previewVal = document.getElementById('impact-preview-val');
+      if (previewVal) {
+        previewVal.textContent = `+${peakBAC.toFixed(3)}% BAC · +${hoursToSober.toFixed(1)}h sober`;
+      }
+    }
+
+    function setupPresets() {
+      // 1. Category Preset Button Clicks
+      const catButtons = document.querySelectorAll('[data-preset-cat]');
+      catButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-preset-cat');
+          if (!cat) return;
+          
+          // Toggle active classes on category buttons
+          catButtons.forEach(b => {
+            b.className = 'py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-hairline bg-canvas text-body hover:text-ink rounded-sm transition-vercel focus:outline-none cursor-pointer';
+          });
+          btn.className = 'py-2.5 px-1 flex flex-col items-center justify-center gap-1.5 border border-transparent bg-primary text-canvas-soft shadow-vercel-2 rounded-sm transition-vercel focus:outline-none cursor-pointer';
+          
+          // Map to hidden select value and trigger change event
+          let selectVal = 'custom';
+          if (cat === 'beer') selectVal = 'beer-reg';
+          else if (cat === 'wine') selectVal = 'wine-red';
+          else if (cat === 'shot') selectVal = 'shot-whiskey';
+          else if (cat === 'cocktail') selectVal = 'cocktail-gt';
+          
+          elements.drinkSelect.value = selectVal;
+          elements.drinkSelect.dispatchEvent(new Event('change'));
+          
+          // Render sub-presets
+          renderSubPresets(cat);
+          syncActivePills();
+          updateImpactPreview();
+        });
+      });
+
+      // 2. Volume and ABV manual input event listeners to sync active pills and update impact preview
+      elements.drinkVolume.addEventListener('input', () => {
+        syncActivePills();
+        updateImpactPreview();
+      });
+      elements.drinkVolume.addEventListener('change', () => {
+        syncActivePills();
+        updateImpactPreview();
+      });
+
+      // 3. Quick Time Pill Clicks
+      const timePills = document.querySelectorAll('.time-quick-btn');
+      timePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const timeVal = parseInt(pill.getAttribute('data-time-val') || '0', 10);
+          elements.timeAgoSlider.value = timeVal.toString();
+          elements.timeAgoSlider.dispatchEvent(new Event('input'));
+          
+          // Toggle active styling
+          timePills.forEach(p => {
+            p.className = 'time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer';
+          });
+          pill.className = 'time-quick-btn px-2 py-0.5 text-[10px] font-semibold rounded-xs border border-transparent bg-primary text-canvas-soft shadow-vercel-1 transition-vercel focus:outline-none cursor-pointer';
+        });
+      });
+
+      // Maintain time pill active state when slider changes manually
+      elements.timeAgoSlider.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        const currentMins = parseInt(target.value, 10);
+        
+        timePills.forEach(pill => {
+          const pillVal = parseInt(pill.getAttribute('data-time-val') || '0', 10);
+          if (pillVal === currentMins) {
+            pill.className = 'time-quick-btn px-2 py-0.5 text-[10px] font-semibold rounded-xs border border-transparent bg-primary text-canvas-soft shadow-vercel-1 transition-vercel focus:outline-none cursor-pointer';
+          } else {
+            pill.className = 'time-quick-btn px-2 py-0.5 text-[10px] font-medium rounded-xs border border-hairline bg-canvas text-body hover:text-ink transition-vercel focus:outline-none cursor-pointer';
+          }
+        });
+        
+        updateImpactPreview();
+      });
+
+      // 4. Advanced Fine-Tuning Block Accordion Toggle
+      const advToggle = document.getElementById('advanced-toggle');
+      const advFields = document.getElementById('advanced-form-fields');
+      const advIcon = document.getElementById('advanced-toggle-icon');
+      if (advToggle && advFields && advIcon) {
+        advToggle.addEventListener('click', () => {
+          const isHidden = advFields.classList.contains('hidden');
+          if (isHidden) {
+            advFields.classList.remove('hidden');
+            advIcon.style.transform = 'rotate(0deg)';
+            advToggle.setAttribute('aria-expanded', 'true');
+          } else {
+            advFields.classList.add('hidden');
+            advIcon.style.transform = 'rotate(-90deg)';
+            advToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Initial Category trigger to populate Beer sub-presets
+      renderSubPresets('beer');
+      syncActivePills();
+      updateImpactPreview();
     }
 
     // Get biological values normalized to standard units (kg, cm)
@@ -2464,9 +2840,16 @@ import Layout from '../layouts/Layout.astro';
               </p>
             </div>
           </div>
-          <div class="flex items-center gap-3 shrink-0 ml-3">
-            <span class="text-xs font-mono text-body font-medium whitespace-nowrap tabular-nums">${timeLabel}</span>
-            <button type="button" class="text-mute hover:text-error p-1 focus:outline-none focus:ring-1 focus:ring-error rounded-sm transition-vercel" data-id="${drink.id}" data-name="${drink.name}" aria-label="Remove ${drink.name} from log">
+          <div class="flex items-center gap-1.5 shrink-0 ml-3">
+            <span class="text-xs font-mono text-body font-medium whitespace-nowrap tabular-nums mr-1">${timeLabel}</span>
+            <!-- Duplicate/Repeat Button -->
+            <button type="button" class="btn-duplicate-drink text-mute hover:text-primary p-1 focus:outline-none focus:ring-1 focus:ring-link rounded-sm transition-vercel cursor-pointer" data-id="${drink.id}" title="Log another round of this drink" aria-label="Log another ${drink.name}">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+            </button>
+            <!-- Remove Button -->
+            <button type="button" class="text-mute hover:text-error p-1 focus:outline-none focus:ring-1 focus:ring-error rounded-sm transition-vercel cursor-pointer" data-id="${drink.id}" data-name="${drink.name}" aria-label="Remove ${drink.name} from log">
               <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
@@ -2474,10 +2857,31 @@ import Layout from '../layouts/Layout.astro';
           </div>
         `;
         
-        const removeBtn = li.querySelector('button');
+        const removeBtn = li.querySelector('button[aria-label^="Remove"]');
         if (removeBtn) {
           removeBtn.addEventListener('click', () => {
             removeDrink(drink.id, drink.name);
+          });
+        }
+
+        const duplicateBtn = li.querySelector('.btn-duplicate-drink');
+        if (duplicateBtn) {
+          duplicateBtn.addEventListener('click', () => {
+            const newDrink = {
+              id: 'drink-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+              name: drink.name,
+              vol: drink.vol,
+              abv: drink.abv,
+              timeAgo: 0,
+              addedAt: Date.now()
+            };
+            lastAddedDrinkId = newDrink.id;
+            loggedDrinks.push(newDrink);
+            showToast(`Another ${drink.name} logged.`);
+            renderTimeline();
+            if (resultsUnlocked) {
+              recalculateAndUpdateDashboard();
+            }
           });
         }
 
@@ -2504,6 +2908,10 @@ import Layout from '../layouts/Layout.astro';
 
       if (resultsUnlocked && loggedDrinks.length > 0) {
         recalculateAndUpdateDashboard();
+      }
+
+      if (typeof updateImpactPreview === 'function') {
+        updateImpactPreview();
       }
     }
 
