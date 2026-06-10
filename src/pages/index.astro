@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import emergencyNumbers from '../data/emergencyNumbers.json';
 ---
+
 
 <Layout
   title="BAC Calculator | Blood Alcohol Content Calculator & Sobriety Estimator"
@@ -1182,6 +1184,60 @@ import Layout from '../layouts/Layout.astro';
                   </div>
                 </div>
               </div>
+
+              <!-- Global Emergency Services Selector -->
+              <div class="p-4 rounded-sm bg-canvas-soft border border-hairline mt-4">
+                <h4 class="font-sans text-xs font-semibold text-primary mb-1">Global Emergency Services Numbers</h4>
+                <p class="text-xs text-body leading-relaxed mb-3">
+                  Select a country to retrieve its active national emergency numbers:
+                </p>
+                
+                <!-- Dropdown selector -->
+                <div class="relative mb-3">
+                  <select id="emergency-country-select" class="w-full h-9 px-3 border border-hairline rounded-sm bg-canvas text-xs text-primary focus:ring-1 focus:ring-link focus:outline-none appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22none%22%3E%3Cpath d=%22M7 9l3 3 3-3%22 stroke=%22%23666%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E'); background-position: right 8px center; background-repeat: no-repeat; background-size: 16px;" aria-label="Select country for emergency numbers">
+                    <option value="" disabled selected>Select a country...</option>
+                    {emergencyNumbers.map(c => (
+                      <option value={c.code}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <!-- Emergency Numbers Info Display -->
+                <div id="emergency-numbers-info" class="hidden flex flex-col gap-2.5 pt-2 border-t border-hairline/60">
+                  <!-- Unified general emergency number if exists -->
+                  <div id="emergency-primary-box" class="p-2 rounded-sm bg-error-soft border border-error/15 text-error-deep flex items-center justify-between">
+                    <div class="flex items-center gap-1.5 text-xs font-semibold">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+                      </span>
+                      General Emergency:
+                    </div>
+                    <a id="emergency-primary-link" href="" class="font-mono text-sm font-bold hover:underline tracking-wide"></a>
+                  </div>
+
+                  <!-- Police, Ambulance, Fire specific numbers -->
+                  <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div id="emergency-police-col" class="p-2 bg-canvas border border-hairline rounded-sm flex flex-col items-center justify-center">
+                      <span class="text-mute font-mono uppercase tracking-wider mb-0.5">Police</span>
+                      <a id="emergency-police-link" href="" class="text-primary font-bold hover:underline font-mono text-xs text-link"></a>
+                    </div>
+                    <div id="emergency-ambulance-col" class="p-2 bg-canvas border border-hairline rounded-sm flex flex-col items-center justify-center">
+                      <span class="text-mute font-mono uppercase tracking-wider mb-0.5">Medical</span>
+                      <a id="emergency-ambulance-link" href="" class="text-primary font-bold hover:underline font-mono text-xs text-link"></a>
+                    </div>
+                    <div id="emergency-fire-col" class="p-2 bg-canvas border border-hairline rounded-sm flex flex-col items-center justify-center">
+                      <span class="text-mute font-mono uppercase tracking-wider mb-0.5">Fire</span>
+                      <a id="emergency-fire-link" href="" class="text-primary font-bold hover:underline font-mono text-xs text-link"></a>
+                    </div>
+                  </div>
+                  
+                  <div id="emergency-112-note" class="text-[9px] text-mute leading-normal text-center bg-canvas-soft border border-hairline/60 p-1.5 rounded-sm">
+                    🇪🇺 European Union standard emergency number <strong>112</strong> is supported.
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
           
@@ -1202,6 +1258,8 @@ import Layout from '../layouts/Layout.astro';
   <!-- Main Calculator Client Side Javascript -->
   <script>
     import { animate } from 'motion';
+    import emergencyNumbers from '../data/emergencyNumbers.json';
+
 
     // ─── Constants & Configurations ───
     const COUNTRIES = [
@@ -1357,6 +1415,13 @@ import Layout from '../layouts/Layout.astro';
         elements.countrySelect.appendChild(opt);
       });
       elements.countrySelect.value = userState.countryCode;
+
+      // Sync emergency country select
+      const emergencySelect = document.getElementById('emergency-country-select') as HTMLSelectElement | null;
+      if (emergencySelect) {
+        emergencySelect.value = userState.countryCode;
+        emergencySelect.dispatchEvent(new Event('change'));
+      }
 
       // Select volume unit ML, weight unit KG, height unit CM as initial styling
       setActiveUnitButton(elements.btnVolMl, elements.btnVolOz);
@@ -1610,6 +1675,13 @@ import Layout from '../layouts/Layout.astro';
         syncActivePills();
         updateImpactPreview();
         updateAll();
+
+        // Sync with emergency country select if it exists
+        const emergencySelect = document.getElementById('emergency-country-select') as HTMLSelectElement | null;
+        if (emergencySelect && emergencySelect.value !== target.value) {
+          emergencySelect.value = target.value;
+          emergencySelect.dispatchEvent(new Event('change'));
+        }
       });
 
       // Drink select dropdown change handler
@@ -1698,7 +1770,72 @@ import Layout from '../layouts/Layout.astro';
         
         showToast('Drinking log cleared and reset successfully.');
       });
-      
+
+      // Global Emergency Contacts Interactivity
+      const emergencySelect = document.getElementById('emergency-country-select') as HTMLSelectElement | null;
+      const emergencyInfo = document.getElementById('emergency-numbers-info');
+      const emergencyPrimaryBox = document.getElementById('emergency-primary-box');
+      const emergencyPrimaryLink = document.getElementById('emergency-primary-link') as HTMLAnchorElement | null;
+      const emergencyPoliceCol = document.getElementById('emergency-police-col');
+      const emergencyPoliceLink = document.getElementById('emergency-police-link') as HTMLAnchorElement | null;
+      const emergencyAmbulanceCol = document.getElementById('emergency-ambulance-col');
+      const emergencyAmbulanceLink = document.getElementById('emergency-ambulance-link') as HTMLAnchorElement | null;
+      const emergencyFireCol = document.getElementById('emergency-fire-col');
+      const emergencyFireLink = document.getElementById('emergency-fire-link') as HTMLAnchorElement | null;
+      const emergency112Note = document.getElementById('emergency-112-note');
+
+      emergencySelect?.addEventListener('change', () => {
+        const code = emergencySelect.value;
+        const country = emergencyNumbers.find(c => c.code === code);
+        if (!country || !emergencyInfo) return;
+
+        // Show the main display box
+        emergencyInfo.classList.remove('hidden');
+
+        // Primary General number
+        if (country.primary && emergencyPrimaryBox && emergencyPrimaryLink) {
+          emergencyPrimaryBox.classList.remove('hidden');
+          emergencyPrimaryLink.textContent = country.primary;
+          emergencyPrimaryLink.href = `tel:${country.primary}`;
+        } else if (emergencyPrimaryBox) {
+          emergencyPrimaryBox.classList.add('hidden');
+        }
+
+        // Police number
+        if (country.police && emergencyPoliceCol && emergencyPoliceLink) {
+          emergencyPoliceCol.classList.remove('hidden');
+          emergencyPoliceLink.textContent = country.police;
+          emergencyPoliceLink.href = `tel:${country.police}`;
+        } else if (emergencyPoliceCol) {
+          emergencyPoliceCol.classList.add('hidden');
+        }
+
+        // Ambulance number
+        if (country.ambulance && emergencyAmbulanceCol && emergencyAmbulanceLink) {
+          emergencyAmbulanceCol.classList.remove('hidden');
+          emergencyAmbulanceLink.textContent = country.ambulance;
+          emergencyAmbulanceLink.href = `tel:${country.ambulance}`;
+        } else if (emergencyAmbulanceCol) {
+          emergencyAmbulanceCol.classList.add('hidden');
+        }
+
+        // Fire number
+        if (country.fire && emergencyFireCol && emergencyFireLink) {
+          emergencyFireCol.classList.remove('hidden');
+          emergencyFireLink.textContent = country.fire;
+          emergencyFireLink.href = `tel:${country.fire}`;
+        } else if (emergencyFireCol) {
+          emergencyFireCol.classList.add('hidden');
+        }
+
+        // 112 support note
+        if (country.member112 && emergency112Note) {
+          emergency112Note.classList.remove('hidden');
+        } else if (emergency112Note) {
+          emergency112Note.classList.add('hidden');
+        }
+      });
+
       // Initialize Visual Preset Grid & Quick Pills
       setupPresets();
     }

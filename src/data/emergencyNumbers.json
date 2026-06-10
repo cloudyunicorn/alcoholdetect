@@ -1,0 +1,1802 @@
+[
+  {
+    "name": "Åland Islands",
+    "code": "AX",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Albania",
+    "code": "AL",
+    "police": "129",
+    "ambulance": "127",
+    "fire": "128",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Algeria",
+    "code": "DZ",
+    "police": "17",
+    "ambulance": "21606666",
+    "fire": "14",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "American Samoa",
+    "code": "AS",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Andorra",
+    "code": "AD",
+    "police": "110",
+    "ambulance": "118",
+    "fire": "118",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Angola",
+    "code": "AO",
+    "police": "110",
+    "ambulance": "118",
+    "fire": "118",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "code": "AG",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Argentina",
+    "code": "AR",
+    "police": "101",
+    "ambulance": "101",
+    "fire": "107",
+    "primary": "101",
+    "member112": false
+  },
+  {
+    "name": "Armenia",
+    "code": "AM",
+    "police": "101",
+    "ambulance": "103",
+    "fire": "102",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Aruba",
+    "code": "AW",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Australia",
+    "code": "AU",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "000",
+    "member112": false
+  },
+  {
+    "name": "Austria",
+    "code": "AT",
+    "police": "133",
+    "ambulance": "144",
+    "fire": "122",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Azerbaijan",
+    "code": "AZ",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Bahamas",
+    "code": "BS",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Bahrain",
+    "code": "BH",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Bangladesh",
+    "code": "BD",
+    "police": "865513",
+    "ambulance": "199",
+    "fire": "9555555",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Barbados",
+    "code": "BB",
+    "police": "211",
+    "ambulance": "511",
+    "fire": "311",
+    "primary": "211",
+    "member112": false
+  },
+  {
+    "name": "Belarus",
+    "code": "BY",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "102",
+    "member112": false
+  },
+  {
+    "name": "Belgium",
+    "code": "BE",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Belize",
+    "code": "BZ",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Bermuda",
+    "code": "BM",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Bhutan",
+    "code": "BT",
+    "police": "113",
+    "ambulance": "110",
+    "fire": "112",
+    "primary": "113",
+    "member112": false
+  },
+  {
+    "name": "Bolivia",
+    "code": "BO",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "code": "BQ",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Bosnia and Herzegovina",
+    "code": "BA",
+    "police": "122",
+    "ambulance": "124",
+    "fire": "123",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Botswana",
+    "code": "BW",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "997",
+    "member112": false
+  },
+  {
+    "name": "Brazil",
+    "code": "BR",
+    "police": null,
+    "ambulance": "192",
+    "fire": "193",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Brunei Darussalam",
+    "code": "BN",
+    "police": "993",
+    "ambulance": "991",
+    "fire": "995",
+    "primary": "993",
+    "member112": false
+  },
+  {
+    "name": "Bulgaria",
+    "code": "BG",
+    "police": "166",
+    "ambulance": "150",
+    "fire": "160",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Cabo Verde",
+    "code": "CV",
+    "police": "132",
+    "ambulance": "130",
+    "fire": "131",
+    "primary": "132",
+    "member112": false
+  },
+  {
+    "name": "Cambodia",
+    "code": "KH",
+    "police": "117",
+    "ambulance": "119",
+    "fire": "118",
+    "primary": "117",
+    "member112": false
+  },
+  {
+    "name": "Canada",
+    "code": "CA",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Cayman Islands",
+    "code": "KY",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Chad",
+    "code": "TD",
+    "police": "17",
+    "ambulance": null,
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "Chile",
+    "code": "CL",
+    "police": "133",
+    "ambulance": "131",
+    "fire": "132",
+    "primary": "133",
+    "member112": false
+  },
+  {
+    "name": "China",
+    "code": "CN",
+    "police": "110",
+    "ambulance": "120",
+    "fire": "119",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Colombia",
+    "code": "CO",
+    "police": "112",
+    "ambulance": "125",
+    "fire": "119",
+    "primary": "123",
+    "member112": false
+  },
+  {
+    "name": "Cook Islands",
+    "code": "CK",
+    "police": "999",
+    "ambulance": "998",
+    "fire": "996",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Costa Rica",
+    "code": "CR",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Côte d'Ivoire",
+    "code": "CI",
+    "police": "110",
+    "ambulance": null,
+    "fire": "180",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Croatia",
+    "code": "HR",
+    "police": "192",
+    "ambulance": "194",
+    "fire": "193",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Cuba",
+    "code": "CU",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "26811",
+    "member112": false
+  },
+  {
+    "name": "Curaçao",
+    "code": "CW",
+    "police": "444444",
+    "ambulance": "112",
+    "fire": "114",
+    "primary": "444444",
+    "member112": false
+  },
+  {
+    "name": "Cyprus",
+    "code": "CY",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Czech Republic",
+    "code": "CZ",
+    "police": "158",
+    "ambulance": "155",
+    "fire": "150",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Denmark",
+    "code": "DK",
+    "police": "114",
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Djibouti",
+    "code": "DJ",
+    "police": "17",
+    "ambulance": "351351",
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "Dominica",
+    "code": "DM",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Dominican Republic",
+    "code": "DO",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Ecuador",
+    "code": "EC",
+    "police": "101",
+    "ambulance": "131",
+    "fire": null,
+    "primary": "101",
+    "member112": false
+  },
+  {
+    "name": "Egypt",
+    "code": "EG",
+    "police": "122",
+    "ambulance": "123",
+    "fire": "180",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "El Salvador",
+    "code": "SV",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Estonia",
+    "code": "EE",
+    "police": "110",
+    "ambulance": "112",
+    "fire": "112",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Ethiopia",
+    "code": "ET",
+    "police": "91",
+    "ambulance": "92",
+    "fire": "93",
+    "primary": "91",
+    "member112": false
+  },
+  {
+    "name": "Falkland Islands (Malvinas)",
+    "code": "FK",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Faroe Islands",
+    "code": "FO",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Fiji",
+    "code": "FJ",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Finland",
+    "code": "FI",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "France",
+    "code": "FR",
+    "police": "17",
+    "ambulance": "15",
+    "fire": "18",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "French Guiana",
+    "code": "GF",
+    "police": "17",
+    "ambulance": "15",
+    "fire": "18",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "French Polynesia",
+    "code": "PF",
+    "police": "17",
+    "ambulance": "15",
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "French Southern Territories",
+    "code": "TF",
+    "police": null,
+    "ambulance": "No Permanent Population",
+    "fire": null,
+    "primary": "No Permanent Population",
+    "member112": false
+  },
+  {
+    "name": "Gabon",
+    "code": "GA",
+    "police": "1730",
+    "ambulance": "1300‐1399",
+    "fire": "18",
+    "primary": "1730",
+    "member112": false
+  },
+  {
+    "name": "Gambia",
+    "code": "GM",
+    "police": "17",
+    "ambulance": "16",
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "Georgia",
+    "code": "GE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Germany",
+    "code": "DE",
+    "police": "110",
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Ghana",
+    "code": "GH",
+    "police": "999",
+    "ambulance": "776111-5",
+    "fire": "192",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Gibraltar",
+    "code": "GI",
+    "police": "199",
+    "ambulance": null,
+    "fire": "190",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Greece",
+    "code": "GR",
+    "police": "100",
+    "ambulance": "166",
+    "fire": "199",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Greenland",
+    "code": "GL",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Grenada",
+    "code": "GD",
+    "police": "911",
+    "ambulance": "434",
+    "fire": "112",
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Guadeloupe",
+    "code": "GP",
+    "police": "17",
+    "ambulance": "18",
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "Guam",
+    "code": "GU",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Guatemala",
+    "code": "GT",
+    "police": "110",
+    "ambulance": "123",
+    "fire": "123",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Guyana",
+    "code": "GY",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Haiti",
+    "code": "HT",
+    "police": "114",
+    "ambulance": "118",
+    "fire": null,
+    "primary": "114",
+    "member112": false
+  },
+  {
+    "name": "Holy See",
+    "code": "VA",
+    "police": "113",
+    "ambulance": "118",
+    "fire": "115",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Honduras",
+    "code": "HN",
+    "police": "119",
+    "ambulance": "195",
+    "fire": "198",
+    "primary": "119",
+    "member112": false
+  },
+  {
+    "name": "Hong Kong",
+    "code": "HK",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Hungary",
+    "code": "HU",
+    "police": "107",
+    "ambulance": "104",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Iceland",
+    "code": "IS",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "India",
+    "code": "IN",
+    "police": "101",
+    "ambulance": "102",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Indonesia",
+    "code": "ID",
+    "police": "110",
+    "ambulance": "118",
+    "fire": "113",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Iran",
+    "code": "IR",
+    "police": "110",
+    "ambulance": "115",
+    "fire": "123",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Ireland",
+    "code": "IE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Isle of Man",
+    "code": "IM",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Israel",
+    "code": "IL",
+    "police": "100",
+    "ambulance": "101",
+    "fire": "102",
+    "primary": "100",
+    "member112": false
+  },
+  {
+    "name": "Italy",
+    "code": "IT",
+    "police": "113",
+    "ambulance": "118",
+    "fire": "115",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Jamaica",
+    "code": "JM",
+    "police": "119",
+    "ambulance": "110",
+    "fire": "110",
+    "primary": "119",
+    "member112": false
+  },
+  {
+    "name": "Japan",
+    "code": "JP",
+    "police": "110",
+    "ambulance": "119",
+    "fire": "119",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Jersey",
+    "code": "JE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Jordan",
+    "code": "JO",
+    "police": "191",
+    "ambulance": "199",
+    "fire": "199",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Kazakhstan",
+    "code": "KZ",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Kenya",
+    "code": "KE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Kiribati",
+    "code": "KI",
+    "police": "992",
+    "ambulance": "994",
+    "fire": "993",
+    "primary": "992",
+    "member112": false
+  },
+  {
+    "name": "Korea",
+    "code": "KR",
+    "police": "112",
+    "ambulance": "119",
+    "fire": "119",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Kuwait",
+    "code": "KW",
+    "police": null,
+    "ambulance": "777",
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Kyrgyzstan",
+    "code": "KG",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "103",
+    "member112": false
+  },
+  {
+    "name": "Latvia",
+    "code": "LV",
+    "police": "110",
+    "ambulance": "113",
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Lebanon",
+    "code": "LB",
+    "police": "110",
+    "ambulance": "113",
+    "fire": null,
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Lesotho",
+    "code": "LS",
+    "police": "123",
+    "ambulance": "121",
+    "fire": "122",
+    "primary": "123",
+    "member112": false
+  },
+  {
+    "name": "Liberia",
+    "code": "LR",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Libya",
+    "code": "LY",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "193",
+    "member112": false
+  },
+  {
+    "name": "Liechtenstein",
+    "code": "LI",
+    "police": "112",
+    "ambulance": "144",
+    "fire": "118",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Lithuania",
+    "code": "LT",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Luxembourg",
+    "code": "LU",
+    "police": "113",
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Macao",
+    "code": "MO",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Macedonia, the former Yugoslav",
+    "code": "MK",
+    "police": "192",
+    "ambulance": "194",
+    "fire": "193",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Malawi",
+    "code": "MW",
+    "police": "997",
+    "ambulance": "998",
+    "fire": "999",
+    "primary": "997",
+    "member112": false
+  },
+  {
+    "name": "Malaysia",
+    "code": "MY",
+    "police": "999",
+    "ambulance": "999",
+    "fire": "994",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Maldives",
+    "code": "MV",
+    "police": "119",
+    "ambulance": "102",
+    "fire": "999",
+    "primary": "119",
+    "member112": false
+  },
+  {
+    "name": "Mali",
+    "code": "ML",
+    "police": "18",
+    "ambulance": "15",
+    "fire": "17",
+    "primary": "18",
+    "member112": false
+  },
+  {
+    "name": "Malta",
+    "code": "MT",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Marshall Islands",
+    "code": "MH",
+    "police": "625 8666",
+    "ambulance": "625 4111",
+    "fire": null,
+    "primary": "625 8666",
+    "member112": false
+  },
+  {
+    "name": "Martinique",
+    "code": "MQ",
+    "police": "17",
+    "ambulance": "15",
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "Mauritania",
+    "code": "MR",
+    "police": "117",
+    "ambulance": null,
+    "fire": "118",
+    "primary": "117",
+    "member112": false
+  },
+  {
+    "name": "Mauritius",
+    "code": "MU",
+    "police": null,
+    "ambulance": "114",
+    "fire": "115",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Mexico",
+    "code": "MX",
+    "police": "060",
+    "ambulance": "065",
+    "fire": "068",
+    "primary": "060",
+    "member112": false
+  },
+  {
+    "name": "Moldova",
+    "code": "MD",
+    "police": "902",
+    "ambulance": "903",
+    "fire": "901",
+    "primary": "902",
+    "member112": false
+  },
+  {
+    "name": "Monaco",
+    "code": "MC",
+    "police": "17",
+    "ambulance": "15",
+    "fire": "18",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Mongolia",
+    "code": "MN",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "102",
+    "member112": false
+  },
+  {
+    "name": "Montenegro",
+    "code": "ME",
+    "police": "122",
+    "ambulance": "124",
+    "fire": "123",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Montserrat",
+    "code": "MS",
+    "police": "999",
+    "ambulance": "911",
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Morocco",
+    "code": "MA",
+    "police": "19",
+    "ambulance": "15",
+    "fire": "15",
+    "primary": "19",
+    "member112": false
+  },
+  {
+    "name": "Mozambique",
+    "code": "MZ",
+    "police": "119",
+    "ambulance": "117",
+    "fire": "198",
+    "primary": "119",
+    "member112": false
+  },
+  {
+    "name": "Myanmar",
+    "code": "MM",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Namibia",
+    "code": "NA",
+    "police": "1011",
+    "ambulance": "2032276",
+    "fire": "2032270",
+    "primary": "1011",
+    "member112": false
+  },
+  {
+    "name": "Nepal",
+    "code": "NP",
+    "police": "110",
+    "ambulance": "102",
+    "fire": "101",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Netherlands",
+    "code": "NL",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "New Zealand",
+    "code": "NZ",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Nicaragua",
+    "code": "NI",
+    "police": "118",
+    "ambulance": "128",
+    "fire": "115",
+    "primary": "118",
+    "member112": false
+  },
+  {
+    "name": "Nigeria",
+    "code": "NG",
+    "police": null,
+    "ambulance": "199",
+    "fire": null,
+    "primary": "199",
+    "member112": false
+  },
+  {
+    "name": "Norway",
+    "code": "NO",
+    "police": "112",
+    "ambulance": "113",
+    "fire": "110",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Oman",
+    "code": "OM",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Pakistan",
+    "code": "PK",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "15",
+    "member112": false
+  },
+  {
+    "name": "Palau",
+    "code": "PW",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Palestine, State of",
+    "code": "PS",
+    "police": "100",
+    "ambulance": "101",
+    "fire": "101",
+    "primary": "100",
+    "member112": false
+  },
+  {
+    "name": "Panama",
+    "code": "PA",
+    "police": "104",
+    "ambulance": null,
+    "fire": "103",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Papua New Guinea",
+    "code": "PG",
+    "police": "000",
+    "ambulance": null,
+    "fire": "110",
+    "primary": "000",
+    "member112": false
+  },
+  {
+    "name": "Paraguay",
+    "code": "PY",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "00",
+    "member112": false
+  },
+  {
+    "name": "Peru",
+    "code": "PE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "011",
+    "member112": false
+  },
+  {
+    "name": "Philippines",
+    "code": "PH",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "116",
+    "member112": false
+  },
+  {
+    "name": "Poland",
+    "code": "PL",
+    "police": "997",
+    "ambulance": "999",
+    "fire": "998",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Portugal",
+    "code": "PT",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Puerto Rico",
+    "code": "PR",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Qatar",
+    "code": "QA",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Réunion",
+    "code": "RE",
+    "police": "17",
+    "ambulance": "112",
+    "fire": "18",
+    "primary": "17",
+    "member112": false
+  },
+  {
+    "name": "Romania",
+    "code": "RO",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Russian Federation",
+    "code": "RU",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Rwanda",
+    "code": "RW",
+    "police": "112",
+    "ambulance": "912",
+    "fire": "112",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "code": "SH",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Saint Kitts and Nevis",
+    "code": "KN",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Saint Lucia",
+    "code": "LC",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Saint Vincent and the Grenadines",
+    "code": "VC",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Samoa",
+    "code": "WS",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "San Marino",
+    "code": "SM",
+    "police": "112",
+    "ambulance": "118",
+    "fire": "115",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Saudi Arabia",
+    "code": "SA",
+    "police": "999",
+    "ambulance": "997",
+    "fire": "998",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Senegal",
+    "code": "SN",
+    "police": "17",
+    "ambulance": "15",
+    "fire": "18",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Serbia",
+    "code": "RS",
+    "police": "192",
+    "ambulance": "194",
+    "fire": "193",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Seychelles",
+    "code": "SC",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Sierra Leone",
+    "code": "SL",
+    "police": "999",
+    "ambulance": "999",
+    "fire": "019",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Singapore",
+    "code": "SG",
+    "police": "999",
+    "ambulance": "995",
+    "fire": "995",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Slovakia",
+    "code": "SK",
+    "police": "158",
+    "ambulance": "155",
+    "fire": "150",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Slovenia",
+    "code": "SI",
+    "police": "113",
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Solomon Islands",
+    "code": "SB",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "South Africa",
+    "code": "ZA",
+    "police": "10111",
+    "ambulance": "10177",
+    "fire": "10177",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Spain",
+    "code": "ES",
+    "police": "091",
+    "ambulance": "061",
+    "fire": "080",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Sri Lanka",
+    "code": "LK",
+    "police": "112",
+    "ambulance": "110",
+    "fire": "110",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Sweden",
+    "code": "SE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Switzerland",
+    "code": "CH",
+    "police": "117",
+    "ambulance": "144",
+    "fire": "118",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Syrian Arab Republic",
+    "code": "SY",
+    "police": "112",
+    "ambulance": "110",
+    "fire": "113",
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Taiwan",
+    "code": "TW",
+    "police": "110",
+    "ambulance": "119",
+    "fire": "119",
+    "primary": "110",
+    "member112": false
+  },
+  {
+    "name": "Tajikistan",
+    "code": "TJ",
+    "police": null,
+    "ambulance": "03",
+    "fire": null,
+    "primary": "03",
+    "member112": false
+  },
+  {
+    "name": "Tanzania",
+    "code": "TZ",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": false
+  },
+  {
+    "name": "Thailand",
+    "code": "TH",
+    "police": "191",
+    "ambulance": "191",
+    "fire": "199",
+    "primary": "191",
+    "member112": false
+  },
+  {
+    "name": "Timor-Leste",
+    "code": "TL",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Togo",
+    "code": "TG",
+    "police": "101",
+    "ambulance": null,
+    "fire": null,
+    "primary": "101",
+    "member112": false
+  },
+  {
+    "name": "Tonga",
+    "code": "TO",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Trinidad and Tobago",
+    "code": "TT",
+    "police": "999",
+    "ambulance": "990",
+    "fire": "990",
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Tunisia",
+    "code": "TN",
+    "police": "197",
+    "ambulance": "190",
+    "fire": "198",
+    "primary": "197",
+    "member112": false
+  },
+  {
+    "name": "Turkey",
+    "code": "TR",
+    "police": "155",
+    "ambulance": "112",
+    "fire": "110",
+    "primary": "155",
+    "member112": false
+  },
+  {
+    "name": "Turkmenistan",
+    "code": "TM",
+    "police": "02",
+    "ambulance": "03",
+    "fire": "01",
+    "primary": "02",
+    "member112": false
+  },
+  {
+    "name": "Turks and Caicos Islands",
+    "code": "TC",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Tuvalu",
+    "code": "TV",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Uganda",
+    "code": "UG",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Ukraine",
+    "code": "UA",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "United Arab Emirates",
+    "code": "AE",
+    "police": "999",
+    "ambulance": "998",
+    "fire": "997",
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "code": "GB",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "United States of America",
+    "code": "US",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Uruguay",
+    "code": "UY",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Uzbekistan",
+    "code": "UZ",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "03",
+    "member112": false
+  },
+  {
+    "name": "Vanuatu",
+    "code": "VU",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "112",
+    "member112": true
+  },
+  {
+    "name": "Venezuela",
+    "code": "VE",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "171",
+    "member112": false
+  },
+  {
+    "name": "Viet Nam",
+    "code": "VN",
+    "police": "03",
+    "ambulance": "05",
+    "fire": "08",
+    "primary": "03",
+    "member112": false
+  },
+  {
+    "name": "Virgin Islands, British",
+    "code": "VG",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Virgin Islands, U.S.",
+    "code": "VI",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "911",
+    "member112": false
+  },
+  {
+    "name": "Western Sahara",
+    "code": "EH",
+    "police": null,
+    "ambulance": "150",
+    "fire": null,
+    "primary": "150",
+    "member112": false
+  },
+  {
+    "name": "Yemen",
+    "code": "YE",
+    "police": "194",
+    "ambulance": "191",
+    "fire": "191",
+    "primary": "194",
+    "member112": false
+  },
+  {
+    "name": "Zambia",
+    "code": "ZM",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  },
+  {
+    "name": "Zimbabwe",
+    "code": "ZW",
+    "police": null,
+    "ambulance": null,
+    "fire": null,
+    "primary": "999",
+    "member112": false
+  }
+]
