@@ -7,25 +7,25 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.alcoholdetect.com/about</loc>
+    <loc>https://www.alcoholdetect.com/about/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.alcoholdetect.com/contact</loc>
+    <loc>https://www.alcoholdetect.com/contact/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.alcoholdetect.com/privacy</loc>
+    <loc>https://www.alcoholdetect.com/privacy/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.alcoholdetect.com/terms</loc>
+    <loc>https://www.alcoholdetect.com/terms/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
