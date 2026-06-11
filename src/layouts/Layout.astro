@@ -11,8 +11,8 @@ const {
   description = "Estimate your Blood Alcohol Concentration (BAC) using the scientifically refined Watson formula. Track drinks over time, check driving limits by country, and view real-time countdowns to sobriety."
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://alcoholdetect.com');
-const ogImageURL = new URL('/og-image.png', 'https://alcoholdetect.com');
+const canonicalURL = new URL(Astro.url.pathname, 'https://www.alcoholdetect.com');
+const ogImageURL = new URL('/og-image.png', 'https://www.alcoholdetect.com');
 ---
 
 <!DOCTYPE html>
@@ -22,11 +22,13 @@ const ogImageURL = new URL('/og-image.png', 'https://alcoholdetect.com');
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="icon" type="image/png" href="/icon.png?v=2" />
     <link rel="icon" href="/favicon.ico?v=2" />
+    <link rel="apple-touch-icon" href="/icon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -70,6 +72,25 @@ const ogImageURL = new URL('/og-image.png', 'https://alcoholdetect.com');
       gtag('js', new Date());
 
       gtag('config', 'G-E0W8P7Y27K');
+    </script>
+    
+    <!-- JSON-LD Structured Data Schema Markup -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Online Alcohol Detect BAC Calculator",
+        "url": "https://www.alcoholdetect.com",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "description": "Estimate Blood Alcohol Content (BAC) using Watson's Total Body Water equations. Track drink timelines and calculate sobriety time.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        }
+      }
     </script>
   </head>
   <body class="bg-canvas-soft text-ink min-h-screen flex flex-col antialiased selection:bg-primary selection:text-canvas-soft">
