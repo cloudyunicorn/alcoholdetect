@@ -69,18 +69,44 @@ const ogImageURL = new URL('/og-image.png', 'https://www.alcoholdetect.com');
         }
       })();
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-E0W8P7Y27K"></script>
+    <!-- Lazy Loaded Analytics (Google Tag Manager & Ahrefs) -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-E0W8P7Y27K');
+      (() => {
+        let loaded = false;
+        
+        function loadAnalytics() {
+          if (loaded) return;
+          loaded = true;
+          
+          // Load Google Tag Manager
+          const gtmScript = document.createElement('script');
+          gtmScript.async = true;
+          gtmScript.src = "https://www.googletagmanager.com/gtag/js?id=G-E0W8P7Y27K";
+          document.head.appendChild(gtmScript);
+          
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function() { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-E0W8P7Y27K');
+          
+          // Load Ahrefs Web Analytics
+          const ahrefsScript = document.createElement('script');
+          ahrefsScript.async = true;
+          ahrefsScript.src = "https://analytics.ahrefs.com/analytics.js";
+          ahrefsScript.setAttribute('data-key', 'QBev02HBcM4tLXlSMpE09w');
+          document.head.appendChild(ahrefsScript);
+          
+          // Clean up event listeners
+          events.forEach(event => window.removeEventListener(event, loadAnalytics));
+        }
+        
+        const events = ['mouseover', 'keydown', 'touchmove', 'touchstart', 'scroll'];
+        events.forEach(event => window.addEventListener(event, loadAnalytics, { passive: true }));
+        
+        // Fallback: load after 4 seconds if no interaction
+        setTimeout(loadAnalytics, 4000);
+      })();
     </script>
-    
-    <!-- Ahrefs Web Analytics -->
-    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="QBev02HBcM4tLXlSMpE09w" async></script>
     
     <!-- JSON-LD Structured Data Schema Markup -->
     <script type="application/ld+json" is:inline>
