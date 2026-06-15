@@ -278,14 +278,14 @@ import emergencyNumbers from '../data/emergencyNumbers.json';
 
               <!-- Advanced Fine-Tuning Block -->
               <div class="border-t border-hairline/60 pt-4 mt-3">
-                <div class="font-mono text-[10px] font-bold text-mute uppercase tracking-wider mb-2 flex items-center justify-between cursor-pointer select-none" id="advanced-toggle" role="button" aria-expanded="false" aria-controls="advanced-form-fields">
+                <div class="font-mono text-[10px] font-bold text-mute uppercase tracking-wider mb-2 flex items-center justify-between cursor-pointer select-none" id="advanced-toggle" role="button" aria-expanded="true" aria-controls="advanced-form-fields">
                   <span>Fine-tune Drink Details</span>
-                  <svg id="advanced-toggle-icon" class="h-3 w-3 transform transition-transform duration-200 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg id="advanced-toggle-icon" class="h-3 w-3 transform rotate-180 transition-transform duration-200 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
                 
-                <div id="advanced-form-fields" class="space-y-4 hidden transition-all duration-300">
+                <div id="advanced-form-fields" class="space-y-4 transition-all duration-300">
                   <!-- Custom Label input (hidden by default unless category is custom) -->
                   <div id="custom-drink-label-container" class="hidden">
                     <label for="drink-name" class="block font-mono text-[11px] font-semibold text-mute uppercase tracking-wider mb-1.5">Custom Drink Name</label>
