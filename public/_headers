@@ -1,0 +1,7 @@
+# Prevent the main project pages.dev domain from being indexed
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+# Prevent specific branch/preview deployments from being indexed
+https://:branch.:project.pages.dev/*
+  X-Robots-Tag: noindex
