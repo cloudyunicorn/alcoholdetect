@@ -1,7 +1,7 @@
 {
-  "https://www.alcoholdetect.com/about/": "sha256:ab1131ade502e2bf9d16ca3bf172e647d10fdb2b0367c5e82ab2a426695dc8d5",
-  "https://www.alcoholdetect.com/contact/": "sha256:f9374953884034c348d7a6bbe873b840ddf15e8a823de05f33de9fed7877618a",
-  "https://www.alcoholdetect.com/": "sha256:28dcf0e1d8d9da19602c9ed6d019dc5c54237c41e1acb4f59b11f45904531d2d",
-  "https://www.alcoholdetect.com/privacy/": "sha256:bdc962e9a29f1fbc8cb01ceb333c01eafefd17bfc18583098af669018b00b0d7",
-  "https://www.alcoholdetect.com/terms/": "sha256:42c3d2b91bc70ecab5f83751adb0667020238d765e4e7e75ed6f3b7d6b41dee5"
+  "https://www.alcoholdetect.com/about/": "sha256:0d72db9a1eaa2bd6e1fd89220642a04e8d45127965ef5d6cbe0e11365e6a9dc4",
+  "https://www.alcoholdetect.com/contact/": "sha256:1c83fbcc9eda1df042b611bd26df05ee777f0d629d1191fe119ac146e0624044",
+  "https://www.alcoholdetect.com/": "sha256:a61ad287610657ab7ce65faa355e8977ef9f099253c3f2d0b4afb19b23ae1367",
+  "https://www.alcoholdetect.com/privacy/": "sha256:67e3d64a582a59c4b2b55157bd5d41837be715a2a71bbff2a7159823b2bd72bf",
+  "https://www.alcoholdetect.com/terms/": "sha256:2906b6d0f2846e9c71303f587d837a47cef20eb690dcd418dd463bbb9a53c2ab"
 }
