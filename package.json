@@ -17,6 +17,7 @@
     "@astrojs/cloudflare": "^13.6.1",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.3",
+    "astro-indexnow": "^2.1.1",
     "motion": "^12.40.0",
     "tailwindcss": "^4.3.0"
   },
