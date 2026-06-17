@@ -1,7 +1,7 @@
 {
   "https://www.alcoholdetect.com/about/": "sha256:0d72db9a1eaa2bd6e1fd89220642a04e8d45127965ef5d6cbe0e11365e6a9dc4",
   "https://www.alcoholdetect.com/contact/": "sha256:1c83fbcc9eda1df042b611bd26df05ee777f0d629d1191fe119ac146e0624044",
-  "https://www.alcoholdetect.com/": "sha256:a61ad287610657ab7ce65faa355e8977ef9f099253c3f2d0b4afb19b23ae1367",
+  "https://www.alcoholdetect.com/": "sha256:8c16589058cb540c7f65b49bd800d2dde31f98aeb5e375e0cafb462eecd8da9a",
   "https://www.alcoholdetect.com/privacy/": "sha256:67e3d64a582a59c4b2b55157bd5d41837be715a2a71bbff2a7159823b2bd72bf",
   "https://www.alcoholdetect.com/terms/": "sha256:2906b6d0f2846e9c71303f587d837a47cef20eb690dcd418dd463bbb9a53c2ab"
 }
