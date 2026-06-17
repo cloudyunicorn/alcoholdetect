@@ -1631,6 +1631,7 @@ import emergencyNumbers from '../data/emergencyNumbers.json';
           elements.weightInput.value = Math.round(currentVal / 0.453592).toString();
           userState.weight = parseInt(elements.weightInput.value, 10);
           updateAll();
+          
         }
       });
       elements.weightInput.addEventListener('input', (e) => {
