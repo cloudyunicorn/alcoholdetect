@@ -19,7 +19,7 @@ export default defineConfig({
   integrations: [
     indexnow({
       // This automatically updates Bing every single time your build pipeline runs!
-      hostname: 'www.alcoholdetect.com',
+      key: '9867a9975dcf4e368ebd56f3941b9238',
       enabled: true,
     })
   ],
